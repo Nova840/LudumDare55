@@ -15,6 +15,18 @@ public class Vehicle : MonoBehaviour {
     private float turningSpeed;
 
     [SerializeField]
+    private float rotationSmoothingSpeedGround;
+
+    [SerializeField]
+    private float rotationMaxSpeedGround;
+
+    [SerializeField]
+    private float rotationSmoothingSpeedAir;
+
+    [SerializeField]
+    private float rotationMaxSpeedAir;
+
+    [SerializeField]
     private float rayDistance;
 
     [SerializeField]
@@ -24,17 +36,18 @@ public class Vehicle : MonoBehaviour {
     private float springDamper;
 
     [SerializeField]
-    private float vehicleRotateMaxAngle;
+    private float vehicleMaxAngleForAir;
 
     private Rigidbody _rigidbody;
 
     private Vector3 velocityXZ = Vector3.zero;
     private Vector3 targetXZDirection;
-    private Vector3 lastHitNormal = Vector3.up;
+    private Quaternion currentRotation;
 
     private void Awake() {
         _rigidbody = GetComponent<Rigidbody>();
-        targetXZDirection = transform.forward;
+        targetXZDirection = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+        currentRotation = transform.rotation;
     }
 
     private void FixedUpdate() {
@@ -45,18 +58,21 @@ public class Vehicle : MonoBehaviour {
             force = GetUpwardForce(hit);
             _rigidbody.AddForce(force, ForceMode.Acceleration);
         }
-        print(force);
-        if (didHit && force != Vector3.zero && Vector3.Angle(hit.normal, Vector3.up) <= vehicleRotateMaxAngle) {
-            lastHitNormal = hit.normal;
-        }
+
+        bool isGrounded = didHit && force != Vector3.zero && Vector3.Angle(hit.normal, Vector3.up) <= vehicleMaxAngleForAir;
 
         Vector2 inputVector = new Vector2(Keyboard.current.dKey.value - Keyboard.current.aKey.value, Keyboard.current.wKey.value - Keyboard.current.sKey.value);
         Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
 
         if (moveDirection != Vector3.zero) {
-            targetXZDirection = Vector3.RotateTowards(transform.forward, moveDirection, turningSpeed * Time.deltaTime, 0);
+            targetXZDirection = moveDirection;
         }
-        transform.rotation = Quaternion.LookRotation(lastHitNormal, targetXZDirection) * Quaternion.Euler(-90, 0, 180);
+        Vector3 hitNormal = isGrounded ? hit.normal : Vector3.up;
+        Quaternion targetRotation = Quaternion.LookRotation(hitNormal, targetXZDirection) * Quaternion.Euler(-90, 0, 180);
+        float maxSpeed = isGrounded ? rotationMaxSpeedGround : rotationMaxSpeedAir;
+        targetRotation = Quaternion.RotateTowards(currentRotation, targetRotation, maxSpeed * Time.deltaTime);
+        float smoothingSpeed = isGrounded ? rotationSmoothingSpeedGround : rotationSmoothingSpeedAir;
+        transform.rotation = currentRotation = Quaternion.Slerp(currentRotation, targetRotation, smoothingSpeed * Time.deltaTime);
 
         float speed = moveDirection == Vector3.zero ? 0 : topSpeed;
         velocityXZ = Vector3.Lerp(velocityXZ, transform.forward * speed, acceleration * Time.deltaTime);

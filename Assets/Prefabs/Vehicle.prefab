@@ -182,10 +182,14 @@ MonoBehaviour:
   topSpeed: 5
   acceleration: 2
   turningSpeed: 5
+  rotationSmoothingSpeedGround: 5
+  rotationMaxSpeedGround: Infinity
+  rotationSmoothingSpeedAir: 1
+  rotationMaxSpeedAir: Infinity
   rayDistance: 1
   springStrength: 20
   springDamper: 5
-  vehicleRotateMaxAngle: 45
+  vehicleMaxAngleForAir: 45
 --- !u!1001 &5388484182214615458
 PrefabInstance:
   m_ObjectHideFlags: 0
