@@ -246,6 +246,8 @@ MonoBehaviour:
   springDamper: 5
   vehicleMaxAngleForAir: 45
   finishLineTrigger: {fileID: 7370342421623515887}
+  respawnYPosition: -100
+  respawnCheckInterval: 5
 --- !u!1001 &5388484182214615458
 PrefabInstance:
   m_ObjectHideFlags: 0

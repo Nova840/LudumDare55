@@ -8,6 +8,7 @@ public class Spawnpoints : MonoBehaviour {
 
     private Transform[] points;
     public Transform GetSpawnpoint(int index) => points[index];
+    public int GetNumberOfSpawnpoints() => points.Length;
 
     private void Awake() {
         Instance = this;

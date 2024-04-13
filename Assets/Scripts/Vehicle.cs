@@ -44,6 +44,12 @@ public class Vehicle : MonoBehaviour {
     private Collider finishLineTrigger;
     public Collider FinishLineTrigger => finishLineTrigger;
 
+    [SerializeField]
+    private float respawnYPosition;
+
+    [SerializeField]
+    private float respawnCheckInterval;
+
     private Rigidbody _rigidbody;
 
     private Vector3 velocityXZ = Vector3.zero;
@@ -60,6 +66,21 @@ public class Vehicle : MonoBehaviour {
         _rigidbody = GetComponent<Rigidbody>();
         targetXZDirection = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
         currentRotation = transform.rotation;
+    }
+
+    private IEnumerator Start() {
+        while (true) {
+            yield return new WaitForSeconds(respawnCheckInterval);
+            if (transform.position.y <= respawnYPosition) {
+                Transform spawnpoint = Spawnpoints.Instance.GetSpawnpoint(Random.Range(0, Spawnpoints.Instance.GetNumberOfSpawnpoints()));
+                transform.SetPositionAndRotation(spawnpoint.position, spawnpoint.rotation);
+                currentRotation = transform.rotation;
+                targetXZDirection = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+                _rigidbody.velocity = Vector3.zero;
+                velocityXZ = Vector3.zero;
+                GameInfo.GetPlayer(PlayerIndex).SubtractLap();
+            }
+        }
     }
 
     private void FixedUpdate() {
@@ -108,7 +129,5 @@ public class Vehicle : MonoBehaviour {
         force = Mathf.Max(force, 0);
         return springDir * force;
     }
-
-
 
 }
