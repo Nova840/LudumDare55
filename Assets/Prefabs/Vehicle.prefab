@@ -179,7 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c62e8d9c1de16d42b3900bbf8af9361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topSpeed: 5
+  topSpeedGround: 5
+  topSpeedAir: 5
   acceleration: 2
   turningSpeed: 5
   rotationSmoothingSpeedGround: 5

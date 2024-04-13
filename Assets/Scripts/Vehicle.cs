@@ -5,7 +5,10 @@ using UnityEngine;
 public class Vehicle : MonoBehaviour {
 
     [SerializeField]
-    private float topSpeed;
+    private float topSpeedGround;
+
+    [SerializeField]
+    private float topSpeedAir;
 
     [SerializeField]
     private float acceleration;
@@ -66,7 +69,7 @@ public class Vehicle : MonoBehaviour {
 
         bool isGrounded = didHit && force != Vector3.zero && Vector3.Angle(hit.normal, Vector3.up) <= vehicleMaxAngleForAir;
 
-        Vector2 inputVector = isGrounded ? InputManager.GetMoveVector(GameInfo.GetPlayer(playerIndex).controller) : Vector2.zero;
+        Vector2 inputVector = InputManager.GetMoveVector(GameInfo.GetPlayer(playerIndex).controller);
         Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
 
         if (moveDirection != Vector3.zero) {
@@ -79,6 +82,7 @@ public class Vehicle : MonoBehaviour {
         float smoothingSpeed = isGrounded ? rotationSmoothingSpeedGround : rotationSmoothingSpeedAir;
         transform.rotation = currentRotation = Quaternion.Slerp(currentRotation, targetRotation, smoothingSpeed * Time.deltaTime);
 
+        float topSpeed = isGrounded ? topSpeedGround : topSpeedAir;
         float speed = moveDirection == Vector3.zero ? 0 : topSpeed;
         velocityXZ = Vector3.Lerp(velocityXZ, transform.forward * speed, acceleration * Time.deltaTime);
         _rigidbody.velocity = new Vector3(velocityXZ.x, _rigidbody.velocity.y, velocityXZ.z);
