@@ -40,6 +40,10 @@ public class Vehicle : MonoBehaviour {
     [SerializeField]
     private float vehicleMaxAngleForAir;
 
+    [SerializeField]
+    private Collider finishLineTrigger;
+    public Collider FinishLineTrigger => finishLineTrigger;
+
     private Rigidbody _rigidbody;
 
     private Vector3 velocityXZ = Vector3.zero;
