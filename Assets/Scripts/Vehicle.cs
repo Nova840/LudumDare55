@@ -40,6 +40,16 @@ public class Vehicle : MonoBehaviour {
     private void FixedUpdate() {
         bool didHit = GroundRay(out RaycastHit hit);
 
+        Vector3 force = Vector3.zero;
+        if (didHit) {
+            force = GetUpwardForce(hit);
+            _rigidbody.AddForce(force, ForceMode.Acceleration);
+        }
+        print(force);
+        if (didHit && force != Vector3.zero && Vector3.Angle(hit.normal, Vector3.up) <= vehicleRotateMaxAngle) {
+            lastHitNormal = hit.normal;
+        }
+
         Vector2 inputVector = new Vector2(Keyboard.current.dKey.value - Keyboard.current.aKey.value, Keyboard.current.wKey.value - Keyboard.current.sKey.value);
         Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
 
@@ -47,11 +57,6 @@ public class Vehicle : MonoBehaviour {
             targetXZDirection = Vector3.RotateTowards(transform.forward, moveDirection, turningSpeed * Time.deltaTime, 0);
         }
         transform.rotation = Quaternion.LookRotation(lastHitNormal, targetXZDirection) * Quaternion.Euler(-90, 0, 180);
-
-
-        if (didHit) {
-            AddUpwardForce(hit);
-        }
 
         float speed = moveDirection == Vector3.zero ? 0 : topSpeed;
         velocityXZ = Vector3.Lerp(velocityXZ, transform.forward * speed, acceleration * Time.deltaTime);
@@ -61,21 +66,18 @@ public class Vehicle : MonoBehaviour {
 
     private bool GroundRay(out RaycastHit hit) {
         Debug.DrawRay(transform.position, Vector3.down * rayDistance, Color.red, 0, true);
-        bool didHit = Physics.Raycast(transform.position, Vector3.down, out hit, rayDistance, ~LayerMask.GetMask("Vehicle"), QueryTriggerInteraction.Ignore);
-        if (didHit && Vector3.Angle(hit.normal, Vector3.up) <= vehicleRotateMaxAngle) {
-            lastHitNormal = hit.normal;
-        }
-        return didHit;
+        return Physics.Raycast(transform.position, Vector3.down, out hit, rayDistance, ~LayerMask.GetMask("Vehicle"), QueryTriggerInteraction.Ignore);
     }
 
     //https://youtu.be/CdPYlj5uZeI?si=DAdpflGTnhWeMEBA
-    private void AddUpwardForce(RaycastHit hit) {
+    private Vector3 GetUpwardForce(RaycastHit hit) {
         Vector3 springDir = Vector3.up;
         Vector3 worldVel = _rigidbody.velocity;
         float offset = rayDistance - hit.distance;
         float vel = Vector3.Dot(springDir, worldVel);
         float force = (offset * springStrength) - (vel * springDamper);
-        _rigidbody.AddForce(springDir * force, ForceMode.Acceleration);
+        force = Mathf.Max(force, 0);
+        return springDir * force;
     }
 
 }
