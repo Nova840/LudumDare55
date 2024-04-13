@@ -13,19 +13,13 @@ public class GamePlayerUI : MonoBehaviour {
 
     private int highestLapCount = 0;
 
-    private void Awake() {
-        GameInfo.Player player = GameInfo.GetPlayer(playerIndex);
-        if (player != null) {
-            player.OnLapsChange += OnLapsChange;
-        } else {
-            lapsText.gameObject.SetActive(false);
-        }
-    }
-
     private void Start() {
         GameInfo.Player player = GameInfo.GetPlayer(playerIndex);
         if (player != null) {
-            OnLapsChange(player.Laps);
+            player.OnLapsChange += OnLapsChange;
+            OnLapsChange(player.Laps);//needs to be in Start
+        } else {
+            lapsText.gameObject.SetActive(false);
         }
     }
 
