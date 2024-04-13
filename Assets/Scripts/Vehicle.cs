@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Vehicle : MonoBehaviour {
 
@@ -61,7 +60,7 @@ public class Vehicle : MonoBehaviour {
 
         bool isGrounded = didHit && force != Vector3.zero && Vector3.Angle(hit.normal, Vector3.up) <= vehicleMaxAngleForAir;
 
-        Vector2 inputVector = new Vector2(Keyboard.current.dKey.value - Keyboard.current.aKey.value, Keyboard.current.wKey.value - Keyboard.current.sKey.value);
+        Vector2 inputVector = isGrounded ? InputManager.GetMoveVector(-1) : Vector2.zero;
         Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
 
         if (moveDirection != Vector3.zero) {
@@ -95,5 +94,7 @@ public class Vehicle : MonoBehaviour {
         force = Mathf.Max(force, 0);
         return springDir * force;
     }
+
+
 
 }
