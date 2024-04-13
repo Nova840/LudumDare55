@@ -68,7 +68,22 @@ public class Vehicle : MonoBehaviour {
         currentRotation = transform.rotation;
     }
 
-    private IEnumerator Start() {
+    private void Start() {
+        GameInfo.OnPlayerFinish += OnPlayerFinish;
+        StartCoroutine(RespawnCheckRoutine());
+    }
+
+    private void OnDestroy() {
+        GameInfo.OnPlayerFinish -= OnPlayerFinish;
+    }
+
+    private void OnPlayerFinish(int playerIndex) {
+        if (playerIndex == PlayerIndex) {
+            Destroy(gameObject);
+        }
+    }
+
+    private IEnumerator RespawnCheckRoutine() {
         while (true) {
             yield return new WaitForSeconds(respawnCheckInterval);
             if (transform.position.y <= respawnYPosition) {

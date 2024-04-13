@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 350629197}
   - component: {fileID: 350629198}
   m_Layer: 0
-  m_Name: Track
+  m_Name: Track Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

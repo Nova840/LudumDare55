@@ -16,6 +16,9 @@ public static class GameInfo {
             laps++;
             lastLapChangeForward = true;
             OnLapsChange?.Invoke(laps);
+            if (HasFinished) {
+                OnPlayerFinish?.Invoke(playerIndex);
+            }
         }
         public void SubtractLap() {
             if (!lastLapChangeForward) return;
@@ -23,13 +26,16 @@ public static class GameInfo {
             lastLapChangeForward = false;
             OnLapsChange?.Invoke(laps);
         }
-        public void ResetLaps() {
+        public void Reset() {
             laps = -1;
             lastLapChangeForward = false;
             OnLapsChange?.Invoke(laps);
+            endingTime = 0;
         }
         public event Action<int> OnLapsChange;
         public bool lastLapChangeForward = false;
+        public bool HasFinished => laps >= TrackManager.Instance.Laps;
+        public float endingTime;
         public Player(int playerIndex, int controller, Color color) {
             this.playerIndex = playerIndex;
             this.controller = controller;
@@ -49,6 +55,7 @@ public static class GameInfo {
     }
     public static int MaxPlayers => players.Length;
     public static int CurrentPlayers => players.Count(p => p != null);
+    public static event Action<int> OnPlayerFinish;
 
     public static string LevelName { get; set; }
 
