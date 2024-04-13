@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
         Instance = this;
         SceneManager.LoadScene(GameInfo.LevelName, LoadSceneMode.Additive);
         GameInfo.ForEachPlayer(p => {
-            p.Laps = 0;
+            p?.ResetLaps();
         });
     }
 

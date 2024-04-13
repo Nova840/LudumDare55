@@ -28,9 +28,9 @@ public class FinishLine : MonoBehaviour {
         bool countLapForward = vehiclesInFinishLine[rigidbody] && forward;
         bool countLapBackward = !vehiclesInFinishLine[rigidbody] && !forward;
         if (countLapForward) {
-            GameInfo.GetPlayer(vehicle.PlayerIndex).Laps++;
+            GameInfo.GetPlayer(vehicle.PlayerIndex).AddLap();
         } else if (countLapBackward) {
-            GameInfo.GetPlayer(vehicle.PlayerIndex).Laps--;
+            GameInfo.GetPlayer(vehicle.PlayerIndex).SubtractLap();
         }
         vehiclesInFinishLine.Remove(rigidbody);
     }

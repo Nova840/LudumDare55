@@ -11,6 +11,8 @@ public class GamePlayerUI : MonoBehaviour {
     [SerializeField]
     private TMP_Text lapsText;
 
+    private int highestLapCount = 0;
+
     private void Awake() {
         GameInfo.Player player = GameInfo.GetPlayer(playerIndex);
         if (player != null) {
@@ -29,7 +31,10 @@ public class GamePlayerUI : MonoBehaviour {
     }
 
     private void OnLapsChange(int newLaps) {
-        lapsText.text = $"Lap {newLaps}/?";
+        if (newLaps > highestLapCount) {
+            highestLapCount = newLaps;
+        }
+        lapsText.text = $"Lap {highestLapCount}/?";
     }
 
 }
