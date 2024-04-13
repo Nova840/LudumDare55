@@ -34,7 +34,7 @@ public class GamePlayerUI : MonoBehaviour {
         if (newLaps > highestLapCount) {
             highestLapCount = newLaps;
         }
-        lapsText.text = $"Lap {highestLapCount}/?";
+        lapsText.text = $"Lap {highestLapCount + 1}/?";
     }
 
 }

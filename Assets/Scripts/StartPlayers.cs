@@ -35,9 +35,9 @@ public class StartPlayers : MonoBehaviour {
     public void OnAddRemoveButtonClick(int startPlayerIndex, int controller) {
         bool playerExists = GameInfo.GetPlayer(startPlayerIndex) != null;
         if (playerExists) {
-            GameInfo.SetPlayer(startPlayerIndex, null);
+            GameInfo.RemovePlayer(startPlayerIndex);
         } else {
-            GameInfo.SetPlayer(startPlayerIndex, new GameInfo.Player(startPlayerIndex, controller, Color.red));
+            GameInfo.SetPlayer(new GameInfo.Player(startPlayerIndex, controller, Color.red));
         }
         RefreshPlayers();
     }

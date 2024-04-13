@@ -13,14 +13,18 @@ public class GameManager : MonoBehaviour {
 
     private void Awake() {
         Instance = this;
-        SceneManager.LoadScene(GameInfo.LevelName, LoadSceneMode.Additive);
+        if (GameInfo.StartSceneLoaded) {
+            SceneManager.LoadScene(GameInfo.LevelName, LoadSceneMode.Additive);
+        }
         GameInfo.ForEachPlayer(p => {
             p?.ResetLaps();
         });
     }
 
     private void Start() {
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(GameInfo.LevelName));//not active in awake
+        if (GameInfo.StartSceneLoaded) {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(GameInfo.LevelName));//not active in awake
+        }
 
         GameInfo.Player[] playersRandomized = GameInfo.GetPlayers().Where(p => p != null).ToArray();
         playersRandomized.Shuffle();
