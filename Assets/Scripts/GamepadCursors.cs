@@ -11,14 +11,11 @@ public class GamepadCursors : MonoBehaviour {
     [SerializeField]
     private float moveSpeed;
 
+    [SerializeField]
     private RectTransform[] cursors;
 
     private void Awake() {
         InputSystem.onDeviceChange += OnDeviceChange;
-        cursors = new RectTransform[4];
-        for (int i = 0; i < transform.childCount; i++) {
-            cursors[i] = transform.GetChild(i).GetComponent<RectTransform>();
-        }
         SetCursorVisibility();
     }
 
@@ -27,6 +24,7 @@ public class GamepadCursors : MonoBehaviour {
     }
 
     private void Update() {
+        EventSystem.current.SetSelectedGameObject(null);
         for (int i = 0; i < Gamepad.all.Count; i++) {
             cursors[i].transform.position += (Vector3)(Gamepad.all[i].leftStick.value * (moveSpeed * Time.deltaTime));
             cursors[i].transform.position = new Vector3(
@@ -42,7 +40,11 @@ public class GamepadCursors : MonoBehaviour {
                 EventSystem.current.RaycastAll(pointerEventData, results);
                 Button[] buttons = results.Select(r => r.gameObject.GetComponent<Button>()).Where(b => b).ToArray();
                 if (buttons.Length > 0) {
-                    buttons[0].onClick.Invoke();
+                    if (buttons[0].TryGetComponent(out PlayerButton playerButton)) {
+                        playerButton.Click(i);
+                    } else {
+                        buttons[0].onClick.Invoke();
+                    }
                 }
             }
         }
