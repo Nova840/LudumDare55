@@ -17,9 +17,15 @@ public class GamePlayerUI : MonoBehaviour {
         GameInfo.Player player = GameInfo.GetPlayer(playerIndex);
         if (player != null) {
             player.OnLapsChange += OnLapsChange;
-            OnLapsChange(player.Laps);
         } else {
             lapsText.gameObject.SetActive(false);
+        }
+    }
+
+    private void Start() {
+        GameInfo.Player player = GameInfo.GetPlayer(playerIndex);
+        if (player != null) {
+            OnLapsChange(player.Laps);
         }
     }
 
@@ -34,7 +40,8 @@ public class GamePlayerUI : MonoBehaviour {
         if (newLaps > highestLapCount) {
             highestLapCount = newLaps;
         }
-        lapsText.text = $"Lap {highestLapCount + 1}/{TrackManager.Instance.Laps}";
+        int displayLaps = Mathf.Min(TrackManager.Instance.Laps, highestLapCount + 1);
+        lapsText.text = $"Lap {displayLaps}/{TrackManager.Instance.Laps}";
     }
 
 }

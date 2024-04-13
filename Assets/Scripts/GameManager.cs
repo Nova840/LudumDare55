@@ -21,9 +21,6 @@ public class GameManager : MonoBehaviour {
         if (GameInfo.StartSceneLoaded) {
             SceneManager.LoadScene(GameInfo.LevelName, LoadSceneMode.Additive);
         }
-        GameInfo.ForEachPlayer(p => {
-            p?.Reset();
-        });
         GameInfo.OnPlayerFinish += OnPlayerFinish;
     }
 
@@ -32,6 +29,9 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
+        GameInfo.ForEachPlayer(p => {
+            p?.Reset();
+        });
         if (GameInfo.StartSceneLoaded) {
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(GameInfo.LevelName));//not active in awake
         }
