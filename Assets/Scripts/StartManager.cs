@@ -10,6 +10,7 @@ public class StartManager : MonoBehaviour {
     private Button startButton;
 
     private void Awake() {
+        GameInfo.StartSceneLoaded = true;
         startButton.onClick.AddListener(StartButtonClicked);
     }
 
