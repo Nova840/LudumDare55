@@ -50,10 +50,10 @@ public class Vehicle : MonoBehaviour {
     private Vector3 targetXZDirection;
     private Quaternion currentRotation;
 
-    private int playerIndex;
+    public int PlayerIndex { get; private set; }
 
     public void Initialize(int playerIndex) {
-        this.playerIndex = playerIndex;
+        PlayerIndex = playerIndex;
     }
 
     private void Awake() {
@@ -73,7 +73,7 @@ public class Vehicle : MonoBehaviour {
 
         bool isGrounded = didHit && force != Vector3.zero && Vector3.Angle(hit.normal, Vector3.up) <= vehicleMaxAngleForAir;
 
-        Vector2 inputVector = InputManager.GetMoveVector(GameInfo.GetPlayer(playerIndex).controller);
+        Vector2 inputVector = InputManager.GetMoveVector(GameInfo.GetPlayer(PlayerIndex).controller);
         Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
 
         if (moveDirection != Vector3.zero) {

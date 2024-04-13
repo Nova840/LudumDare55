@@ -6,11 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    public static GameManager Instance { get; private set; }
+
     [SerializeField]
     private GameObject vehiclePrefab;
 
     private void Awake() {
+        Instance = this;
         SceneManager.LoadScene(GameInfo.LevelName, LoadSceneMode.Additive);
+        GameInfo.ForEachPlayer(p => {
+            p.Laps = 0;
+        });
     }
 
     private void Start() {
