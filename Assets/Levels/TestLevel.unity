@@ -397,11 +397,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vehicle
       objectReference: {fileID: 0}
-    - target: {fileID: 7880912877135657670, guid: 6fe20cf75b6564443af2ce4bcf58d331,
-        type: 3}
-      propertyPath: vehicleRotateMaxAngle
-      value: 45
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
