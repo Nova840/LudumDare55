@@ -1090,6 +1090,7 @@ MonoBehaviour:
   brWheel: {fileID: 5837543871556108326}
   wheelVisualRotationOffset: {x: 0, y: 0, z: 90}
   maxSpeed: 500
-  steerAngle: 30
+  maxSteerAngle: 30
   motorTorque: 500
   brakeTorque: 500
+  steerSmoothSpeed: 5

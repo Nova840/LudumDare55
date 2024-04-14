@@ -17,13 +17,18 @@ public class DrivingVehicle : Vehicle {
     private float maxSpeed;
 
     [SerializeField]
-    private float steerAngle;
+    private float maxSteerAngle;
 
     [SerializeField]
     private float motorTorque;
 
     [SerializeField]
     private float brakeTorque;
+
+    [SerializeField]
+    private float steerSmoothSpeed;
+
+    private float steerAngle = 0;
 
     protected override void Awake() {
         base.Awake();
@@ -34,6 +39,7 @@ public class DrivingVehicle : Vehicle {
 
     private void Update() {
         GameInfo.Player player = GameInfo.GetPlayer(PlayerIndex);
+
         float steering = InputManager.GetMoveVector(player.controller).x;
         float accelerate;
         if (player.controller < 0) {
@@ -52,8 +58,10 @@ public class DrivingVehicle : Vehicle {
             brake = (accelerate + reverse) / 2f;
         }
 
+        steerAngle = Mathf.Lerp(steerAngle, steering * maxSteerAngle, steerSmoothSpeed * Time.deltaTime);
+
         foreach (WheelCollider wheel in steeringWheels) {
-            wheel.steerAngle = steering * steerAngle;
+            wheel.steerAngle = steerAngle;
         }
 
         foreach (WheelCollider wheel in allWheels) {
