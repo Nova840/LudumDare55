@@ -15,4 +15,44 @@ public static class InputManager {
         }
     }
 
+    public static bool GetKeyboardForward(int controller) {
+        if (controller < 0) {
+            return Keyboard.current.wKey.isPressed;
+        } else if (controller < Gamepad.all.Count) {
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    public static bool GetKeyboardBackward(int controller) {
+        if (controller < 0) {
+            return Keyboard.current.sKey.isPressed;
+        } else if (controller < Gamepad.all.Count) {
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    public static float GetGamepadAccelerate(int controller) {
+        if (controller < 0) {
+            return 0;
+        } else if (controller < Gamepad.all.Count) {
+            return Gamepad.all[controller].rightTrigger.value;
+        } else {
+            return 0;
+        }
+    }
+
+    public static float GetGamepadBrake(int controller) {
+        if (controller < 0) {
+            return 0;
+        } else if (controller < Gamepad.all.Count) {
+            return Gamepad.all[controller].leftTrigger.value;
+        } else {
+            return 0;
+        }
+    }
+
 }
