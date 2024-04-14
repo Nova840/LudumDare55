@@ -41,28 +41,32 @@ public class DrivingVehicle : Vehicle {
         } else {
             accelerate = InputManager.GetGamepadAccelerate(player.controller);
         }
-        float brake;
+        float reverse;
         if (player.controller < 0) {
-            brake = InputManager.GetKeyboardBackward(player.controller) ? 1 : 0;
+            reverse = InputManager.GetKeyboardBackward(player.controller) ? 1 : 0;
         } else {
-            brake = InputManager.GetGamepadBrake(player.controller);
+            reverse = InputManager.GetGamepadBrake(player.controller);
+        }
+        float brake = 0;
+        if (accelerate > 0 && reverse > 0) {
+            brake = (accelerate + reverse) / 2f;
         }
 
         foreach (WheelCollider wheel in steeringWheels) {
             wheel.steerAngle = steering * steerAngle;
         }
 
-        foreach (WheelCollider wheel in drivingWheels) {
-            float speed = wheel.rpm * wheel.radius * 2 * Mathf.PI;
-            if (speed >= maxSpeed || brake > 0) {
-                wheel.motorTorque = 0;
-                continue;
-            }
-            wheel.motorTorque = accelerate * motorTorque;
-        }
-
         foreach (WheelCollider wheel in allWheels) {
             wheel.brakeTorque = brake * brakeTorque;
+        }
+
+        foreach (WheelCollider wheel in drivingWheels) {
+            float speed = Mathf.Abs(wheel.rpm) * wheel.radius * 2 * Mathf.PI;
+            if (speed >= maxSpeed || wheel.brakeTorque > 0) {
+                wheel.motorTorque = 0;
+            } else {
+                wheel.motorTorque = (accelerate - reverse) * motorTorque;
+            }
         }
 
         foreach (WheelCollider wheel in allWheels) {
