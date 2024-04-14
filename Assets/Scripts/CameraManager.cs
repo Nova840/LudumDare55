@@ -22,29 +22,32 @@ public class CameraManager : MonoBehaviour {
     private Rigidbody cameraRigidbody;
 
     private List<Vehicle> vehicles = new List<Vehicle>();
-    public void AddVehicle(Vehicle vehicle) => vehicles.Add(vehicle);
+    public void AddVehicle(Vehicle vehicle) {
+        vehicles.Add(vehicle);
+        Snap();
+    }
 
     private void Awake() {
         Instance = this;
         cameraRigidbody.transform.SetParent(null, true);
     }
 
-    private void Start() {
-        if (vehicles.Count == 0) return;
-        Bounds bounds = GetRelativeBounds();
-        transform.position = GetTargetPosition(bounds);
-        cameraFollow.transform.localPosition = new Vector3(0, 0, -GetTargetDistance(bounds));
-    }
-
     private void Update() {
         if (vehicles.Count == 0) return;
         Bounds bounds = GetRelativeBounds();
         transform.position = Vector3.Lerp(transform.position, GetTargetPosition(bounds), moveSmoothingSpeed * Time.deltaTime);
-        cameraFollow.transform.localPosition = new Vector3(0, 0, Mathf.Lerp(cameraFollow.transform.localPosition.z, -GetTargetDistance(bounds), zoomSmoothingSpeed * Time.deltaTime));
+        cameraFollow.localPosition = new Vector3(0, 0, Mathf.Lerp(cameraFollow.transform.localPosition.z, -GetTargetDistance(bounds), zoomSmoothingSpeed * Time.deltaTime));
     }
 
     private void FixedUpdate() {
         cameraRigidbody.velocity = (cameraFollow.position - cameraRigidbody.position) / Time.fixedDeltaTime;
+    }
+
+    private void Snap() {
+        Bounds bounds = GetRelativeBounds();
+        transform.position = GetTargetPosition(bounds);
+        cameraFollow.localPosition = new Vector3(0, 0, -GetTargetDistance(bounds));
+        cameraRigidbody.transform.position = cameraFollow.position;
     }
 
     private Bounds GetRelativeBounds() {
