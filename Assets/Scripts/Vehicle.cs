@@ -30,6 +30,7 @@ public abstract class Vehicle : MonoBehaviour {
     }
 
     private void Start() {
+        CameraManager.Instance.AddVehicle(this);
         GameInfo.OnPlayerFinish += OnPlayerFinish;
         StartCoroutine(RespawnCheckRoutine());
         turtleRenderer.material.color = GameInfo.GetPlayer(PlayerIndex).color;
