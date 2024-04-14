@@ -39,22 +39,28 @@ public class DrivingVehicle : Vehicle {
 
     private void Update() {
         GameInfo.Player player = GameInfo.GetPlayer(PlayerIndex);
-
-        float steering = InputManager.GetMoveVector(player.controller).x;
-        float accelerate;
-        if (player.controller < 0) {
-            accelerate = InputManager.GetKeyboardForward(player.controller) ? 1 : 0;
-        } else {
-            accelerate = InputManager.GetGamepadAccelerate(player.controller);
+        bool countdownOver = GameManager.Instance.CountdownOver;
+        float steering = countdownOver ? InputManager.GetMoveVector(player.controller).x : 0;
+        float accelerate = 0;
+        if (countdownOver) {
+            if (player.controller < 0) {
+                accelerate = InputManager.GetKeyboardForward(player.controller) ? 1 : 0;
+            } else {
+                accelerate = InputManager.GetGamepadAccelerate(player.controller);
+            }
         }
-        float reverse;
-        if (player.controller < 0) {
-            reverse = InputManager.GetKeyboardBackward(player.controller) ? 1 : 0;
-        } else {
-            reverse = InputManager.GetGamepadBrake(player.controller);
+        float reverse = 0;
+        if (countdownOver) {
+            if (player.controller < 0) {
+                reverse = InputManager.GetKeyboardBackward(player.controller) ? 1 : 0;
+            } else {
+                reverse = InputManager.GetGamepadBrake(player.controller);
+            }
         }
         float brake = 0;
-        if (accelerate > 0 && reverse > 0) {
+        if (!countdownOver) {
+            brake = 1;
+        } else if (accelerate > 0 && reverse > 0) {
             brake = (accelerate + reverse) / 2f;
         }
 

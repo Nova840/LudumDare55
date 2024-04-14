@@ -61,7 +61,10 @@ public class HoveringVehicle : Vehicle {
 
         bool isGrounded = didHit && force != Vector3.zero && Vector3.Angle(hit.normal, Vector3.up) <= vehicleMaxAngleForAir;
 
-        Vector2 moveVector = InputManager.GetMoveVector(GameInfo.GetPlayer(PlayerIndex).controller);
+        Vector2 moveVector = Vector2.zero;
+        if (GameManager.Instance.CountdownOver) {
+            moveVector = InputManager.GetMoveVector(GameInfo.GetPlayer(PlayerIndex).controller);
+        }
         Vector3 moveDirection = new Vector3(moveVector.x, 0, moveVector.y);
 
         if (moveDirection != Vector3.zero) {

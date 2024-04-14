@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,8 +12,15 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private GameObject vehiclePrefab;
 
-    private float timeStarted;
-    public float TimeElapsed => Time.time - timeStarted;
+    [SerializeField]
+    private TMP_Text countdownText;
+
+    [SerializeField]
+    private int countdownTime;
+
+    private float timeStarted = Mathf.NegativeInfinity;
+    public float TimeElapsed => Time.time - timeStarted - countdownTime;
+    public bool CountdownOver { get; private set; } = false;
 
     private int numPlayersFinished = 0;
 
@@ -29,6 +37,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
+        StartCoroutine(Countdown());
         GameInfo.ForEachPlayer(p => {
             p?.Reset();
         });
@@ -45,6 +54,15 @@ public class GameManager : MonoBehaviour {
             Vehicle vehicle = Instantiate(vehiclePrefab, spawnpoint.position, spawnpoint.rotation).GetComponent<Vehicle>();
             vehicle.Initialize(playersRandomized[i].playerIndex);
         }
+    }
+
+    private IEnumerator Countdown() {
+        for (int i = 0; i < countdownTime; i++) {
+            countdownText.text = (countdownTime - i).ToString();
+            yield return new WaitForSeconds(1);
+        }
+        countdownText.gameObject.SetActive(false);
+        CountdownOver = true;
     }
 
     private void OnPlayerFinish(int playerIndex) {
