@@ -15,29 +15,9 @@ public static class InputManager {
         }
     }
 
-    public static bool GetKeyboardForward(int controller) {
+    public static float GetAccelerate(int controller) {
         if (controller < 0) {
-            return Keyboard.current.wKey.isPressed;
-        } else if (controller < Gamepad.all.Count) {
-            return false;
-        } else {
-            return false;
-        }
-    }
-
-    public static bool GetKeyboardBackward(int controller) {
-        if (controller < 0) {
-            return Keyboard.current.sKey.isPressed;
-        } else if (controller < Gamepad.all.Count) {
-            return false;
-        } else {
-            return false;
-        }
-    }
-
-    public static float GetGamepadAccelerate(int controller) {
-        if (controller < 0) {
-            return 0;
+            return Keyboard.current.wKey.value;
         } else if (controller < Gamepad.all.Count) {
             return Gamepad.all[controller].rightTrigger.value;
         } else {
@@ -45,11 +25,21 @@ public static class InputManager {
         }
     }
 
-    public static float GetGamepadBrake(int controller) {
+    public static float GetReverse(int controller) {
         if (controller < 0) {
-            return 0;
+            return Keyboard.current.sKey.value;
         } else if (controller < Gamepad.all.Count) {
             return Gamepad.all[controller].leftTrigger.value;
+        } else {
+            return 0;
+        }
+    }
+
+    public static float GetBrake(int controller) {
+        if (controller < 0) {
+            return Keyboard.current.leftShiftKey.value;
+        } else if (controller < Gamepad.all.Count) {
+            return Mathf.Clamp01(Gamepad.all[controller].leftShoulder.value + Gamepad.all[controller].rightShoulder.value);
         } else {
             return 0;
         }

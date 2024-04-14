@@ -41,27 +41,14 @@ public class DrivingVehicle : Vehicle {
         GameInfo.Player player = GameInfo.GetPlayer(PlayerIndex);
         bool countdownOver = GameManager.Instance.CountdownOver;
         float steering = countdownOver ? InputManager.GetMoveVector(player.controller).x : 0;
-        float accelerate = 0;
-        if (countdownOver) {
-            if (player.controller < 0) {
-                accelerate = InputManager.GetKeyboardForward(player.controller) ? 1 : 0;
-            } else {
-                accelerate = InputManager.GetGamepadAccelerate(player.controller);
-            }
-        }
-        float reverse = 0;
-        if (countdownOver) {
-            if (player.controller < 0) {
-                reverse = InputManager.GetKeyboardBackward(player.controller) ? 1 : 0;
-            } else {
-                reverse = InputManager.GetGamepadBrake(player.controller);
-            }
-        }
-        float brake = 0;
+        float accelerate = countdownOver ? InputManager.GetAccelerate(player.controller) : 0;
+        float reverse = countdownOver ? InputManager.GetReverse(player.controller) : 0;
+        float brake = InputManager.GetBrake(player.controller);
         if (!countdownOver) {
             brake = 1;
         } else if (accelerate > 0 && reverse > 0) {
-            brake = (accelerate + reverse) / 2f;
+            brake += (accelerate + reverse) / 2f;
+            brake = Mathf.Clamp01(brake);
         }
 
         steerAngle = Mathf.Lerp(steerAngle, steering * maxSteerAngle, steerSmoothSpeed * Time.deltaTime);
