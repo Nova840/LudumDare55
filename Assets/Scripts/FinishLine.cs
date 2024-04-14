@@ -7,6 +7,7 @@ public class FinishLine : MonoBehaviour {
     private Dictionary<Rigidbody, bool> vehiclesInFinishLine = new Dictionary<Rigidbody, bool>();
 
     private void OnTriggerEnter(Collider other) {
+        print(other.gameObject);
         if (other.gameObject.layer != LayerMask.NameToLayer("Vehicle")) return;
         Rigidbody rigidbody = other.GetComponentInParent<Rigidbody>();
         if (vehiclesInFinishLine.ContainsKey(rigidbody)) return;
