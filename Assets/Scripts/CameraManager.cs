@@ -32,10 +32,6 @@ public class CameraManager : MonoBehaviour {
         cameraRigidbody.transform.SetParent(null, true);
     }
 
-    private void LateUpdate() {
-
-    }
-
     private void FixedUpdate() {
         if (vehicles.Count == 0) return;
         Bounds bounds = GetRelativeBounds();
