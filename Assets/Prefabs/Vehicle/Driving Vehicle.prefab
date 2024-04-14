@@ -1081,8 +1081,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finishLineTrigger: {fileID: 5947471783574615586}
-  respawnYPosition: -100
-  respawnCheckInterval: 5
+  respawnYPosition: -50
+  respawnCheckInterval: 1
   turtleRenderer: {fileID: 4118946196184459957}
   flWheel: {fileID: 7690017178917845036}
   frWheel: {fileID: 1856211453236967770}
