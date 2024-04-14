@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class PlayerButton : MonoBehaviour {
 
-    [SerializeField]
-    private int buttonIndex;
-
     public event Action<int> OnClick;//<controller>
 
     public void Click(int controller) {

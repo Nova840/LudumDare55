@@ -36,10 +36,12 @@ public static class GameInfo {
         public bool lastLapChangeForward = false;
         public bool HasFinished => laps >= TrackManager.Instance.Laps;
         public float endingTime;
-        public Player(int playerIndex, int controller, Color color) {
+        public bool isCPU;
+        public Player(int playerIndex, int controller, Color color, bool isCPU) {
             this.playerIndex = playerIndex;
             this.controller = controller;
             this.color = color;
+            this.isCPU = isCPU;
         }
     }
 

@@ -46,6 +46,10 @@ public class GamepadCursors : MonoBehaviour {
                         buttons[0].onClick.Invoke();
                     }
                 }
+                Toggle[] toggles = results.Select(r => r.gameObject.GetComponentInParent<Toggle>()).Where(b => b).Distinct().ToArray();
+                if (toggles.Length > 0) {
+                    toggles[0].onValueChanged.Invoke(!toggles[0].isOn);
+                }
             }
         }
     }

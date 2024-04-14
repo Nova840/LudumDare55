@@ -14,7 +14,7 @@ public class TrackManager : MonoBehaviour {
     private void Awake() {
         Instance = this;
         if (!GameInfo.StartSceneLoaded) {
-            GameInfo.SetPlayer(new GameInfo.Player(0, -1, Color.red));
+            GameInfo.SetPlayer(new GameInfo.Player(0, -1, Color.red, true));
             SceneManager.LoadScene("Game", LoadSceneMode.Additive);
         }
     }

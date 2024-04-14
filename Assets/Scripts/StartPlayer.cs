@@ -34,4 +34,8 @@ public class StartPlayer : MonoBehaviour {
     private TMP_Text addRemoveButtonText;
     public TMP_Text AddRemoveButtonText => addRemoveButtonText;
 
+    [SerializeField]
+    private Toggle cpuToggle;
+    public Toggle CPUToggle => cpuToggle;
+
 }
