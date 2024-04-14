@@ -50,6 +50,9 @@ public class Vehicle : MonoBehaviour {
     [SerializeField]
     private float respawnCheckInterval;
 
+    [SerializeField]
+    private Renderer turtleRenderer;
+
     private Rigidbody _rigidbody;
 
     private Vector3 velocityXZ = Vector3.zero;
@@ -71,6 +74,7 @@ public class Vehicle : MonoBehaviour {
     private void Start() {
         GameInfo.OnPlayerFinish += OnPlayerFinish;
         StartCoroutine(RespawnCheckRoutine());
+        turtleRenderer.material.color = GameInfo.GetPlayer(PlayerIndex).color;
     }
 
     private void OnDestroy() {

@@ -248,6 +248,7 @@ MonoBehaviour:
   finishLineTrigger: {fileID: 7370342421623515887}
   respawnYPosition: -100
   respawnCheckInterval: 5
+  turtleRenderer: {fileID: 1002177139917092472}
 --- !u!1001 &3726689539671404087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -316,6 +317,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10603268b6da1b4499bad5b16a89203d, type: 3}
+--- !u!23 &1002177139917092472 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4494502992711604303, guid: 10603268b6da1b4499bad5b16a89203d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3726689539671404087}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2135654071768026391 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3320422260520428320, guid: 10603268b6da1b4499bad5b16a89203d,
