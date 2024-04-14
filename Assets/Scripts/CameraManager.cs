@@ -15,28 +15,36 @@ public class CameraManager : MonoBehaviour {
     [SerializeField]
     private float stopTrackingYPosition;
 
-    private Camera _camera;
+    [SerializeField]
+    private Transform cameraFollow;
+
+    [SerializeField]
+    private Rigidbody cameraRigidbody;
 
     private List<Vehicle> vehicles = new List<Vehicle>();
     public void AddVehicle(Vehicle vehicle) => vehicles.Add(vehicle);
 
     private void Awake() {
         Instance = this;
-        _camera = GetComponentInChildren<Camera>();
+        cameraRigidbody.transform.SetParent(null, true);
     }
 
     private void Start() {
         if (vehicles.Count == 0) return;
         Bounds bounds = GetRelativeBounds();
         transform.position = GetTargetPosition(bounds);
-        _camera.transform.localPosition = new Vector3(0, 0, -GetTargetDistance(bounds));
+        cameraFollow.transform.localPosition = new Vector3(0, 0, -GetTargetDistance(bounds));
     }
 
-    private void LateUpdate() {
+    private void Update() {
         if (vehicles.Count == 0) return;
         Bounds bounds = GetRelativeBounds();
         transform.position = Vector3.Lerp(transform.position, GetTargetPosition(bounds), moveSmoothingSpeed * Time.deltaTime);
-        _camera.transform.localPosition = new Vector3(0, 0, Mathf.Lerp(_camera.transform.localPosition.z, -GetTargetDistance(bounds), zoomSmoothingSpeed * Time.deltaTime));
+        cameraFollow.transform.localPosition = new Vector3(0, 0, Mathf.Lerp(cameraFollow.transform.localPosition.z, -GetTargetDistance(bounds), zoomSmoothingSpeed * Time.deltaTime));
+    }
+
+    private void FixedUpdate() {
+        cameraRigidbody.velocity = (cameraFollow.position - cameraRigidbody.position) / Time.fixedDeltaTime;
     }
 
     private Bounds GetRelativeBounds() {
