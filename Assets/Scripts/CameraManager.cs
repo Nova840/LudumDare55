@@ -59,7 +59,7 @@ public class CameraManager : MonoBehaviour {
         List<Vector3> relativePositions = new List<Vector3>();
 
         for (int i = 0; i < vehicles.Count; i++) {
-            if (vehicles[i].transform.position.y <= stopTrackingYPosition) continue;
+            if (!vehicles[i] || vehicles[i].transform.position.y <= stopTrackingYPosition) continue;
             relativePositions.Add(GetPlayerRelativePosition(vehicles[i]));
         }
 
