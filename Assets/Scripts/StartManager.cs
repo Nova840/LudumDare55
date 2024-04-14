@@ -9,13 +9,16 @@ public class StartManager : MonoBehaviour {
     [SerializeField]
     private Button startButton;
 
+    [SerializeField]
+    private string levelName;
+
     private void Awake() {
         GameInfo.StartSceneLoaded = true;
         startButton.onClick.AddListener(StartButtonClicked);
     }
 
     private void StartButtonClicked() {
-        GameInfo.LevelName = "TestLevel";
+        GameInfo.LevelName = levelName;
         SceneManager.LoadScene("Game");
     }
 
