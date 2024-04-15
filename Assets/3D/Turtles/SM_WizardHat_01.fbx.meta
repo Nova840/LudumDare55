@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Merged_Sphere_001
+      name: Gold
     second: {fileID: 2100000, guid: f38f3c6fdf0a7ae45bbe96900367fd60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TintableMaterial
+    second: {fileID: 2100000, guid: 9877620c4e880ae489e7f119bed03fcb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
