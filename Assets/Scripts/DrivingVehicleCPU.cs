@@ -33,6 +33,7 @@ public class DrivingVehicleCPU : Vehicle {
     private float brakeTorque;
 
     private SplineAnimate splineAnimate;
+    private float splineAnimateDuration;
 
     protected override void Awake() {
         base.Awake();
@@ -43,14 +44,16 @@ public class DrivingVehicleCPU : Vehicle {
         splineAnimate.Container = TrackManager.Instance.CPUSpline;
         splineAnimate.StartOffset = TrackManager.Instance.CPUSplineStartPercent;
         splineAnimate.transform.SetParent(null, true);
+        splineAnimate.MaxSpeed = Mathf.Abs(GetRealSplineAnimateSpeed());
+        splineAnimateDuration = splineAnimate.Duration;
     }
 
     private void Update() {
         if (GameManager.Instance.CountdownOver) {
-            splineAnimate.MaxSpeed = Mathf.Abs(GetRealSplineAnimateSpeed());
-            float duration = splineAnimate.Duration;
-            splineAnimate.NormalizedTime += GetRealSplineAnimateSpeed() / duration * Time.deltaTime;
-            splineAnimate.NormalizedTime = Mathf.Repeat(splineAnimate.NormalizedTime, 1);
+            float time = splineAnimate.NormalizedTime;
+            time += GetRealSplineAnimateSpeed() / splineAnimateDuration * Time.deltaTime;
+            time = Mathf.Repeat(time, 1);
+            splineAnimate.NormalizedTime = time;
             splineAnimate.transform.position += Vector3.up * TrackManager.Instance.CPUSplineVerticalOffset;
         }
 

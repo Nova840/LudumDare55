@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Duration: Infinity
   m_MaxSpeed: 0
   m_EasingMode: 0
-  m_AlignmentMode: 1
+  m_AlignmentMode: 0
   m_ObjectForwardAxis: 2
   m_ObjectUpAxis: 1
   m_StartOffset: 0
@@ -126,7 +126,7 @@ PrefabInstance:
     - target: {fileID: 8360476570972145021, guid: e44c42002ee99674c9a28294afd07ece,
         type: 3}
       propertyPath: m_CenterOfMass.y
-      value: -0.25
+      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5977557608547182772, guid: e44c42002ee99674c9a28294afd07ece, type: 3}
