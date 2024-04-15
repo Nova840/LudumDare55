@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
@@ -60,6 +61,14 @@ public class GameManager : MonoBehaviour {
         }
 
         TrackManager.Instance.EndPodium.gameObject.SetActive(false);
+    }
+
+    private void Update() {
+        for (int i = -1; i < Gamepad.all.Count; i++) {
+            if (InputManager.GetBackPressed(i)) {
+                SceneManager.LoadScene("Start");
+            }
+        }
     }
 
     private IEnumerator Countdown() {
