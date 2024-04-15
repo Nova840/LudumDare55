@@ -2287,6 +2287,21 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxEngineVolume: 1
+  bumpSounds:
+  - clip: {fileID: 8300000, guid: 8e2ddfd403ed6c84daf4bccb14c57496, type: 3}
+    volume: 1
+    randomPitchVariation: 0.1
+  - clip: {fileID: 8300000, guid: bc378a99459d886439e28552fa169972, type: 3}
+    volume: 1
+    randomPitchVariation: 0.1
+  - clip: {fileID: 8300000, guid: 13466f001c60764429bd4c2cd8760c44, type: 3}
+    volume: 1
+    randomPitchVariation: 0.1
+  - clip: {fileID: 8300000, guid: 38d24140edade164f8c3721085b8d562, type: 3}
+    volume: 1
+    randomPitchVariation: 0.1
+  bumpSoundSpeedThreshold: 1
+  bumpSoundTimeDelay: 0.25
 --- !u!1001 &4169598061073879872
 PrefabInstance:
   m_ObjectHideFlags: 0

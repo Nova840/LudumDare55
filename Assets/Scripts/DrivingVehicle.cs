@@ -37,6 +37,17 @@ public class DrivingVehicle : Vehicle {
     [SerializeField, Range(0, 1)]
     private float maxEngineVolume;
 
+    [SerializeField]
+    private Sound[] bumpSounds;
+
+    [SerializeField]
+    private float bumpSoundSpeedThreshold;
+
+    [SerializeField]
+    private float bumpSoundTimeDelay;
+
+    private float timeLastBumpSoundPlayed = Mathf.NegativeInfinity;
+
     private float steerAngle = 0;
 
     protected override void Awake() {
@@ -88,6 +99,13 @@ public class DrivingVehicle : Vehicle {
         foreach (AudioSource source in engineSounds) {
             float speed = Vector3.ProjectOnPlane(_rigidbody.velocity, Vector3.up).magnitude;
             source.volume = engineVolumeAtSpeed.Evaluate(speed) * maxEngineVolume / GameInfo.CurrentPlayers;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (Time.time - timeLastBumpSoundPlayed >= bumpSoundTimeDelay && collision.relativeVelocity.magnitude >= bumpSoundSpeedThreshold) {
+            timeLastBumpSoundPlayed = Time.time;
+            Sound.Play(bumpSounds[GameInfo.GetPlayer(PlayerIndex).vehicleIndex]);
         }
     }
 

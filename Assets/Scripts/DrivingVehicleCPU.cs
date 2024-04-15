@@ -41,6 +41,17 @@ public class DrivingVehicleCPU : Vehicle {
     [SerializeField, Range(0, 1)]
     private float maxEngineVolume;
 
+    [SerializeField]
+    private Sound[] bumpSounds;
+
+    [SerializeField]
+    private float bumpSoundSpeedThreshold;
+
+    [SerializeField]
+    private float bumpSoundTimeDelay;
+
+    private float timeLastBumpSoundPlayed = Mathf.NegativeInfinity;
+
     private SplineAnimate splineAnimate;
     private float splineAnimateDuration;
 
@@ -101,6 +112,13 @@ public class DrivingVehicleCPU : Vehicle {
             if (_rigidbody.velocity != Vector3.zero) {
                 _rigidbody.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_rigidbody.velocity), rotateSpeed * Time.deltaTime);
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (Time.time - timeLastBumpSoundPlayed >= bumpSoundTimeDelay && collision.relativeVelocity.magnitude >= bumpSoundSpeedThreshold) {
+            timeLastBumpSoundPlayed = Time.time;
+            Sound.Play(bumpSounds[GameInfo.GetPlayer(PlayerIndex).vehicleIndex]);
         }
     }
 
