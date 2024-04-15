@@ -1335,6 +1335,7 @@ GameObject:
   - component: {fileID: 280217918}
   - component: {fileID: 280217917}
   - component: {fileID: 280217916}
+  - component: {fileID: 280217919}
   m_Layer: 5
   m_Name: Quit Game Button
   m_TagString: Untagged
@@ -1444,6 +1445,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280217914}
   m_CullTransparentMesh: 1
+--- !u!114 &280217919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280217914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &297818131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,6 +2367,10 @@ MonoBehaviour:
   - {r: 0, g: 0.6772113, b: 1, a: 1}
   - {r: 0.053106308, g: 0, b: 1, a: 1}
   - {r: 0.8835411, g: 0, b: 1, a: 1}
+  clickSound:
+    clip: {fileID: 8300000, guid: 60a77c54cb14e0448a9970b28daa9c32, type: 3}
+    volume: 1
+    randomPitchVariation: 0
 --- !u!1 &467733082
 GameObject:
   m_ObjectHideFlags: 0
@@ -5256,6 +5274,7 @@ GameObject:
   - component: {fileID: 875917553}
   - component: {fileID: 875917552}
   - component: {fileID: 875917551}
+  - component: {fileID: 875917554}
   m_Layer: 5
   m_Name: Start Button
   m_TagString: Untagged
@@ -5365,6 +5384,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875917549}
   m_CullTransparentMesh: 1
+--- !u!114 &875917554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875917549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &891194287
 GameObject:
   m_ObjectHideFlags: 0
@@ -8872,6 +8904,14 @@ MonoBehaviour:
   startButton: {fileID: 875917551}
   quitGameButton: {fileID: 280217916}
   levelName: 3D_TestLevel
+  startButtonSound:
+    clip: {fileID: 8300000, guid: 69aa7fc0fd897c54ea1174ea11535afb, type: 3}
+    volume: 1
+    randomPitchVariation: 0
+  quitGameButtonSound:
+    clip: {fileID: 8300000, guid: da2d62b0b1af2124fbba81b5b3531303, type: 3}
+    volume: 1
+    randomPitchVariation: 0
 --- !u!1 &1600865801
 GameObject:
   m_ObjectHideFlags: 0

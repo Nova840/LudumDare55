@@ -15,6 +15,12 @@ public class StartManager : MonoBehaviour {
     [SerializeField]
     private string levelName;
 
+    [SerializeField]
+    private Sound startButtonSound;
+
+    [SerializeField]
+    private Sound quitGameButtonSound;
+
     private void Awake() {
         GameInfo.StartSceneLoaded = true;
         startButton.onClick.AddListener(StartButtonClicked);
@@ -27,11 +33,13 @@ public class StartManager : MonoBehaviour {
     }
 
     private void StartButtonClicked() {
+        Sound.Play(startButtonSound, true);
         GameInfo.LevelName = levelName;
         SceneManager.LoadScene("Game");
     }
 
     private void QuitGameButtonClick() {
+        Sound.Play(quitGameButtonSound, true);
 #if !UNITY_EDITOR
         Application.Quit();
 #else

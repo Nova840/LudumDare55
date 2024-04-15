@@ -24,14 +24,17 @@ public class Sound {
         this.randomPitchVariation = randomPitchVariation;
     }
 
-    public static void Play(Sound[] sounds) => Play(sounds[Random.Range(0, sounds.Length)]);
-    public static void Play(Sound sound) => Play(sound.clip, sound.volume, sound.randomPitchVariation);
-    public static void Play(AudioClip clip, float volume = 1, float randomPitchVariation = 0) {
+    public static void Play(Sound[] sounds, bool dontDestroyOnLoad = false) => Play(sounds[Random.Range(0, sounds.Length)], dontDestroyOnLoad);
+    public static void Play(Sound sound, bool dontDestroyOnLoad = false) => Play(sound.clip, sound.volume, sound.randomPitchVariation, dontDestroyOnLoad);
+    public static void Play(AudioClip clip, float volume = 1, float randomPitchVariation = 0, bool dontDestroyOnLoad = false) {
         AudioSource source = new GameObject("Sound: " + clip.name).AddComponent<AudioSource>();
         source.clip = clip;
         source.volume = volume;
         source.pitch = Random.Range(1 / (randomPitchVariation + 1), randomPitchVariation + 1);
         source.Play();
+        if (dontDestroyOnLoad) {
+            Object.DontDestroyOnLoad(source.gameObject);
+        }
         Object.Destroy(source.gameObject, clip.length / source.pitch);
     }
 

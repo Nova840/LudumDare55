@@ -271,6 +271,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vehiclePrefab: {fileID: 7397554503161695636, guid: e44c42002ee99674c9a28294afd07ece,
     type: 3}
+  goBackSound:
+    clip: {fileID: 8300000, guid: da2d62b0b1af2124fbba81b5b3531303, type: 3}
+    volume: 1
+    randomPitchVariation: 0
 --- !u!1 &1253340137
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,13 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 using Random = UnityEngine.Random;
 
 public class StartPlayers : MonoBehaviour {
 
     [SerializeField]
     private Color[] playerColors;
+
+    [SerializeField]
+    private Sound clickSound;
 
     private StartPlayer[] startPlayers;
 
@@ -36,6 +38,7 @@ public class StartPlayers : MonoBehaviour {
     private void OnVehicleDropdownValueChanged(int startPlayerIndex, int option) {
         GameInfo.Player player = GameInfo.GetPlayer(startPlayerIndex);
         if (player != null) {
+            Sound.Play(clickSound);
             player.vehicleIndex = option;
         }
         RefreshPlayers();
@@ -44,6 +47,7 @@ public class StartPlayers : MonoBehaviour {
     private void OnColorButtonClick(int startPlayerIndex) {
         GameInfo.Player player = GameInfo.GetPlayer(startPlayerIndex);
         if (player == null) return;
+        Sound.Play(clickSound);
         Color playerColor = player.color;
         int colorIndex = Array.IndexOf(playerColors, playerColor);
         colorIndex++;
@@ -55,12 +59,14 @@ public class StartPlayers : MonoBehaviour {
     private void OnCPUToggleValueChanged(int startPlayerIndex, bool isOn) {
         GameInfo.Player player = GameInfo.GetPlayer(startPlayerIndex);
         if (player != null) {
+            Sound.Play(clickSound);
             player.isCPU = isOn;
         }
         RefreshPlayers();
     }
 
     private void OnAddRemoveButtonClick(int startPlayerIndex, int controller) {
+        Sound.Play(clickSound);
         bool playerExists = GameInfo.GetPlayer(startPlayerIndex) != null;
         if (playerExists) {
             GameInfo.RemovePlayer(startPlayerIndex);

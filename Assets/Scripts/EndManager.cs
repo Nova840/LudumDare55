@@ -10,6 +10,9 @@ public class EndManager : MonoBehaviour {
     [SerializeField]
     private GameObject vehiclePrefab;
 
+    [SerializeField]
+    private Sound goBackSound;
+
     private GameInfo.Player[] playersSorted;
 
     private void Awake() {
@@ -32,7 +35,9 @@ public class EndManager : MonoBehaviour {
     private void Update() {
         for (int i = -1; i < Gamepad.all.Count; i++) {
             if (InputManager.GetBackPressed(i)) {
+                Sound.Play(goBackSound, true);
                 SceneManager.LoadScene("Start");
+                break;
             }
         }
     }
