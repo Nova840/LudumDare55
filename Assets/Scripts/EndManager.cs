@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class EndManager : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject vehiclePrefab;
+
     private GameInfo.Player[] playersSorted;
 
     private void Awake() {
@@ -15,15 +18,14 @@ public class EndManager : MonoBehaviour {
     }
 
     private void Start() {
-        Renderer[] winnerRenderers = TrackManager.Instance.EndPodium.WinnerRenderers;
+        Transform[] winnersSpawnpoints = TrackManager.Instance.EndPodium.WinnersSpawnpoints;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(GameInfo.LevelName));
         playersSorted = GameInfo.GetPlayers().Where(p => p != null).OrderBy(p => p.endingTime).ToArray();
-        for (int i = 0; i < winnerRenderers.Length; i++) {
-            if (i < playersSorted.Length) {
-                winnerRenderers[i].material.color = playersSorted[i].color;
-            } else {
-                winnerRenderers[i].gameObject.SetActive(false);
-            }
+        for (int i = 0; i < playersSorted.Length; i++) {
+            Transform spawnpoint = winnersSpawnpoints[i];
+            Vehicle vehicle = Instantiate(vehiclePrefab, spawnpoint.position, spawnpoint.rotation).GetComponent<Vehicle>();
+            vehicle.Initialize(playersSorted[i].playerIndex);
+            vehicle.GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 

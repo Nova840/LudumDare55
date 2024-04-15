@@ -45,7 +45,7 @@ public class CameraManager : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (vehicles.Count == 0) return;
+        if (vehicles.Count == 0 || !cameraFollow) return;
         Bounds bounds = GetRelativeBounds();
         transform.position = Vector3.Lerp(transform.position, GetTargetPosition(bounds), moveSmoothingSpeed * Time.deltaTime);
         cameraFollow.localPosition = new Vector3(0, 0, Mathf.Lerp(cameraFollow.transform.localPosition.z, -GetTargetDistance(bounds), zoomSmoothingSpeed * Time.deltaTime));
