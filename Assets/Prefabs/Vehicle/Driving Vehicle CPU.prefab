@@ -199,6 +199,8 @@ MonoBehaviour:
   - {fileID: 6426798784147938543}
   - {fileID: 2371367156670335042}
   meshContainer: {fileID: 4569684394292828001}
+  outlineMode: 0
+  outlineWidth: 2
   flWheel: {fileID: 3851135079502559302}
   frWheel: {fileID: 5047129359156279600}
   blWheel: {fileID: 7951959285559810636}

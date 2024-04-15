@@ -93,7 +93,10 @@ MonoBehaviour:
   finishLineTrigger: {fileID: 4058747188036224887}
   respawnYPosition: -50
   respawnCheckInterval: 1
-  turtleRenderer: {fileID: 6049271896474196960}
+  turtleRenderers: []
+  meshContainer: {fileID: 0}
+  outlineMode: 0
+  outlineWidth: 2
   topSpeedGround: 5
   topSpeedAir: 5
   acceleration: 2
@@ -109,12 +112,6 @@ MonoBehaviour:
 --- !u!135 &4058747188036224887 stripped
 SphereCollider:
   m_CorrespondingSourceObject: {fileID: 7370342421623515887, guid: 6fe20cf75b6564443af2ce4bcf58d331,
-    type: 3}
-  m_PrefabInstance: {fileID: 6781055933962218904}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &6049271896474196960 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1002177139917092472, guid: 6fe20cf75b6564443af2ce4bcf58d331,
     type: 3}
   m_PrefabInstance: {fileID: 6781055933962218904}
   m_PrefabAsset: {fileID: 0}

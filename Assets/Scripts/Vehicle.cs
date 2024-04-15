@@ -20,7 +20,14 @@ public abstract class Vehicle : MonoBehaviour {
     [SerializeField]
     private Transform meshContainer;
 
+    [SerializeField]
+    private Outline.Mode outlineMode;
+
+    [SerializeField]
+    private float outlineWidth;
+
     protected Rigidbody _rigidbody;
+    private Outline outline;
 
     public int PlayerIndex { get; private set; }
 
@@ -40,6 +47,11 @@ public abstract class Vehicle : MonoBehaviour {
             r.materials[0].color = GameInfo.GetPlayer(PlayerIndex).color;
         }
         meshContainer.GetChild(GameInfo.GetPlayer(PlayerIndex).vehicleIndex).gameObject.SetActive(true);
+
+        outline = gameObject.AddComponent<Outline>();
+        outline.OutlineMode = outlineMode;
+        outline.OutlineColor = GameInfo.GetPlayer(PlayerIndex).color;
+        outline.OutlineWidth = outlineWidth;
     }
 
     private void OnDestroy() {
