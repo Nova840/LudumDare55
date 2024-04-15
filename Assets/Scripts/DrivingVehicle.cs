@@ -52,7 +52,6 @@ public class DrivingVehicle : Vehicle {
         }
 
         steerAngle = Mathf.Lerp(steerAngle, steering * maxSteerAngle, steerSmoothSpeed * Time.deltaTime);
-
         foreach (WheelCollider wheel in steeringWheels) {
             wheel.steerAngle = steerAngle;
         }

@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour {
     private GameObject vehiclePrefab;
 
     [SerializeField]
+    private GameObject cpuVehiclePrefab;
+
+    [SerializeField]
     private TMP_Text countdownText;
 
     [SerializeField]
@@ -51,7 +54,8 @@ public class GameManager : MonoBehaviour {
         playersRandomized.Shuffle();
         for (int i = 0; i < playersRandomized.Length; i++) {
             Transform spawnpoint = Spawnpoints.Instance.GetSpawnpoint(i);
-            Vehicle vehicle = Instantiate(vehiclePrefab, spawnpoint.position, spawnpoint.rotation).GetComponent<Vehicle>();
+            GameObject prefab = playersRandomized[i].isCPU ? cpuVehiclePrefab : vehiclePrefab;
+            Vehicle vehicle = Instantiate(prefab, spawnpoint.position, spawnpoint.rotation).GetComponent<Vehicle>();
             vehicle.Initialize(playersRandomized[i].playerIndex);
         }
     }

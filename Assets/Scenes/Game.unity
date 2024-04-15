@@ -947,6 +947,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vehiclePrefab: {fileID: 7397554503161695636, guid: e44c42002ee99674c9a28294afd07ece,
     type: 3}
+  cpuVehiclePrefab: {fileID: 4134572405069467134, guid: f0dbd235ffa334948a0bef1d193f5fa3,
+    type: 3}
   countdownText: {fileID: 1529314207}
   countdownTime: 3
 --- !u!1 &1572062664
