@@ -68,7 +68,8 @@ public class DrivingVehicleCPU : Vehicle {
         splineAnimateDuration = splineAnimate.Duration;
     }
 
-    private void Update() {
+    protected override void Update() {
+        base.Update();
         if (GameManager.Instance.CountdownOver) {
             float time = splineAnimate.NormalizedTime;
             time += GetRealSplineAnimateSpeed() / splineAnimateDuration * Time.deltaTime;

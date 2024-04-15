@@ -57,7 +57,8 @@ public class DrivingVehicle : Vehicle {
         drivingWheels = new WheelCollider[] { flWheel, frWheel, blWheel, brWheel };
     }
 
-    private void Update() {
+    protected override void Update() {
+        base.Update();
         GameInfo.Player player = GameInfo.GetPlayer(PlayerIndex);
         bool countdownOver = GameManager.Instance.CountdownOver;
         float steering = countdownOver ? InputManager.GetMoveVector(player.controller).x : 0;

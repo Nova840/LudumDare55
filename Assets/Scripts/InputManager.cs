@@ -55,4 +55,34 @@ public static class InputManager {
         }
     }
 
+    public static bool GetSummonSpeedBoost(int controller) {
+        if (controller < 0) {
+            return Keyboard.current.leftArrowKey.wasPressedThisFrame || Mouse.current.rightButton.wasPressedThisFrame;
+        } else if (controller < Gamepad.all.Count) {
+            return Gamepad.all[controller].buttonWest.wasPressedThisFrame;
+        } else {
+            return false;
+        }
+    }
+
+    public static bool GetSummonExploding(int controller) {
+        if (controller < 0) {
+            return Keyboard.current.rightArrowKey.wasPressedThisFrame || Keyboard.current.fKey.wasPressedThisFrame;
+        } else if (controller < Gamepad.all.Count) {
+            return Gamepad.all[controller].buttonEast.wasPressedThisFrame;
+        } else {
+            return false;
+        }
+    }
+
+    public static bool GetSummonBouncePad(int controller) {
+        if (controller < 0) {
+            return Keyboard.current.upArrowKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame;
+        } else if (controller < Gamepad.all.Count) {
+            return Gamepad.all[controller].buttonSouth.wasPressedThisFrame;
+        } else {
+            return false;
+        }
+    }
+
 }

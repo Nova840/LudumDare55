@@ -29,6 +29,29 @@ public abstract class Vehicle : MonoBehaviour {
     [SerializeField]
     private float outlineWidth;
 
+    [SerializeField]
+    private GameObject explodingSummon;
+
+    [SerializeField]
+    private GameObject speedBoostSummon;
+
+    [SerializeField]
+    private GameObject bouncePadSummon;
+
+    [SerializeField]
+    private Transform explodingSummonSpawnpoint;
+
+    [SerializeField]
+    private Transform speedBoostSummonSpawnpoint;
+
+    [SerializeField]
+    private Transform bouncePadSummonSpawnpoint;
+
+    [SerializeField]
+    private float manaFillRate;
+
+    private float mana = 0;
+
     protected Rigidbody _rigidbody;
     private Outline outline;
 
@@ -58,6 +81,29 @@ public abstract class Vehicle : MonoBehaviour {
         outline.OutlineMode = outlineMode;
         outline.OutlineColor = GameInfo.GetPlayer(PlayerIndex).color;
         outline.OutlineWidth = outlineWidth;
+    }
+
+    protected virtual void Update() {
+        if (GameManager.Instance && GameManager.Instance.CountdownOver) {
+            mana += manaFillRate * Time.deltaTime;
+            mana = Mathf.Clamp01(mana);
+        }
+
+        if (mana == 1) {
+            GameInfo.Player player = GameInfo.GetPlayer(PlayerIndex);
+            if (InputManager.GetSummonExploding(player.controller)) {
+                mana = 0;
+                Instantiate(explodingSummon, explodingSummonSpawnpoint.position, explodingSummonSpawnpoint.rotation);
+            }
+            if (InputManager.GetSummonBouncePad(player.controller)) {
+                mana = 0;
+                Instantiate(bouncePadSummon, bouncePadSummonSpawnpoint.position, bouncePadSummonSpawnpoint.rotation);
+            }
+            if (InputManager.GetSummonSpeedBoost(player.controller)) {
+                mana = 0;
+                Instantiate(speedBoostSummon, speedBoostSummonSpawnpoint.position, speedBoostSummonSpawnpoint.rotation);
+            }
+        }
     }
 
     protected virtual void OnDestroy() {
