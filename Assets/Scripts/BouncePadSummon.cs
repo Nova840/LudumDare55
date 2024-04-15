@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BouncePad : MonoBehaviour {
+public class BouncePadSummon : MonoBehaviour {
 
     [SerializeField]
     private float upForce;
