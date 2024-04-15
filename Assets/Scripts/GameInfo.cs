@@ -37,11 +37,13 @@ public static class GameInfo {
         public bool HasFinished => laps >= TrackManager.Instance.Laps;
         public float endingTime;
         public bool isCPU;
-        public Player(int playerIndex, int controller, Color color, bool isCPU) {
+        public int vehicleIndex;
+        public Player(int playerIndex, int controller, Color color, bool isCPU, int vehicleIndex) {
             this.playerIndex = playerIndex;
             this.controller = controller;
             this.color = color;
             this.isCPU = isCPU;
+            this.vehicleIndex = vehicleIndex;
         }
     }
 

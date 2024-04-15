@@ -142,6 +142,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8472961743509976506}
   m_SourcePrefab: {fileID: 100100000, guid: e44c42002ee99674c9a28294afd07ece, type: 3}
+--- !u!23 &667333375579582540 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6236165217402351654, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!135 &954830197022570056 stripped
 SphereCollider:
   m_CorrespondingSourceObject: {fileID: 5947471783574615586, guid: e44c42002ee99674c9a28294afd07ece,
@@ -151,6 +157,12 @@ SphereCollider:
 --- !u!146 &1065813979438989388 stripped
 WheelCollider:
   m_CorrespondingSourceObject: {fileID: 5837543871556108326, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2371367156670335042 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 9160707361484703784, guid: e44c42002ee99674c9a28294afd07ece,
     type: 3}
   m_PrefabInstance: {fileID: 6902214008053891178}
   m_PrefabAsset: {fileID: 0}
@@ -181,7 +193,12 @@ MonoBehaviour:
   finishLineTrigger: {fileID: 954830197022570056}
   respawnYPosition: -50
   respawnCheckInterval: 1
-  turtleRenderer: {fileID: 7413198404962118367}
+  turtleRenderers:
+  - {fileID: 8536666953215520998}
+  - {fileID: 667333375579582540}
+  - {fileID: 6426798784147938543}
+  - {fileID: 2371367156670335042}
+  meshContainer: {fileID: 4569684394292828001}
   flWheel: {fileID: 3851135079502559302}
   frWheel: {fileID: 5047129359156279600}
   blWheel: {fileID: 7951959285559810636}
@@ -193,9 +210,21 @@ MonoBehaviour:
   maxSteerAngle: 30
   steerMultiplier: 2
   brakeTorque: 500
+--- !u!4 &4569684394292828001 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6963498152548587275, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!146 &5047129359156279600 stripped
 WheelCollider:
   m_CorrespondingSourceObject: {fileID: 1856211453236967770, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6426798784147938543 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 502437659592612997, guid: e44c42002ee99674c9a28294afd07ece,
     type: 3}
   m_PrefabInstance: {fileID: 6902214008053891178}
   m_PrefabAsset: {fileID: 0}
@@ -205,15 +234,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6902214008053891178}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &7413198404962118367 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4118946196184459957, guid: e44c42002ee99674c9a28294afd07ece,
-    type: 3}
-  m_PrefabInstance: {fileID: 6902214008053891178}
-  m_PrefabAsset: {fileID: 0}
 --- !u!146 &7951959285559810636 stripped
 WheelCollider:
   m_CorrespondingSourceObject: {fileID: 3572093122478234150, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8536666953215520998 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3004396072098148492, guid: e44c42002ee99674c9a28294afd07ece,
     type: 3}
   m_PrefabInstance: {fileID: 6902214008053891178}
   m_PrefabAsset: {fileID: 0}

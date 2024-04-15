@@ -45,3 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laps: 0
+  cpuSpline: {fileID: 0}
+  cpuSplineReverse: 0
+  cpuSplineStartPercent: 0
+  cpuSplineVerticalOffset: 0
+  testCPU: 0
+  testControls: -1
+  testColor: {r: 1, g: 0, b: 0, a: 1}
+  testVehicle: 0
+  startCamera: {fileID: 0}
+  endCamera: {fileID: 0}
+  endPodium: {fileID: 0}
+  ind: 0

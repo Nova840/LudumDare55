@@ -29,7 +29,18 @@ public class TrackManager : MonoBehaviour {
     public float CPUSplineVerticalOffset => cpuSplineVerticalOffset;
 
     [SerializeField]
-    private bool testWithCPU;
+    private bool testCPU;
+
+    private enum TestControls { Keyboard = -1, Controller1 = 0, Controller2 = 1, Controller3 = 2, Controller4 = 3 }
+    [SerializeField]
+    private TestControls testControls;
+
+    [SerializeField]
+    private Color testColor;
+
+    private enum TestVehicle { ShoppingCart = 0, Suitcase = 1, Wheelchair = 2, Hoverboard = 3 }
+    [SerializeField]
+    private TestVehicle testVehicle;
 
     [SerializeField]
     private Camera startCamera;
@@ -47,7 +58,7 @@ public class TrackManager : MonoBehaviour {
         Instance = this;
         if (!GameInfo.StartSceneLoaded && !GameInfo.EndSceneLoaded) {
             GameInfo.LevelName = SceneManager.GetActiveScene().name;
-            GameInfo.SetPlayer(new GameInfo.Player(0, -1, Color.red, testWithCPU));
+            GameInfo.SetPlayer(new GameInfo.Player(0, (int)testControls, testColor, testCPU, (int)testVehicle));
             SceneManager.LoadScene("Game", LoadSceneMode.Additive);
         }
     }

@@ -15,7 +15,10 @@ public abstract class Vehicle : MonoBehaviour {
     private float respawnCheckInterval;
 
     [SerializeField]
-    private Renderer turtleRenderer;
+    private Renderer[] turtleRenderers;
+
+    [SerializeField]
+    private Transform meshContainer;
 
     protected Rigidbody _rigidbody;
 
@@ -27,13 +30,17 @@ public abstract class Vehicle : MonoBehaviour {
 
     protected virtual void Awake() {
         _rigidbody = GetComponent<Rigidbody>();
+
+        meshContainer.GetChild(GameInfo.GetPlayer(PlayerIndex).vehicleIndex).gameObject.SetActive(true);
     }
 
     private void Start() {
         CameraManager.Instance.AddVehicle(this);
         GameInfo.OnPlayerFinish += OnPlayerFinish;
         StartCoroutine(RespawnCheckRoutine());
-        turtleRenderer.material.color = GameInfo.GetPlayer(PlayerIndex).color;
+        foreach (Renderer r in turtleRenderers) {
+            r.materials[0].color = GameInfo.GetPlayer(PlayerIndex).color;
+        }
     }
 
     private void OnDestroy() {

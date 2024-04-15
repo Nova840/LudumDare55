@@ -50,7 +50,7 @@ public class StartPlayers : MonoBehaviour {
         if (playerExists) {
             GameInfo.RemovePlayer(startPlayerIndex);
         } else {
-            GameInfo.SetPlayer(new GameInfo.Player(startPlayerIndex, controller, playerColors[Random.Range(0, playerColors.Length)], startPlayers[startPlayerIndex].CPUToggle.isOn));
+            GameInfo.SetPlayer(new GameInfo.Player(startPlayerIndex, controller, playerColors[Random.Range(0, playerColors.Length)], startPlayers[startPlayerIndex].CPUToggle.isOn, 0));
         }
         RefreshPlayers();
     }
