@@ -22,6 +22,16 @@ public class StartPlayers : MonoBehaviour {
             startPlayers[i].ColorButton.onClick.AddListener(() => OnColorButtonClick(buttonIndex));
 
             startPlayers[i].CPUToggle.onValueChanged.AddListener(isOn => OnCPUToggleValueChanged(buttonIndex, isOn));
+
+            startPlayers[i].VehicleDropdown.onValueChanged.AddListener(option => OnVehicleDropdownValueChanged(buttonIndex, option));
+        }
+        RefreshPlayers();
+    }
+
+    private void OnVehicleDropdownValueChanged(int startPlayerIndex, int option) {
+        GameInfo.Player player = GameInfo.GetPlayer(startPlayerIndex);
+        if (player != null) {
+            player.vehicleIndex = option;
         }
         RefreshPlayers();
     }
@@ -71,6 +81,8 @@ public class StartPlayers : MonoBehaviour {
             startPlayers[startPlayerIndex].PlayerImage.color = playerExists ? player.color : Color.black;
 
             startPlayers[startPlayerIndex].CPUToggle.isOn = playerExists ? player.isCPU : false;
+
+            startPlayers[startPlayerIndex].VehicleDropdown.value = playerExists ? player.vehicleIndex : 0;
         }
     }
 

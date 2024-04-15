@@ -30,8 +30,6 @@ public abstract class Vehicle : MonoBehaviour {
 
     protected virtual void Awake() {
         _rigidbody = GetComponent<Rigidbody>();
-
-        meshContainer.GetChild(GameInfo.GetPlayer(PlayerIndex).vehicleIndex).gameObject.SetActive(true);
     }
 
     private void Start() {
@@ -41,6 +39,7 @@ public abstract class Vehicle : MonoBehaviour {
         foreach (Renderer r in turtleRenderers) {
             r.materials[0].color = GameInfo.GetPlayer(PlayerIndex).color;
         }
+        meshContainer.GetChild(GameInfo.GetPlayer(PlayerIndex).vehicleIndex).gameObject.SetActive(true);
     }
 
     private void OnDestroy() {

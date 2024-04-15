@@ -1471,6 +1471,7 @@ MonoBehaviour:
   - {fileID: 6236165217402351654}
   - {fileID: 502437659592612997}
   - {fileID: 9160707361484703784}
+  meshContainer: {fileID: 6963498152548587275}
   flWheel: {fileID: 7690017178917845036}
   frWheel: {fileID: 1856211453236967770}
   blWheel: {fileID: 3572093122478234150}
@@ -1480,8 +1481,7 @@ MonoBehaviour:
   maxSteerAngle: 30
   motorTorque: 500
   brakeTorque: 500
-  steerSmoothSpeed: 5
-  meshContainer: {fileID: 6963498152548587275}
+  steerSmoothSpeed: Infinity
 --- !u!1001 &4169598061073879872
 PrefabInstance:
   m_ObjectHideFlags: 0
