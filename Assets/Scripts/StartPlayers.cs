@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using Random = UnityEngine.Random;
 
 public class StartPlayers : MonoBehaviour {
@@ -25,6 +26,9 @@ public class StartPlayers : MonoBehaviour {
 
             startPlayers[i].VehicleDropdown.onValueChanged.AddListener(option => OnVehicleDropdownValueChanged(buttonIndex, option));
         }
+    }
+
+    private void Start() {
         RefreshPlayers();
     }
 
@@ -60,7 +64,7 @@ public class StartPlayers : MonoBehaviour {
         if (playerExists) {
             GameInfo.RemovePlayer(startPlayerIndex);
         } else {
-            GameInfo.SetPlayer(new GameInfo.Player(startPlayerIndex, controller, playerColors[Random.Range(0, playerColors.Length)], startPlayers[startPlayerIndex].CPUToggle.isOn, 0));
+            GameInfo.SetPlayer(new GameInfo.Player(startPlayerIndex, controller, playerColors[Random.Range(0, playerColors.Length)], startPlayers[startPlayerIndex].CPUToggle.isOn, 0)); startPlayers[startPlayerIndex].VehicleDropdownLabel.text = "";
         }
         RefreshPlayers();
     }
@@ -69,20 +73,27 @@ public class StartPlayers : MonoBehaviour {
         for (int startPlayerIndex = 0; startPlayerIndex < startPlayers.Length; startPlayerIndex++) {
             GameInfo.Player player = GameInfo.GetPlayer(startPlayerIndex);
             bool playerExists = player != null;
+            StartPlayer startPlayer = startPlayers[startPlayerIndex];
 
-            startPlayers[startPlayerIndex].PlayerText.text = playerExists ? "Player: " + (player.playerIndex + 1) : "";
+            startPlayer.PlayerText.text = playerExists ? "Player: " + (player.playerIndex + 1) : "";
             if (playerExists && !player.isCPU) {
-                startPlayers[startPlayerIndex].ControllerText.text = player.controller == -1 ? "Keyboard" : "Controller " + (player.controller + 1);
+                startPlayer.ControllerText.text = player.controller == -1 ? "Keyboard" : "Controller " + (player.controller + 1);
             } else {
-                startPlayers[startPlayerIndex].ControllerText.text = "";
+                startPlayer.ControllerText.text = "";
             }
-            startPlayers[startPlayerIndex].AddRemoveButtonText.text = playerExists ? "Remove" : "Add";
+            startPlayer.AddRemoveButtonText.text = playerExists ? "Remove" : "Add";
 
-            startPlayers[startPlayerIndex].PlayerImage.color = playerExists ? player.color : Color.black;
+            startPlayer.PlayerImage.color = playerExists ? player.color : Color.black;
 
-            startPlayers[startPlayerIndex].CPUToggle.isOn = playerExists ? player.isCPU : false;
+            startPlayer.CPUToggle.isOn = playerExists ? player.isCPU : false;
 
-            startPlayers[startPlayerIndex].VehicleDropdown.value = playerExists ? player.vehicleIndex : 0;
+            startPlayer.VehicleDropdown.value = playerExists ? player.vehicleIndex : 0;
+
+            if (playerExists) {
+                startPlayer.VehicleDropdownLabel.text = startPlayer.VehicleDropdown.options[startPlayer.VehicleDropdown.value].text;
+            } else {
+                startPlayer.VehicleDropdownLabel.text = "";
+            }
         }
     }
 

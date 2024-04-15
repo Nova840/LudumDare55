@@ -42,4 +42,8 @@ public class StartPlayer : MonoBehaviour {
     private TMP_Dropdown vehicleDropdown;
     public TMP_Dropdown VehicleDropdown => vehicleDropdown;
 
+    [SerializeField]
+    private TMP_Text vehicleDropdownLabel;
+    public TMP_Text VehicleDropdownLabel => vehicleDropdownLabel;
+
 }

@@ -4140,6 +4140,7 @@ MonoBehaviour:
   addRemoveButtonText: {fileID: 1604443221}
   cpuToggle: {fileID: 1915935003}
   vehicleDropdown: {fileID: 891194289}
+  vehicleDropdownLabel: {fileID: 616819318}
 --- !u!1 &703397495
 GameObject:
   m_ObjectHideFlags: 0
@@ -4203,6 +4204,7 @@ MonoBehaviour:
   addRemoveButtonText: {fileID: 1028093460}
   cpuToggle: {fileID: 2119269151}
   vehicleDropdown: {fileID: 1428751823}
+  vehicleDropdownLabel: {fileID: 1948393718}
 --- !u!1 &744140131
 GameObject:
   m_ObjectHideFlags: 0
@@ -5241,6 +5243,7 @@ MonoBehaviour:
   addRemoveButtonText: {fileID: 773116171}
   cpuToggle: {fileID: 1641949210}
   vehicleDropdown: {fileID: 1385474520}
+  vehicleDropdownLabel: {fileID: 1352846033}
 --- !u!1 &875917549
 GameObject:
   m_ObjectHideFlags: 0
@@ -5858,6 +5861,7 @@ MonoBehaviour:
   addRemoveButtonText: {fileID: 1814312960}
   cpuToggle: {fileID: 2084251747}
   vehicleDropdown: {fileID: 220890517}
+  vehicleDropdownLabel: {fileID: 2121543213}
 --- !u!1 &1019571822
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -49,6 +50,13 @@ public class GamepadCursors : MonoBehaviour {
                 Toggle[] toggles = results.Select(r => r.gameObject.GetComponentInParent<Toggle>()).Where(b => b).Distinct().ToArray();
                 if (toggles.Length > 0) {
                     toggles[0].onValueChanged.Invoke(!toggles[0].isOn);
+                }
+                TMP_Dropdown[] dropdowns = results.Select(r => r.gameObject.GetComponent<TMP_Dropdown>()).Where(b => b).ToArray();
+                if (dropdowns.Length > 0) {
+                    int value = dropdowns[0].value;
+                    value++;
+                    value %= dropdowns[0].options.Count;
+                    dropdowns[0].value = value;
                 }
             }
         }
