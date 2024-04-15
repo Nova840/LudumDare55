@@ -61,7 +61,7 @@ public class StartPlayers : MonoBehaviour {
             bool playerExists = player != null;
 
             startPlayers[startPlayerIndex].PlayerText.text = playerExists ? "Player: " + (player.playerIndex + 1) : "";
-            if (playerExists) {
+            if (playerExists && !player.isCPU) {
                 startPlayers[startPlayerIndex].ControllerText.text = player.controller == -1 ? "Keyboard" : "Controller " + (player.controller + 1);
             } else {
                 startPlayers[startPlayerIndex].ControllerText.text = "";
