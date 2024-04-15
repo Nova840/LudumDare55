@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraManager : MonoBehaviour {
 
@@ -28,8 +29,13 @@ public class CameraManager : MonoBehaviour {
     }
 
     private void Awake() {
+        if (SceneManager.GetActiveScene().name == "Start") {
+            Destroy(transform.GetChild(0).gameObject);
+            return;
+        }
         Instance = this;
         cameraRigidbody.transform.SetParent(null, true);
+        TrackManager.Instance.StartCamera.gameObject.SetActive(false);
     }
 
     private void FixedUpdate() {

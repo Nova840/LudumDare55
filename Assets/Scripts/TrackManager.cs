@@ -31,6 +31,10 @@ public class TrackManager : MonoBehaviour {
     [SerializeField]
     private bool testWithCPU;
 
+    [SerializeField]
+    private Camera startCamera;
+    public Camera StartCamera => startCamera;
+
     private void Awake() {
         Instance = this;
         if (!GameInfo.StartSceneLoaded) {

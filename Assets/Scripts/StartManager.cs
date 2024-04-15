@@ -15,6 +15,7 @@ public class StartManager : MonoBehaviour {
     private void Awake() {
         GameInfo.StartSceneLoaded = true;
         startButton.onClick.AddListener(StartButtonClicked);
+        SceneManager.LoadScene("3D_TestLevel", LoadSceneMode.Additive);
     }
 
     private void StartButtonClicked() {
