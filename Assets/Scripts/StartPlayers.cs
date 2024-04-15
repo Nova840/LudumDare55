@@ -28,7 +28,8 @@ public class StartPlayers : MonoBehaviour {
         }
     }
 
-    private void Start() {
+    private IEnumerator Start() {
+        yield return new WaitForEndOfFrame();//dunno why I need this it just stopped working
         RefreshPlayers();
     }
 
