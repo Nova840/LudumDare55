@@ -11,6 +11,12 @@ public class GamePlayerUI : MonoBehaviour {
     [SerializeField]
     private TMP_Text lapsText;
 
+    [SerializeField]
+    private Sound lapSound;
+
+    [SerializeField]
+    private Sound finalLapSound;
+
     private int highestLapCount = 0;
 
     private void Start() {
@@ -31,8 +37,14 @@ public class GamePlayerUI : MonoBehaviour {
     }
 
     private void OnLapsChange(int newLaps) {
+        GameInfo.Player player = GameInfo.GetPlayer(playerIndex);
         if (newLaps > highestLapCount) {
             highestLapCount = newLaps;
+            if (highestLapCount < player.Laps) {
+                Sound.Play(lapSound);
+            } else if (highestLapCount == player.Laps) {
+                Sound.Play(finalLapSound);
+            }
         }
         int displayLaps = Mathf.Min(TrackManager.Instance.Laps, highestLapCount + 1);
         lapsText.text = $"Lap {displayLaps}/{TrackManager.Instance.Laps}";

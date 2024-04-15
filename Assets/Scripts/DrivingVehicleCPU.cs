@@ -32,6 +32,15 @@ public class DrivingVehicleCPU : Vehicle {
     [SerializeField]
     private float brakeTorque;
 
+    [SerializeField]
+    private AudioSource[] engineSounds;
+
+    [SerializeField]
+    private AnimationCurve engineVolumeAtSpeed;
+
+    [SerializeField, Range(0, 1)]
+    private float maxEngineVolume;
+
     private SplineAnimate splineAnimate;
     private float splineAnimateDuration;
 
@@ -76,6 +85,11 @@ public class DrivingVehicleCPU : Vehicle {
             foreach (Transform child in wheel.transform) {
                 child.SetPositionAndRotation(position, rotation * Quaternion.Euler(wheelVisualRotationOffset));
             }
+        }
+
+        foreach (AudioSource source in engineSounds) {
+            float speed = Vector3.ProjectOnPlane(_rigidbody.velocity, Vector3.up).magnitude;
+            source.volume = engineVolumeAtSpeed.Evaluate(speed) * maxEngineVolume / GameInfo.CurrentPlayers;
         }
     }
 

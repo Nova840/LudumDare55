@@ -142,6 +142,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8472961743509976506}
   m_SourcePrefab: {fileID: 100100000, guid: e44c42002ee99674c9a28294afd07ece, type: 3}
+--- !u!82 &125524164785062089 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6806175447269425315, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &667333375579582540 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6236165217402351654, guid: e44c42002ee99674c9a28294afd07ece,
@@ -212,6 +218,36 @@ MonoBehaviour:
   maxSteerAngle: 30
   steerMultiplier: 2
   brakeTorque: 500
+  engineSounds:
+  - {fileID: 7419107521780140124}
+  - {fileID: 125524164785062089}
+  - {fileID: 7506710850550692476}
+  - {fileID: 6693864830243924291}
+  engineVolumeAtSpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxEngineVolume: 1
 --- !u!4 &4569684394292828001 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6963498152548587275, guid: e44c42002ee99674c9a28294afd07ece,
@@ -233,6 +269,24 @@ MeshRenderer:
 --- !u!4 &6548175339745187181 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 366583590122362119, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &6693864830243924291 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 228827657715607849, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &7419107521780140124 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4124279014332647478, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &7506710850550692476 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4027527229530700310, guid: e44c42002ee99674c9a28294afd07ece,
     type: 3}
   m_PrefabInstance: {fileID: 6902214008053891178}
   m_PrefabAsset: {fileID: 0}

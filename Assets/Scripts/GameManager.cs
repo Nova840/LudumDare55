@@ -22,6 +22,15 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private int countdownTime;
 
+    [SerializeField]
+    private float raceEndDelay;
+
+    [SerializeField]
+    private Sound raceStartSound;
+
+    [SerializeField]
+    private Sound raceEndSound;
+
     private float timeStarted = Mathf.NegativeInfinity;
     public float TimeElapsed => Time.time - timeStarted - countdownTime;
     public bool CountdownOver { get; private set; } = false;
@@ -41,6 +50,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
+        Sound.Play(raceStartSound);
         StartCoroutine(Countdown());
         GameInfo.ForEachPlayer(p => {
             p?.Reset();
@@ -84,8 +94,14 @@ public class GameManager : MonoBehaviour {
         numPlayersFinished++;
         GameInfo.GetPlayer(playerIndex).endingTime = TimeElapsed;
         if (numPlayersFinished == GameInfo.CurrentPlayers) {
-            SceneManager.LoadScene("End");
+            Sound.Play(raceEndSound);
+            StartCoroutine(LoadEndAfterDelay());
         }
+    }
+
+    private IEnumerator LoadEndAfterDelay() {
+        yield return new WaitForSeconds(raceEndDelay);
+        SceneManager.LoadScene("End");
     }
 
 }

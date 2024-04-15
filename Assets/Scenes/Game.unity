@@ -174,6 +174,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: 2
   lapsText: {fileID: 1959647772}
+  lapSound:
+    clip: {fileID: 8300000, guid: 5373eea7a7e557e44850e0bd4c012b16, type: 3}
+    volume: 1
+    randomPitchVariation: 0
+  finalLapSound:
+    clip: {fileID: 8300000, guid: 2580713960965084095ce0528baaccc1, type: 3}
+    volume: 1
+    randomPitchVariation: 0
 --- !u!1 &475646123
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +368,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: 1
   lapsText: {fileID: 475646125}
+  lapSound:
+    clip: {fileID: 8300000, guid: 5373eea7a7e557e44850e0bd4c012b16, type: 3}
+    volume: 1
+    randomPitchVariation: 0
+  finalLapSound:
+    clip: {fileID: 8300000, guid: 2580713960965084095ce0528baaccc1, type: 3}
+    volume: 1
+    randomPitchVariation: 0
 --- !u!1 &974454072
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,6 +786,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: 3
   lapsText: {fileID: 974454074}
+  lapSound:
+    clip: {fileID: 8300000, guid: 5373eea7a7e557e44850e0bd4c012b16, type: 3}
+    volume: 1
+    randomPitchVariation: 0
+  finalLapSound:
+    clip: {fileID: 8300000, guid: 2580713960965084095ce0528baaccc1, type: 3}
+    volume: 1
+    randomPitchVariation: 0
 --- !u!1 &1529314205
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,6 +979,15 @@ MonoBehaviour:
     type: 3}
   countdownText: {fileID: 1529314207}
   countdownTime: 3
+  raceEndDelay: 3
+  raceStartSound:
+    clip: {fileID: 8300000, guid: 3025e5f915c5c344d8fcb253bef27a0b, type: 3}
+    volume: 1
+    randomPitchVariation: 0
+  raceEndSound:
+    clip: {fileID: 8300000, guid: 633fc75bc12ceff44abbdb92f752a994, type: 3}
+    volume: 1
+    randomPitchVariation: 0
 --- !u!1 &1572062664
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,6 +1408,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: 0
   lapsText: {fileID: 1151900702}
+  lapSound:
+    clip: {fileID: 8300000, guid: 5373eea7a7e557e44850e0bd4c012b16, type: 3}
+    volume: 1
+    randomPitchVariation: 0
+  finalLapSound:
+    clip: {fileID: 8300000, guid: 2580713960965084095ce0528baaccc1, type: 3}
+    volume: 1
+    randomPitchVariation: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

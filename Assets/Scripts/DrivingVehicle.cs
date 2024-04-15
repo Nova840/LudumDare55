@@ -28,6 +28,15 @@ public class DrivingVehicle : Vehicle {
     [SerializeField]
     private float steerSmoothSpeed;
 
+    [SerializeField]
+    private AudioSource[] engineSounds;
+
+    [SerializeField]
+    private AnimationCurve engineVolumeAtSpeed;
+
+    [SerializeField, Range(0, 1)]
+    private float maxEngineVolume;
+
     private float steerAngle = 0;
 
     protected override void Awake() {
@@ -74,6 +83,11 @@ public class DrivingVehicle : Vehicle {
             foreach (Transform child in wheel.transform) {
                 child.SetPositionAndRotation(position, rotation * Quaternion.Euler(wheelVisualRotationOffset));
             }
+        }
+
+        foreach (AudioSource source in engineSounds) {
+            float speed = Vector3.ProjectOnPlane(_rigidbody.velocity, Vector3.up).magnitude;
+            source.volume = engineVolumeAtSpeed.Evaluate(speed) * maxEngineVolume / GameInfo.CurrentPlayers;
         }
     }
 

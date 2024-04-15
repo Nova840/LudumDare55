@@ -39,7 +39,7 @@ public abstract class Vehicle : MonoBehaviour {
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void Start() {
+    protected virtual void Start() {
         CameraManager.Instance.AddVehicle(this);
         GameInfo.OnPlayerFinish += OnPlayerFinish;
         StartCoroutine(RespawnCheckRoutine());
@@ -54,7 +54,7 @@ public abstract class Vehicle : MonoBehaviour {
         outline.OutlineWidth = outlineWidth;
     }
 
-    private void OnDestroy() {
+    protected virtual void OnDestroy() {
         GameInfo.OnPlayerFinish -= OnPlayerFinish;
     }
 
