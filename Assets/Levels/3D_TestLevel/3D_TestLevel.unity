@@ -4604,7 +4604,7 @@ Terrain:
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 823aa7afc72264442a0af776e2469451, type: 2}
   m_TreeDistance: 5000
-  m_TreeBillboardDistance: 50
+  m_TreeBillboardDistance: 150
   m_TreeCrossFadeLength: 81
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 649
@@ -8194,12 +8194,12 @@ PrefabInstance:
     - target: {fileID: 2818249650773619739, guid: 8d566b41c336d9a419d26151b9f47767,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 0.8660254
       objectReference: {fileID: 0}
     - target: {fileID: 2818249650773619739, guid: 8d566b41c336d9a419d26151b9f47767,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.38268343
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2818249650773619739, guid: 8d566b41c336d9a419d26151b9f47767,
         type: 3}
@@ -8214,7 +8214,7 @@ PrefabInstance:
     - target: {fileID: 2818249650773619739, guid: 8d566b41c336d9a419d26151b9f47767,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 45
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2818249650773619739, guid: 8d566b41c336d9a419d26151b9f47767,
         type: 3}
