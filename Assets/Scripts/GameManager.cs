@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour {
             Vehicle vehicle = Instantiate(prefab, spawnpoint.position, spawnpoint.rotation).GetComponent<Vehicle>();
             vehicle.Initialize(playersRandomized[i].playerIndex);
         }
+
+        TrackManager.Instance.EndPodium.SetActive(false);
     }
 
     private IEnumerator Countdown() {

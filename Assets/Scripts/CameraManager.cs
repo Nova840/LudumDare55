@@ -29,13 +29,19 @@ public class CameraManager : MonoBehaviour {
     }
 
     private void Awake() {
-        if (SceneManager.GetActiveScene().name == "Start") {
-            Destroy(transform.GetChild(0).gameObject);
-            return;
-        }
         Instance = this;
-        cameraRigidbody.transform.SetParent(null, true);
-        TrackManager.Instance.StartCamera.gameObject.SetActive(false);
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "Start") {
+            Destroy(transform.GetChild(0).gameObject);
+            TrackManager.Instance.EndCamera.gameObject.SetActive(false);
+        } else if (sceneName == "End") {
+            Destroy(transform.GetChild(0).gameObject);
+            TrackManager.Instance.StartCamera.gameObject.SetActive(false);
+        } else {
+            cameraRigidbody.transform.SetParent(null, true);
+            TrackManager.Instance.StartCamera.gameObject.SetActive(false);
+            TrackManager.Instance.EndCamera.gameObject.SetActive(false);
+        }
     }
 
     private void FixedUpdate() {

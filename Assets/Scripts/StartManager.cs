@@ -18,6 +18,10 @@ public class StartManager : MonoBehaviour {
         SceneManager.LoadScene("3D_TestLevel", LoadSceneMode.Additive);
     }
 
+    private void Start() {
+        TrackManager.Instance.EndPodium.SetActive(false);
+    }
+
     private void StartButtonClicked() {
         GameInfo.LevelName = levelName;
         SceneManager.LoadScene("Game");

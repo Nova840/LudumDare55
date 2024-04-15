@@ -35,9 +35,18 @@ public class TrackManager : MonoBehaviour {
     private Camera startCamera;
     public Camera StartCamera => startCamera;
 
+    [SerializeField]
+    private Camera endCamera;
+    public Camera EndCamera => endCamera;
+
+    [SerializeField]
+    private GameObject endPodium;
+    public GameObject EndPodium => endPodium;
+
     private void Awake() {
         Instance = this;
-        if (!GameInfo.StartSceneLoaded) {
+        if (!GameInfo.StartSceneLoaded && !GameInfo.EndSceneLoaded) {
+            GameInfo.LevelName = SceneManager.GetActiveScene().name;
             GameInfo.SetPlayer(new GameInfo.Player(0, -1, Color.red, testWithCPU));
             SceneManager.LoadScene("Game", LoadSceneMode.Additive);
         }

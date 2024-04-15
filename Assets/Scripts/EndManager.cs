@@ -14,6 +14,7 @@ public class EndManager : MonoBehaviour {
     private GameInfo.Player[] playersSorted;
 
     private void Awake() {
+        GameInfo.EndSceneLoaded = true;
         winnerRenderers = new Renderer[winners.Length];
         for (int i = 0; i < winners.Length; i++) {
             winnerRenderers[i] = winners[i].GetComponent<Renderer>();
@@ -26,6 +27,7 @@ public class EndManager : MonoBehaviour {
                 winners[i].SetActive(false);
             }
         }
+        SceneManager.LoadScene(GameInfo.LevelName, LoadSceneMode.Additive);
     }
 
     private void Update() {

@@ -62,5 +62,6 @@ public static class GameInfo {
     public static string LevelName { get; set; }
 
     public static bool StartSceneLoaded { get; set; }
+    public static bool EndSceneLoaded { get; set; }
 
 }
