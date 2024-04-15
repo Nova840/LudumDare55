@@ -45,4 +45,14 @@ public static class InputManager {
         }
     }
 
+    public static bool GetBackPressed(int controller) {
+        if (controller < 0) {
+            return Keyboard.current.escapeKey.wasPressedThisFrame;
+        } else if (controller < Gamepad.all.Count) {
+            return Gamepad.all[controller].selectButton.wasPressedThisFrame;
+        } else {
+            return false;
+        }
+    }
+
 }

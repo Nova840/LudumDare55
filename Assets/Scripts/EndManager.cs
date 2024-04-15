@@ -28,18 +28,11 @@ public class EndManager : MonoBehaviour {
     }
 
     private void Update() {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame) {
-            LoadStart();
-        }
-        for (int i = 0; i < Gamepad.all.Count; i++) {
-            if (Gamepad.all[i].selectButton.wasPressedThisFrame) {
-                LoadStart();
+        for (int i = -1; i < Gamepad.all.Count; i++) {
+            if (InputManager.GetBackPressed(i)) {
+                SceneManager.LoadScene("Start");
             }
         }
-    }
-
-    private void LoadStart() {
-        SceneManager.LoadScene("Start");
     }
 
 }
