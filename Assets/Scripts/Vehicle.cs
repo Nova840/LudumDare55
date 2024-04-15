@@ -18,6 +18,9 @@ public abstract class Vehicle : MonoBehaviour {
     private Renderer[] turtleRenderers;
 
     [SerializeField]
+    private Renderer[] hatRenderers;
+
+    [SerializeField]
     private Transform meshContainer;
 
     [SerializeField]
@@ -45,6 +48,9 @@ public abstract class Vehicle : MonoBehaviour {
         StartCoroutine(RespawnCheckRoutine());
         foreach (Renderer r in turtleRenderers) {
             r.materials[0].color = GameInfo.GetPlayer(PlayerIndex).color;
+        }
+        foreach (Renderer r in hatRenderers) {
+            r.materials[1].color = GameInfo.GetPlayer(PlayerIndex).color;
         }
         meshContainer.GetChild(GameInfo.GetPlayer(PlayerIndex).vehicleIndex).gameObject.SetActive(true);
 

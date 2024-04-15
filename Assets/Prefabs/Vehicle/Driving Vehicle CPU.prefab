@@ -204,6 +204,11 @@ MonoBehaviour:
   - {fileID: 667333375579582540}
   - {fileID: 6426798784147938543}
   - {fileID: 2371367156670335042}
+  hatRenderers:
+  - {fileID: 7796005424854615116}
+  - {fileID: 9102653086978808428}
+  - {fileID: 7643206094828308230}
+  - {fileID: 8569267775235786038}
   meshContainer: {fileID: 4569684394292828001}
   outlineMode: 0
   outlineWidth: 2
@@ -305,6 +310,18 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 6902214008053891178}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &7643206094828308230 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3880845451998562156, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7796005424854615116 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3745146279655457830, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!146 &7951959285559810636 stripped
 WheelCollider:
   m_CorrespondingSourceObject: {fileID: 3572093122478234150, guid: e44c42002ee99674c9a28294afd07ece,
@@ -314,6 +331,18 @@ WheelCollider:
 --- !u!23 &8536666953215520998 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 3004396072098148492, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8569267775235786038 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2964970207739020636, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &9102653086978808428 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2421399289318808070, guid: e44c42002ee99674c9a28294afd07ece,
     type: 3}
   m_PrefabInstance: {fileID: 6902214008053891178}
   m_PrefabAsset: {fileID: 0}
