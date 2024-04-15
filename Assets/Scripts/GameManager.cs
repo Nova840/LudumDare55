@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour {
             vehicle.Initialize(playersRandomized[i].playerIndex);
         }
 
-        TrackManager.Instance.EndPodium.SetActive(false);
+        TrackManager.Instance.EndPodium.gameObject.SetActive(false);
     }
 
     private IEnumerator Countdown() {

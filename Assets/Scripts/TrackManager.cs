@@ -40,8 +40,8 @@ public class TrackManager : MonoBehaviour {
     public Camera EndCamera => endCamera;
 
     [SerializeField]
-    private GameObject endPodium;
-    public GameObject EndPodium => endPodium;
+    private Podium endPodium;
+    public Podium EndPodium => endPodium;
 
     private void Awake() {
         Instance = this;

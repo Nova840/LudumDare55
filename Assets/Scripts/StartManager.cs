@@ -19,7 +19,7 @@ public class StartManager : MonoBehaviour {
     }
 
     private void Start() {
-        TrackManager.Instance.EndPodium.SetActive(false);
+        TrackManager.Instance.EndPodium.gameObject.SetActive(false);
     }
 
     private void StartButtonClicked() {

@@ -7,27 +7,24 @@ using UnityEngine.SceneManagement;
 
 public class EndManager : MonoBehaviour {
 
-    [SerializeField]
-    private GameObject[] winners;
-    private Renderer[] winnerRenderers;
-
     private GameInfo.Player[] playersSorted;
 
     private void Awake() {
         GameInfo.EndSceneLoaded = true;
-        winnerRenderers = new Renderer[winners.Length];
-        for (int i = 0; i < winners.Length; i++) {
-            winnerRenderers[i] = winners[i].GetComponent<Renderer>();
-        }
+        SceneManager.LoadScene(GameInfo.LevelName, LoadSceneMode.Additive);
+    }
+
+    private void Start() {
+        Renderer[] winnerRenderers = TrackManager.Instance.EndPodium.WinnerRenderers;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(GameInfo.LevelName));
         playersSorted = GameInfo.GetPlayers().Where(p => p != null).OrderBy(p => p.endingTime).ToArray();
-        for (int i = 0; i < winners.Length; i++) {
+        for (int i = 0; i < winnerRenderers.Length; i++) {
             if (i < playersSorted.Length) {
                 winnerRenderers[i].material.color = playersSorted[i].color;
             } else {
-                winners[i].SetActive(false);
+                winnerRenderers[i].gameObject.SetActive(false);
             }
         }
-        SceneManager.LoadScene(GameInfo.LevelName, LoadSceneMode.Additive);
     }
 
     private void Update() {
