@@ -31,6 +31,7 @@ public static class GameInfo {
             lastLapChangeForward = false;
             OnLapsChange?.Invoke(laps);
             endingTime = 0;
+            Mana = 0;
         }
         public event Action<int> OnLapsChange;
         public bool lastLapChangeForward = false;
