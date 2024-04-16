@@ -13,8 +13,21 @@ public class ExplodingSummon : MonoBehaviour {
     [SerializeField]
     private Sound useSound;
 
+    [SerializeField]
+    private GameObject smoke;
+
+    [SerializeField]
+    private Transform smokeSpawnpoint;
+
+    [SerializeField]
+    private GameObject explosion;
+
+    [SerializeField]
+    private Transform explosionSpawnpoint;
+
     private void Start() {
         Sound.Play(startSounds);
+        Instantiate(smoke, smokeSpawnpoint.position, smokeSpawnpoint.rotation);
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -26,6 +39,7 @@ public class ExplodingSummon : MonoBehaviour {
         rigidbody.AddForce(force, ForceMode.VelocityChange);
         Destroy(gameObject);
         Sound.Play(useSound);
+        Instantiate(explosion, explosionSpawnpoint.position, explosionSpawnpoint.rotation);
     }
 
 }

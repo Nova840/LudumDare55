@@ -50,6 +50,9 @@ public abstract class Vehicle : MonoBehaviour {
     [SerializeField]
     private float manaFillRate;
 
+    [SerializeField]
+    private GameObject smoke;
+
     protected Rigidbody _rigidbody;
     private Outline outline;
 
@@ -110,6 +113,7 @@ public abstract class Vehicle : MonoBehaviour {
 
     private void OnPlayerFinish(int playerIndex) {
         if (playerIndex == PlayerIndex) {
+            Instantiate(smoke, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

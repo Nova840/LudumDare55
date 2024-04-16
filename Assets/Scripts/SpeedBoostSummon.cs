@@ -13,8 +13,15 @@ public class SpeedBoostSummon : MonoBehaviour {
     [SerializeField]
     private Sound useSound;
 
+    [SerializeField]
+    private GameObject smoke;
+
+    [SerializeField]
+    private Transform smokeSpawnpoint;
+
     private void Start() {
         Sound.Play(startSounds);
+        Instantiate(smoke, smokeSpawnpoint.position, smokeSpawnpoint.rotation);
     }
 
     private void OnTriggerEnter(Collider other) {
