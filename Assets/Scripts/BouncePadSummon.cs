@@ -20,6 +20,7 @@ public class BouncePadSummon : MonoBehaviour {
     private Transform smokeSpawnpoint;
 
     private void Start() {
+        if (!smoke) return;
         Sound.Play(startSounds);
         Instantiate(smoke, smokeSpawnpoint.position, smokeSpawnpoint.rotation);
     }

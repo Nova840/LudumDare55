@@ -26,6 +26,7 @@ public class ExplodingSummon : MonoBehaviour {
     private Transform explosionSpawnpoint;
 
     private void Start() {
+        if (!smoke) return;
         Sound.Play(startSounds);
         Instantiate(smoke, smokeSpawnpoint.position, smokeSpawnpoint.rotation);
     }
