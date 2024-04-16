@@ -7,6 +7,16 @@ public class SpeedBoostSummon : MonoBehaviour {
     [SerializeField]
     private float forwardForce;
 
+    [SerializeField]
+    private Sound[] startSounds;
+
+    [SerializeField]
+    private Sound useSound;
+
+    private void Start() {
+        Sound.Play(startSounds);
+    }
+
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.layer != LayerMask.NameToLayer("Vehicle")) return;
         Vehicle vehicle = other.GetComponentInParent<Vehicle>();
@@ -14,6 +24,7 @@ public class SpeedBoostSummon : MonoBehaviour {
         Rigidbody rigidbody = vehicle.GetComponent<Rigidbody>();
         Vector3 force = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized * forwardForce;
         rigidbody.AddForce(force, ForceMode.VelocityChange);
+        Sound.Play(useSound);
     }
 
 }

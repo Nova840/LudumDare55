@@ -75,6 +75,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeForce: 35
+  startSounds:
+  - clip: {fileID: 8300000, guid: 370476aebdb379b489a925c5c94b840e, type: 3}
+    volume: 1
+    randomPitchVariation: 0.1
+  - clip: {fileID: 8300000, guid: fbefbf4caeee2fb4faa3d9d3e8eb7271, type: 3}
+    volume: 1
+    randomPitchVariation: 0.1
+  - clip: {fileID: 8300000, guid: d4423cb9a1d4393499d41e099015d528, type: 3}
+    volume: 1
+    randomPitchVariation: 0.1
+  useSound:
+    clip: {fileID: 8300000, guid: 2ee549238553c1f478052958ff13030b, type: 3}
+    volume: 1
+    randomPitchVariation: 0.1
 --- !u!1 &8097860301977665013
 GameObject:
   m_ObjectHideFlags: 0
