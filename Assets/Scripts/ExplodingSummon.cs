@@ -7,6 +7,16 @@ public class ExplodingSummon : MonoBehaviour {
     [SerializeField]
     private float explodeForce;
 
+    [SerializeField]
+    private Sound[] startSounds;
+
+    [SerializeField]
+    private Sound useSound;
+
+    private void Start() {
+        Sound.Play(startSounds);
+    }
+
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.layer != LayerMask.NameToLayer("Vehicle")) return;
         Vehicle vehicle = other.GetComponentInParent<Vehicle>();
@@ -15,6 +25,7 @@ public class ExplodingSummon : MonoBehaviour {
         Vector3 force = Vector3.ProjectOnPlane(rigidbody.position - transform.position, Vector3.up).normalized * explodeForce;
         rigidbody.AddForce(force, ForceMode.VelocityChange);
         Destroy(gameObject);
+        Sound.Play(useSound);
     }
 
 }
