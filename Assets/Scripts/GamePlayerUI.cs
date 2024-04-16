@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GamePlayerUI : MonoBehaviour {
 
     [SerializeField]
     private int playerIndex;
+
+    [SerializeField]
+    private Image fillImage;
 
     [SerializeField]
     private TMP_Text lapsText;
@@ -26,6 +30,13 @@ public class GamePlayerUI : MonoBehaviour {
             OnLapsChange(player.Laps);//needs to be in Start
         } else {
             lapsText.gameObject.SetActive(false);
+        }
+    }
+
+    private void Update() {
+        GameInfo.Player player = GameInfo.GetPlayer(playerIndex);
+        if (player != null) {
+            fillImage.fillAmount = player.Mana;
         }
     }
 

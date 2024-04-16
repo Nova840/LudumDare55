@@ -50,8 +50,6 @@ public abstract class Vehicle : MonoBehaviour {
     [SerializeField]
     private float manaFillRate;
 
-    private float mana = 0;
-
     protected Rigidbody _rigidbody;
     private Outline outline;
 
@@ -84,23 +82,23 @@ public abstract class Vehicle : MonoBehaviour {
     }
 
     protected virtual void Update() {
+        GameInfo.Player player = GameInfo.GetPlayer(PlayerIndex);
         if (GameManager.Instance && GameManager.Instance.CountdownOver) {
-            mana += manaFillRate * Time.deltaTime;
-            mana = Mathf.Clamp01(mana);
+            player.Mana += manaFillRate * Time.deltaTime;
+            player.Mana = Mathf.Clamp01(player.Mana);
         }
 
-        if (mana == 1) {
-            GameInfo.Player player = GameInfo.GetPlayer(PlayerIndex);
+        if (player.Mana == 1) {
             if (InputManager.GetSummonExploding(player.controller)) {
-                mana = 0;
+                player.Mana = 0;
                 Instantiate(explodingSummon, explodingSummonSpawnpoint.position, explodingSummonSpawnpoint.rotation);
             }
             if (InputManager.GetSummonBouncePad(player.controller)) {
-                mana = 0;
+                player.Mana = 0;
                 Instantiate(bouncePadSummon, bouncePadSummonSpawnpoint.position, bouncePadSummonSpawnpoint.rotation);
             }
             if (InputManager.GetSummonSpeedBoost(player.controller)) {
-                mana = 0;
+                player.Mana = 0;
                 Instantiate(speedBoostSummon, speedBoostSummonSpawnpoint.position, speedBoostSummonSpawnpoint.rotation);
             }
         }

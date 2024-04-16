@@ -38,6 +38,7 @@ public static class GameInfo {
         public float endingTime;
         public bool isCPU;
         public int vehicleIndex;
+        public float Mana { get; set; }
         public Player(int playerIndex, int controller, Color color, bool isCPU, int vehicleIndex) {
             this.playerIndex = playerIndex;
             this.controller = controller;
