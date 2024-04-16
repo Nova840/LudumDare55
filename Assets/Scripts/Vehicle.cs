@@ -53,6 +53,9 @@ public abstract class Vehicle : MonoBehaviour {
     [SerializeField]
     private GameObject smoke;
 
+    [SerializeField]
+    private Transform smokeSpawnpoint;
+
     protected Rigidbody _rigidbody;
     private Outline outline;
 
@@ -113,7 +116,7 @@ public abstract class Vehicle : MonoBehaviour {
 
     private void OnPlayerFinish(int playerIndex) {
         if (playerIndex == PlayerIndex) {
-            Instantiate(smoke, transform.position, transform.rotation);
+            Instantiate(smoke, smokeSpawnpoint.position, smokeSpawnpoint.rotation);
             Destroy(gameObject);
         }
     }

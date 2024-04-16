@@ -2418,6 +2418,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3801351938126322893}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &3950712209339644560 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 149360546091624029, guid: 6fe20cf75b6564443af2ce4bcf58d331,
+    type: 3}
+  m_PrefabInstance: {fileID: 3801351938126322893}
+  m_PrefabAsset: {fileID: 0}
 --- !u!135 &5947471783574615586 stripped
 SphereCollider:
   m_CorrespondingSourceObject: {fileID: 7370342421623515887, guid: 6fe20cf75b6564443af2ce4bcf58d331,
@@ -2469,6 +2475,7 @@ MonoBehaviour:
   bouncePadSummonSpawnpoint: {fileID: 7526635163743507774}
   manaFillRate: 0.16666667
   smoke: {fileID: 3704695551477866287, guid: 7de80c1d8484a3147afb931868c8e729, type: 3}
+  smokeSpawnpoint: {fileID: 3950712209339644560}
   flWheel: {fileID: 7690017178917845036}
   frWheel: {fileID: 1856211453236967770}
   blWheel: {fileID: 3572093122478234150}

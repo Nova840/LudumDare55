@@ -13,6 +13,9 @@ public class GamePlayerUI : MonoBehaviour {
     private Image fillImage;
 
     [SerializeField]
+    private Image backgroundImage;
+
+    [SerializeField]
     private TMP_Text lapsText;
 
     [SerializeField]
@@ -28,6 +31,8 @@ public class GamePlayerUI : MonoBehaviour {
         if (player != null) {
             player.OnLapsChange += OnLapsChange;
             OnLapsChange(player.Laps);//needs to be in Start
+            fillImage.color = player.color;
+            backgroundImage.color = player.color;
         } else {
             lapsText.gameObject.SetActive(false);
         }
@@ -37,6 +42,8 @@ public class GamePlayerUI : MonoBehaviour {
         GameInfo.Player player = GameInfo.GetPlayer(playerIndex);
         if (player != null) {
             fillImage.fillAmount = player.Mana;
+        } else {
+            fillImage.fillAmount = 0;
         }
     }
 

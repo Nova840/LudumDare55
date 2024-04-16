@@ -42,7 +42,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5061769173764743811}
   - component: {fileID: 757491734137551930}
-  - component: {fileID: 4265144427477576349}
   - component: {fileID: 4660364362863179121}
   - component: {fileID: 8783771338291915165}
   m_Layer: 0
@@ -118,14 +117,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &4265144427477576349
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5152541847161585477}
-  m_Enabled: 1
 --- !u!114 &4660364362863179121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2818249650773619739}
   - component: {fileID: 1976228383392045993}
+  - component: {fileID: 8156164561686803552}
   m_Layer: 0
   m_Name: Camera Manager
   m_TagString: Untagged
@@ -222,7 +214,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5575323425800117727}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268316, y: -0, z: -0, w: 0.9238797}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -271,3 +263,11 @@ MonoBehaviour:
   stopTrackingYPosition: -10
   cameraFollow: {fileID: 554811915114659413}
   cameraRigidbody: {fileID: 8783771338291915165}
+--- !u!81 &8156164561686803552
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5575323425800117727}
+  m_Enabled: 1

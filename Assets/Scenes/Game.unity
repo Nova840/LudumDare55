@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 311503595}
   - component: {fileID: 311503594}
   m_Layer: 5
-  m_Name: BG
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 611418807}
   - component: {fileID: 611418806}
   m_Layer: 5
-  m_Name: BG
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -806,6 +806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: 1
   fillImage: {fileID: 2016709366}
+  backgroundImage: {fileID: 611418806}
   lapsText: {fileID: 1059858901}
   lapSound:
     clip: {fileID: 8300000, guid: 5373eea7a7e557e44850e0bd4c012b16, type: 3}
@@ -1201,7 +1202,7 @@ GameObject:
   - component: {fileID: 1159705485}
   - component: {fileID: 1159705484}
   m_Layer: 5
-  m_Name: BG
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1317,6 +1318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: 2
   fillImage: {fileID: 1114889549}
+  backgroundImage: {fileID: 311503594}
   lapsText: {fileID: 707416006}
   lapSound:
     clip: {fileID: 8300000, guid: 5373eea7a7e557e44850e0bd4c012b16, type: 3}
@@ -1882,6 +1884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: 0
   fillImage: {fileID: 1154607973}
+  backgroundImage: {fileID: 2084359884}
   lapsText: {fileID: 1151900702}
   lapSound:
     clip: {fileID: 8300000, guid: 5373eea7a7e557e44850e0bd4c012b16, type: 3}
@@ -1944,6 +1947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: 3
   fillImage: {fileID: 789575608}
+  backgroundImage: {fileID: 1159705484}
   lapsText: {fileID: 826036058}
   lapSound:
     clip: {fileID: 8300000, guid: 5373eea7a7e557e44850e0bd4c012b16, type: 3}
@@ -1965,7 +1969,7 @@ GameObject:
   - component: {fileID: 2084359885}
   - component: {fileID: 2084359884}
   m_Layer: 5
-  m_Name: BG
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
