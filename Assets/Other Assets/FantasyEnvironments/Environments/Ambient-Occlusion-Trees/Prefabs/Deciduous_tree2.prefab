@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33124570018733406}
   - component: {fileID: 23244988910261652}
   - component: {fileID: 136953109996914124}
+  - component: {fileID: -8252398559861353599}
   m_Layer: 0
   m_Name: Deciduous_tree2
   m_TagString: Untagged
@@ -108,3 +109,28 @@ CapsuleCollider:
   m_Height: 16.264389
   m_Direction: 1
   m_Center: {x: 0, y: 7.42, z: -0.08}
+--- !u!205 &-8252398559861353599
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235048213169736}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23244988910261652}
+  - screenRelativeHeight: 0
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1

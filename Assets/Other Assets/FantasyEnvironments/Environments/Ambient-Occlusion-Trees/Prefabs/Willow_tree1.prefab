@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33964415340939218}
   - component: {fileID: 23634741171523664}
   - component: {fileID: 136670558102928648}
+  - component: {fileID: -4081778623043849369}
   m_Layer: 0
   m_Name: Willow_tree1
   m_TagString: Untagged
@@ -108,3 +109,28 @@ CapsuleCollider:
   m_Height: 11.217078
   m_Direction: 1
   m_Center: {x: 0.02, y: 3.8, z: -0.09}
+--- !u!205 &-4081778623043849369
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274954305527900}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23634741171523664}
+  - screenRelativeHeight: 0
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
