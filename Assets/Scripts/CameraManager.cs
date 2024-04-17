@@ -33,14 +33,14 @@ public class CameraManager : MonoBehaviour {
         string sceneName = SceneManager.GetActiveScene().name;
         if (sceneName == "Start") {
             Destroy(transform.GetChild(0).gameObject);
-            TrackManager.Instance.EndCamera.gameObject.SetActive(false);
+            TrackManager.Instance.PodiumCamera.gameObject.SetActive(false);
         } else if (sceneName == "End") {
             Destroy(transform.GetChild(0).gameObject);
-            TrackManager.Instance.StartCamera.gameObject.SetActive(false);
+            if (TrackManager.Instance.StartCamera) TrackManager.Instance.StartCamera.gameObject.SetActive(false);
         } else {
             cameraRigidbody.transform.SetParent(null, true);
-            TrackManager.Instance.StartCamera.gameObject.SetActive(false);
-            TrackManager.Instance.EndCamera.gameObject.SetActive(false);
+            if (TrackManager.Instance.StartCamera) TrackManager.Instance.StartCamera.gameObject.SetActive(false);
+            TrackManager.Instance.PodiumCamera.gameObject.SetActive(false);
         }
     }
 

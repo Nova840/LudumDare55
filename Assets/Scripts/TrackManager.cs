@@ -47,8 +47,8 @@ public class TrackManager : MonoBehaviour {
     public Camera StartCamera => startCamera;
 
     [SerializeField]
-    private Camera endCamera;
-    public Camera EndCamera => endCamera;
+    private Camera podiumCamera;
+    public Camera PodiumCamera => podiumCamera;
 
     [SerializeField]
     private Podium endPodium;

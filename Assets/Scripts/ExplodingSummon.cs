@@ -17,6 +17,9 @@ public class ExplodingSummon : MonoBehaviour {
     private GameObject smoke;
 
     [SerializeField]
+    private bool playSmokeAndSoundOnStart;
+
+    [SerializeField]
     private Transform smokeSpawnpoint;
 
     [SerializeField]
@@ -26,7 +29,7 @@ public class ExplodingSummon : MonoBehaviour {
     private Transform explosionSpawnpoint;
 
     private void Start() {
-        if (!smoke) return;
+        if (!playSmokeAndSoundOnStart) return;
         Sound.Play(startSounds);
         Instantiate(smoke, smokeSpawnpoint.position, smokeSpawnpoint.rotation);
     }

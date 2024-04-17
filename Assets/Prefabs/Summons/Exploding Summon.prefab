@@ -92,6 +92,7 @@ MonoBehaviour:
     volume: 1
     randomPitchVariation: 0.1
   smoke: {fileID: 3704695551477866287, guid: 7de80c1d8484a3147afb931868c8e729, type: 3}
+  playSmokeAndSoundOnStart: 1
   smokeSpawnpoint: {fileID: 1725406481509355050}
   explosion: {fileID: 8569507649341111414, guid: 80ec5464c8aac4440bf4701a133c1178,
     type: 3}

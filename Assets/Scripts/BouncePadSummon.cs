@@ -17,10 +17,13 @@ public class BouncePadSummon : MonoBehaviour {
     private GameObject smoke;
 
     [SerializeField]
+    private bool playSmokeAndSoundOnStart;
+
+    [SerializeField]
     private Transform smokeSpawnpoint;
 
     private void Start() {
-        if (!smoke) return;
+        if (!playSmokeAndSoundOnStart) return;
         Sound.Play(startSounds);
         Instantiate(smoke, smokeSpawnpoint.position, smokeSpawnpoint.rotation);
     }

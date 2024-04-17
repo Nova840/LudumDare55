@@ -91,6 +91,7 @@ MonoBehaviour:
     volume: 1
     randomPitchVariation: 0.1
   smoke: {fileID: 3704695551477866287, guid: 7de80c1d8484a3147afb931868c8e729, type: 3}
+  playSmokeAndSoundOnStart: 1
   smokeSpawnpoint: {fileID: 5061013696436698925}
 --- !u!1 &536131318312345177
 GameObject:
