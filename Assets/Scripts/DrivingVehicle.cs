@@ -46,6 +46,11 @@ public class DrivingVehicle : Vehicle {
     [SerializeField]
     private float bumpSoundTimeDelay;
 
+    [SerializeField]
+    private float moveCenterOfMassWhenFlippedSpeed;
+
+    private Vector3 initialCenterOfMass;
+
     private float timeLastBumpSoundPlayed = Mathf.NegativeInfinity;
 
     private float steerAngle = 0;
@@ -55,6 +60,7 @@ public class DrivingVehicle : Vehicle {
         allWheels = new WheelCollider[] { flWheel, frWheel, blWheel, brWheel };
         steeringWheels = new WheelCollider[] { flWheel, frWheel };
         drivingWheels = new WheelCollider[] { flWheel, frWheel, blWheel, brWheel };
+        initialCenterOfMass = _rigidbody.centerOfMass;
     }
 
     protected override void Update() {
@@ -70,6 +76,12 @@ public class DrivingVehicle : Vehicle {
         } else if (accelerate > 0 && reverse > 0) {
             brake += (accelerate + reverse) / 2f;
             brake = Mathf.Clamp01(brake);
+        }
+
+        if (Vector3.Angle(transform.up, Vector3.up) >= 45) {
+            _rigidbody.centerOfMass += Vector3.down * (moveCenterOfMassWhenFlippedSpeed * Time.deltaTime);
+        } else {
+            _rigidbody.centerOfMass = initialCenterOfMass;
         }
 
         steerAngle = Mathf.Lerp(steerAngle, steering * maxSteerAngle, steerSmoothSpeed * Time.deltaTime);
@@ -101,6 +113,7 @@ public class DrivingVehicle : Vehicle {
             float speed = Vector3.ProjectOnPlane(_rigidbody.velocity, Vector3.up).magnitude;
             source.volume = engineVolumeAtSpeed.Evaluate(speed) * maxEngineVolume / GameInfo.CurrentPlayers;
         }
+
     }
 
     private void OnCollisionEnter(Collision collision) {
