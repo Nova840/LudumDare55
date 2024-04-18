@@ -2530,7 +2530,7 @@ MonoBehaviour:
     volume: 1
     randomPitchVariation: 0.1
   bumpSoundSpeedThreshold: 1
-  bumpSoundTimeDelay: 0.25
+  bumpSoundRepeatDelay: 0.25
   moveCenterOfMassWhenFlippedSpeed: 1
 --- !u!4 &7526635163743507774 stripped
 Transform:

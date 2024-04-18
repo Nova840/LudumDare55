@@ -4887,13 +4887,28 @@ PrefabInstance:
       objectReference: {fileID: 1505366497}
     - target: {fileID: 4129090047639326140, guid: 3fc341af635f9264fb317866c9fb9f15,
         type: 3}
+      propertyPath: oldCPUPath
+      value: 
+      objectReference: {fileID: 188100189}
+    - target: {fileID: 4129090047639326140, guid: 3fc341af635f9264fb317866c9fb9f15,
+        type: 3}
       propertyPath: podiumCamera
       value: 
       objectReference: {fileID: 631479919}
     - target: {fileID: 4129090047639326140, guid: 3fc341af635f9264fb317866c9fb9f15,
         type: 3}
+      propertyPath: cpuPathStartPercent
+      value: 0.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129090047639326140, guid: 3fc341af635f9264fb317866c9fb9f15,
+        type: 3}
       propertyPath: cpuSplineVerticalOffset
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129090047639326140, guid: 3fc341af635f9264fb317866c9fb9f15,
+        type: 3}
+      propertyPath: testPlayers.Array.data[0].isCPU
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4167064139175144540, guid: 3fc341af635f9264fb317866c9fb9f15,
         type: 3}

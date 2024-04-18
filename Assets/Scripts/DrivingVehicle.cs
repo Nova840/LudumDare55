@@ -44,7 +44,7 @@ public class DrivingVehicle : Vehicle {
     private float bumpSoundSpeedThreshold;
 
     [SerializeField]
-    private float bumpSoundTimeDelay;
+    private float bumpSoundRepeatDelay;
 
     [SerializeField]
     private float moveCenterOfMassWhenFlippedSpeed;
@@ -113,11 +113,10 @@ public class DrivingVehicle : Vehicle {
             float speed = Vector3.ProjectOnPlane(_rigidbody.velocity, Vector3.up).magnitude;
             source.volume = engineVolumeAtSpeed.Evaluate(speed) * maxEngineVolume / GameInfo.CurrentPlayers;
         }
-
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (Time.time - timeLastBumpSoundPlayed >= bumpSoundTimeDelay && collision.relativeVelocity.magnitude >= bumpSoundSpeedThreshold) {
+        if (Time.time - timeLastBumpSoundPlayed >= bumpSoundRepeatDelay && collision.relativeVelocity.magnitude >= bumpSoundSpeedThreshold) {
             timeLastBumpSoundPlayed = Time.time;
             Sound.Play(bumpSounds[GameInfo.GetPlayer(PlayerIndex).vehicleIndex]);
         }

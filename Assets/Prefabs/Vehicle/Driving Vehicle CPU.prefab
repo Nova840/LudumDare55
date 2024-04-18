@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9094693423653744879}
-  - component: {fileID: 8681859793207244359}
   m_Layer: 0
   m_Name: CPU Follow Point
   m_TagString: Untagged
@@ -32,29 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6548175339745187181}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8681859793207244359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4765511256839803561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Target: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_LoopMode: 1
-  m_Method: 1
-  m_Duration: Infinity
-  m_MaxSpeed: 0
-  m_EasingMode: 0
-  m_AlignmentMode: 0
-  m_ObjectForwardAxis: 2
-  m_ObjectUpAxis: 1
-  m_StartOffset: 0
 --- !u!1001 &6902214008053891178
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -226,7 +202,7 @@ MonoBehaviour:
   blWheel: {fileID: 7951959285559810636}
   brWheel: {fileID: 1065813979438989388}
   wheelVisualRotationOffset: {x: 0, y: 0, z: 90}
-  splineAnimateSpeed: 3
+  pathMoveSpeed: 6
   maxForce: 100
   rotateSpeed: 5
   maxSteerAngle: 30
@@ -276,7 +252,8 @@ MonoBehaviour:
     volume: 1
     randomPitchVariation: 0.1
   bumpSoundSpeedThreshold: 1
-  bumpSoundTimeDelay: 0.25
+  bumpSoundRepeatDelay: 0.25
+  followPoint: {fileID: 9094693423653744879}
 --- !u!4 &4569684394292828001 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6963498152548587275, guid: e44c42002ee99674c9a28294afd07ece,

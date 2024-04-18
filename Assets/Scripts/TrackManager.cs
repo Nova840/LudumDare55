@@ -1,3 +1,5 @@
+using PathCreation;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,38 +15,20 @@ public class TrackManager : MonoBehaviour {
     public int Laps => laps;
 
     [SerializeField]
-    private SplineContainer cpuSpline;
-    public SplineContainer CPUSpline => cpuSpline;
+    private PathCreator cpuPath;
+    public PathCreator CPUPath => cpuPath;
 
     [SerializeField]
-    private bool cpuSplineReverse;
-    public bool CPUSplineReverse => cpuSplineReverse;
+    private bool cpuPathReverse;
+    public bool CPUPathReverse => cpuPathReverse;
 
     [SerializeField, Range(0, 1)]
-    private float cpuSplineStartPercent;
-    public float CPUSplineStartPercent => cpuSplineStartPercent;
+    private float cpuPathStartPercent;
+    public float CPUPathStartPercent => cpuPathStartPercent;
 
     [SerializeField]
-    private float cpuSplineVerticalOffset;
-    public float CPUSplineVerticalOffset => cpuSplineVerticalOffset;
-
-    [SerializeField]
-    private bool testCPU;
-
-    private enum TestControls { Keyboard = -1, Controller1 = 0, Controller2 = 1, Controller3 = 2, Controller4 = 3 }
-    [SerializeField]
-    private TestControls testControls;
-
-    [SerializeField]
-    private Color testColor;
-
-    private enum TestVehicle { ShoppingCart = 0, Suitcase = 1, Wheelchair = 2, Hoverboard = 3 }
-    [SerializeField]
-    private TestVehicle testVehicle;
-
-    [SerializeField]
-    private Camera startCamera;
-    public Camera StartCamera => startCamera;
+    private float cpuPathVerticalOffset;
+    public float CPUPathVerticalOffset => cpuPathVerticalOffset;
 
     [SerializeField]
     private Camera podiumCamera;
@@ -54,12 +38,66 @@ public class TrackManager : MonoBehaviour {
     private Podium endPodium;
     public Podium EndPodium => endPodium;
 
+    [Header("Only Required If Start")]
+
+    [SerializeField]
+    private Camera startCamera;
+    public Camera StartCamera => startCamera;
+
+    [Header("Testing")]
+
+    [SerializeField]
+    private TestPlayer[] testPlayers;
+
+    [Serializable]
+    private class TestPlayer {
+        public bool isCPU;
+
+        public Controls controls;
+        public enum Controls { Keyboard = -1, Controller1 = 0, Controller2 = 1, Controller3 = 2, Controller4 = 3 }
+
+        public Color color;
+
+        public Vehicle vehicle;
+        public enum Vehicle { ShoppingCart = 0, Suitcase = 1, Wheelchair = 2, Hoverboard = 3 }
+    }
+
+    [Header("Old Crap")]
+
+    [SerializeField]
+    private SplineContainer oldCPUPath;
+    public SplineContainer OldCPUPath => oldCPUPath;
+
     private void Awake() {
         Instance = this;
         if (!GameInfo.StartSceneLoaded && !GameInfo.EndSceneLoaded) {
             GameInfo.LevelName = SceneManager.GetActiveScene().name;
-            GameInfo.SetPlayer(new GameInfo.Player(0, (int)testControls, testColor, testCPU, (int)testVehicle));
+            foreach (TestPlayer p in testPlayers) {
+                GameInfo.SetPlayer(new GameInfo.Player(0, (int)p.controls, p.color, p.isCPU, (int)p.vehicle));
+            }
             SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+        }
+    }
+
+    private void OnDrawGizmosSelected() {
+        if (!cpuPath && !oldCPUPath) return;
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(FindAnyObjectByType<TrackManager>().GetPathPoint(cpuPathStartPercent) + Vector3.up * cpuPathVerticalOffset, 1);
+    }
+
+    public float GetPathLength() {
+        if (!cpuPath) {
+            return oldCPUPath.CalculateLength();
+        } else {
+            return cpuPath.path.length;
+        }
+    }
+
+    public Vector3 GetPathPoint(float time) {
+        if (!cpuPath) {
+            return oldCPUPath.EvaluatePosition(time);
+        } else {
+            return cpuPath.path.GetPointAtTime(time);
         }
     }
 

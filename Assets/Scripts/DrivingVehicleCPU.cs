@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class DrivingVehicleCPU : Vehicle {
 
@@ -14,8 +13,8 @@ public class DrivingVehicleCPU : Vehicle {
     private Vector3 wheelVisualRotationOffset;
 
     [SerializeField]
-    private float splineAnimateSpeed;
-    private float GetRealSplineAnimateSpeed() => splineAnimateSpeed * (TrackManager.Instance.CPUSplineReverse ? -1 : 1);
+    private float pathMoveSpeed;
+    private float GetRealPathMoveSpeed() => pathMoveSpeed * (TrackManager.Instance.CPUPathReverse ? -1 : 1);
 
     [SerializeField]
     private float maxForce;
@@ -48,34 +47,32 @@ public class DrivingVehicleCPU : Vehicle {
     private float bumpSoundSpeedThreshold;
 
     [SerializeField]
-    private float bumpSoundTimeDelay;
+    private float bumpSoundRepeatDelay;
+
+    [SerializeField]
+    private Transform followPoint;
+
+    private float pathNormalizedTime;
 
     private float timeLastBumpSoundPlayed = Mathf.NegativeInfinity;
-
-    private SplineAnimate splineAnimate;
-    private float splineAnimateDuration;
 
     protected override void Awake() {
         base.Awake();
         allWheels = new WheelCollider[] { flWheel, frWheel, blWheel, brWheel };
         steeringWheels = new WheelCollider[] { flWheel, frWheel };
 
-        splineAnimate = GetComponentInChildren<SplineAnimate>(true);
-        splineAnimate.Container = TrackManager.Instance.CPUSpline;
-        splineAnimate.StartOffset = TrackManager.Instance.CPUSplineStartPercent;
-        splineAnimate.transform.SetParent(null, true);
-        splineAnimate.MaxSpeed = Mathf.Abs(GetRealSplineAnimateSpeed());
-        splineAnimateDuration = splineAnimate.Duration;
+        followPoint.SetParent(null, true);
+        pathNormalizedTime = TrackManager.Instance.CPUPathStartPercent;
+        followPoint.position = TrackManager.Instance.GetPathPoint(pathNormalizedTime);
     }
 
     protected override void Update() {
         base.Update();
         if (GameManager.Instance.CountdownOver) {
-            float time = splineAnimate.NormalizedTime;
-            time += GetRealSplineAnimateSpeed() / splineAnimateDuration * Time.deltaTime;
-            time = Mathf.Repeat(time, 1);
-            splineAnimate.NormalizedTime = time;
-            splineAnimate.transform.position += Vector3.up * TrackManager.Instance.CPUSplineVerticalOffset;
+            pathNormalizedTime += GetRealPathMoveSpeed() / TrackManager.Instance.GetPathLength() * Time.deltaTime;
+            pathNormalizedTime = Mathf.Repeat(pathNormalizedTime, 1);
+            followPoint.position = TrackManager.Instance.GetPathPoint(pathNormalizedTime);
+            followPoint.position += Vector3.up * TrackManager.Instance.CPUPathVerticalOffset;
         }
 
         foreach (WheelCollider wheel in allWheels) {
@@ -107,7 +104,7 @@ public class DrivingVehicleCPU : Vehicle {
 
     private void FixedUpdate() {
         if (GameManager.Instance.CountdownOver) {
-            Vector3 force = Vector3.ClampMagnitude(splineAnimate.transform.position - transform.position, maxForce);
+            Vector3 force = Vector3.ClampMagnitude(followPoint.position - transform.position, maxForce);
             force = Vector3.ProjectOnPlane(force, Vector3.up);
             _rigidbody.AddForce(force, ForceMode.Acceleration);
             if (_rigidbody.velocity != Vector3.zero) {
@@ -117,7 +114,7 @@ public class DrivingVehicleCPU : Vehicle {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (Time.time - timeLastBumpSoundPlayed >= bumpSoundTimeDelay && collision.relativeVelocity.magnitude >= bumpSoundSpeedThreshold) {
+        if (Time.time - timeLastBumpSoundPlayed >= bumpSoundRepeatDelay && collision.relativeVelocity.magnitude >= bumpSoundSpeedThreshold) {
             timeLastBumpSoundPlayed = Time.time;
             Sound.Play(bumpSounds[GameInfo.GetPlayer(PlayerIndex).vehicleIndex]);
         }
