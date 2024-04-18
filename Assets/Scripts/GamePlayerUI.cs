@@ -55,12 +55,11 @@ public class GamePlayerUI : MonoBehaviour {
     }
 
     private void OnLapsChange(int newLaps) {
-        GameInfo.Player player = GameInfo.GetPlayer(playerIndex);
         if (newLaps > highestLapCount) {
             highestLapCount = newLaps;
-            if (highestLapCount < player.Laps) {
+            if (highestLapCount < TrackManager.Instance.Laps) {
                 Sound.Play(lapSound);
-            } else if (highestLapCount == player.Laps) {
+            } else if (highestLapCount == TrackManager.Instance.Laps) {
                 Sound.Play(finalLapSound);
             }
         }
