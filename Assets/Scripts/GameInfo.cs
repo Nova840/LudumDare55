@@ -59,6 +59,7 @@ public static class GameInfo {
             action?.Invoke(players[i]);
         }
     }
+    public static bool AnyPlayerIsColor(Color color) => players.Any(p => p != null && p.color == color);
     public static int MaxPlayers => players.Length;
     public static int CurrentPlayers => players.Count(p => p != null);
     public static event Action<int> OnPlayerFinish;

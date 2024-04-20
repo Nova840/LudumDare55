@@ -52,7 +52,9 @@ public class StartPlayers : MonoBehaviour {
         int colorIndex = Array.IndexOf(playerColors, playerColor);
         colorIndex++;
         colorIndex %= playerColors.Length;
-        player.color = playerColors[colorIndex];
+        Color color = playerColors[colorIndex];
+        color = ValidPlayerColor(color);
+        player.color = color;
         RefreshPlayers();
     }
 
@@ -71,7 +73,9 @@ public class StartPlayers : MonoBehaviour {
         if (playerExists) {
             GameInfo.RemovePlayer(startPlayerIndex);
         } else {
-            GameInfo.SetPlayer(new GameInfo.Player(startPlayerIndex, controller, playerColors[Random.Range(0, playerColors.Length)], startPlayers[startPlayerIndex].CPUToggle.isOn, 0)); startPlayers[startPlayerIndex].VehicleDropdownLabel.text = "";
+            Color color = playerColors[Random.Range(0, playerColors.Length)];
+            color = ValidPlayerColor(color);
+            GameInfo.SetPlayer(new GameInfo.Player(startPlayerIndex, controller, color, startPlayers[startPlayerIndex].CPUToggle.isOn, 0)); startPlayers[startPlayerIndex].VehicleDropdownLabel.text = "";
         }
         RefreshPlayers();
     }
@@ -102,6 +106,16 @@ public class StartPlayers : MonoBehaviour {
                 startPlayer.VehicleDropdownLabel.text = "";
             }
         }
+    }
+
+    private Color ValidPlayerColor(Color color) {
+        int colorIndex = Array.IndexOf(playerColors, color);
+        for (int i = 0; i < playerColors.Length; i++) {//for loop so it can't infinite loop
+            if (!GameInfo.AnyPlayerIsColor(playerColors[colorIndex])) break;
+            colorIndex++;
+            colorIndex %= playerColors.Length;
+        }
+        return playerColors[colorIndex];
     }
 
 }
