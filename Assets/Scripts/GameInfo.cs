@@ -60,6 +60,7 @@ public static class GameInfo {
         }
     }
     public static bool AnyPlayerIsColor(Color color) => players.Any(p => p != null && p.color == color);
+    public static bool AllPlayersFinished() => players.All(p => p == null || p.HasFinished);
     public static int MaxPlayers => players.Length;
     public static int CurrentPlayers => players.Count(p => p != null);
     public static event Action<int> OnPlayerFinish;

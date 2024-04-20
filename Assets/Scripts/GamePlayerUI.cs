@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -60,7 +61,9 @@ public class GamePlayerUI : MonoBehaviour {
             if (highestLapCount < TrackManager.Instance.Laps) {
                 Sound.Play(lapSound);
             } else if (highestLapCount == TrackManager.Instance.Laps) {
-                Sound.Play(finalLapSound);
+                if (!GameInfo.AllPlayersFinished()) {
+                    Sound.Play(finalLapSound);
+                }
             }
         }
         int displayLaps = Mathf.Min(TrackManager.Instance.Laps, highestLapCount + 1);

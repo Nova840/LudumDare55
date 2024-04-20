@@ -202,7 +202,7 @@ MonoBehaviour:
   blWheel: {fileID: 7951959285559810636}
   brWheel: {fileID: 1065813979438989388}
   wheelVisualRotationOffset: {x: 0, y: 0, z: 90}
-  pathMoveSpeed: 6
+  pathMoveSpeed: 9.5
   maxForce: 100
   rotateSpeed: 5
   maxSteerAngle: 30

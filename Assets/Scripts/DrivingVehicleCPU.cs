@@ -69,7 +69,7 @@ public class DrivingVehicleCPU : Vehicle {
     protected override void Update() {
         base.Update();
         if (GameManager.Instance.CountdownOver) {
-            pathNormalizedTime += GetRealPathMoveSpeed() / TrackManager.Instance.GetPathLength() * Time.deltaTime;
+            pathNormalizedTime += GetRealPathMoveSpeed() * Time.deltaTime / TrackManager.Instance.GetPathLength();
             pathNormalizedTime = Mathf.Repeat(pathNormalizedTime, 1);
             followPoint.position = TrackManager.Instance.GetPathPoint(pathNormalizedTime);
             followPoint.position += Vector3.up * TrackManager.Instance.CPUPathVerticalOffset;
