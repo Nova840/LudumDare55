@@ -98,12 +98,10 @@ public abstract class Vehicle : MonoBehaviour {
             if (InputManager.GetSummonExploding(player.controller)) {
                 player.Mana = 0;
                 Instantiate(explodingSummon, explodingSummonSpawnpoint.position, explodingSummonSpawnpoint.rotation);
-            }
-            if (InputManager.GetSummonBouncePad(player.controller)) {
+            } else if (InputManager.GetSummonBouncePad(player.controller)) {
                 player.Mana = 0;
                 Instantiate(bouncePadSummon, bouncePadSummonSpawnpoint.position, bouncePadSummonSpawnpoint.rotation);
-            }
-            if (InputManager.GetSummonSpeedBoost(player.controller)) {
+            } else if (InputManager.GetSummonSpeedBoost(player.controller)) {
                 player.Mana = 0;
                 Instantiate(speedBoostSummon, speedBoostSummonSpawnpoint.position, speedBoostSummonSpawnpoint.rotation);
             }
