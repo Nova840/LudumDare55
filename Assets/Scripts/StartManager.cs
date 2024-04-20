@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,14 @@ using UnityEngine.UI;
 
 public class StartManager : MonoBehaviour {
 
-    [SerializeField]
-    private Button level1Button;
+    [Serializable]
+    private class LevelButton {
+        public Button button;
+        public string levelName;
+    }
 
     [SerializeField]
-    private Button level2Button;
+    private LevelButton[] levelButtons;
 
     [SerializeField]
     private Button quitGameButton;
@@ -23,8 +27,9 @@ public class StartManager : MonoBehaviour {
 
     private void Awake() {
         GameInfo.StartSceneLoaded = true;
-        level1Button.onClick.AddListener(Level1ButtonClicked);
-        level2Button.onClick.AddListener(Level2ButtonClicked);
+        foreach (LevelButton levelButton in levelButtons) {
+            levelButton.button.onClick.AddListener(() => LevelButtonClicked(levelButton.levelName));
+        }
         quitGameButton.onClick.AddListener(QuitGameButtonClick);
         SceneManager.LoadScene("3D_TestLevel", LoadSceneMode.Additive);
     }
@@ -33,15 +38,9 @@ public class StartManager : MonoBehaviour {
         TrackManager.Instance.EndPodium.gameObject.SetActive(false);
     }
 
-    private void Level1ButtonClicked() {
+    private void LevelButtonClicked(string levelName) {
         Sound.Play(startButtonSound, true);
-        GameInfo.LevelName = "3D_TestLevel";
-        SceneManager.LoadScene("Game");
-    }
-
-    private void Level2ButtonClicked() {
-        Sound.Play(startButtonSound, true);
-        GameInfo.LevelName = "Level_02";
+        GameInfo.LevelName = levelName;
         SceneManager.LoadScene("Game");
     }
 

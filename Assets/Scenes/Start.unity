@@ -9012,8 +9012,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92fccbd344b131649888521172ff1c2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level1Button: {fileID: 875917551}
-  level2Button: {fileID: 1606987408}
+  levelButtons:
+  - button: {fileID: 875917551}
+    levelName: 3D_TestLevel
+  - button: {fileID: 1606987408}
+    levelName: Level_02
   quitGameButton: {fileID: 280217916}
   startButtonSound:
     clip: {fileID: 8300000, guid: 69aa7fc0fd897c54ea1174ea11535afb, type: 3}
