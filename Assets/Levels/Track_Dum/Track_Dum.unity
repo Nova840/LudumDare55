@@ -800,11 +800,6 @@ PrefabInstance:
       propertyPath: cpuPathVerticalOffset
       value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 4129090047639326140, guid: 3fc341af635f9264fb317866c9fb9f15,
-        type: 3}
-      propertyPath: testPlayers.Array.data[0].isCPU
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4167064139175144540, guid: 3fc341af635f9264fb317866c9fb9f15,
         type: 3}
       propertyPath: m_Name

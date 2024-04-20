@@ -2531,7 +2531,7 @@ MonoBehaviour:
     randomPitchVariation: 0.1
   bumpSoundSpeedThreshold: 1
   bumpSoundRepeatDelay: 0.25
-  moveCenterOfMassWhenFlippedSpeed: 1
+  moveCenterOfMassWhenFlippedSpeed: 0.1
 --- !u!4 &7526635163743507774 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6679656005852613107, guid: 6fe20cf75b6564443af2ce4bcf58d331,
