@@ -130,10 +130,10 @@ public abstract class Vehicle : MonoBehaviour {
 
     protected virtual void Respawn() {
         Transform spawnpoint = Spawnpoints.Instance.GetSpawnpoint(Random.Range(0, Spawnpoints.Instance.GetNumberOfSpawnpoints()));
-        _rigidbody.position = spawnpoint.position;
-        transform.rotation = spawnpoint.rotation;
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
+        _rigidbody.position = spawnpoint.position;
+        _rigidbody.rotation = spawnpoint.rotation;
         GameInfo.GetPlayer(PlayerIndex).SubtractLap();
     }
 
