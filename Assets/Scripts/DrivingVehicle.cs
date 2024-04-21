@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DrivingVehicle : Vehicle {
@@ -48,6 +49,9 @@ public class DrivingVehicle : Vehicle {
 
     [SerializeField]
     private float moveCenterOfMassWhenFlippedSpeed;
+
+    [SerializeField]
+    private int[] vehiclesWithEngineSoundsInAir;
 
     private Vector3 initialCenterOfMass;
 
@@ -111,7 +115,10 @@ public class DrivingVehicle : Vehicle {
 
         foreach (AudioSource source in engineSounds) {
             float speed = Vector3.ProjectOnPlane(_rigidbody.velocity, Vector3.up).magnitude;
-            source.volume = engineVolumeAtSpeed.Evaluate(speed) * maxEngineVolume / GameInfo.CurrentPlayers;
+            bool playInAir = vehiclesWithEngineSoundsInAir.Contains(player.vehicleIndex);
+            float volume = engineVolumeAtSpeed.Evaluate(speed) * maxEngineVolume;
+            if (!playInAir && allWheels.All(w => !w.isGrounded)) volume = 0;
+            source.volume = volume / GameInfo.CurrentPlayers;
         }
     }
 

@@ -254,6 +254,7 @@ MonoBehaviour:
   bumpSoundSpeedThreshold: 1
   bumpSoundRepeatDelay: 0.25
   followPoint: {fileID: 9094693423653744879}
+  vehiclesWithEngineSoundsInAir: 03000000
 --- !u!4 &4569684394292828001 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6963498152548587275, guid: e44c42002ee99674c9a28294afd07ece,

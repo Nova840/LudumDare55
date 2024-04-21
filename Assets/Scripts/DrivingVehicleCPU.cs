@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DrivingVehicleCPU : Vehicle {
@@ -52,6 +53,9 @@ public class DrivingVehicleCPU : Vehicle {
     [SerializeField]
     private Transform followPoint;
 
+    [SerializeField]
+    private int[] vehiclesWithEngineSoundsInAir;
+
     private float pathNormalizedTime;
 
     private float timeLastBumpSoundPlayed = Mathf.NegativeInfinity;
@@ -68,6 +72,7 @@ public class DrivingVehicleCPU : Vehicle {
 
     protected override void Update() {
         base.Update();
+        GameInfo.Player player = GameInfo.GetPlayer(PlayerIndex);
         if (GameManager.Instance.CountdownOver) {
             pathNormalizedTime += GetRealPathMoveSpeed() * Time.deltaTime / TrackManager.Instance.GetPathLength();
             pathNormalizedTime = Mathf.Repeat(pathNormalizedTime, 1);
@@ -98,7 +103,10 @@ public class DrivingVehicleCPU : Vehicle {
 
         foreach (AudioSource source in engineSounds) {
             float speed = Vector3.ProjectOnPlane(_rigidbody.velocity, Vector3.up).magnitude;
-            source.volume = engineVolumeAtSpeed.Evaluate(speed) * maxEngineVolume / GameInfo.CurrentPlayers;
+            bool playInAir = vehiclesWithEngineSoundsInAir.Contains(player.vehicleIndex);
+            float volume = engineVolumeAtSpeed.Evaluate(speed) * maxEngineVolume;
+            if (!playInAir && allWheels.All(w => !w.isGrounded)) volume = 0;
+            source.volume = volume / GameInfo.CurrentPlayers;
         }
     }
 
