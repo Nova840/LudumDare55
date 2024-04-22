@@ -39,6 +39,10 @@ public class StartPlayer : MonoBehaviour {
     public Toggle CPUToggle => cpuToggle;
 
     [SerializeField]
+    private PlayerToggle cpuPlayerToggle;
+    public PlayerToggle CpuPlayerToggle => cpuPlayerToggle;
+
+    [SerializeField]
     private TMP_Dropdown vehicleDropdown;
     public TMP_Dropdown VehicleDropdown => vehicleDropdown;
 

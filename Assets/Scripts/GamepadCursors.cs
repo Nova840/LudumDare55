@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -49,7 +50,11 @@ public class GamepadCursors : MonoBehaviour {
                 }
                 Toggle[] toggles = results.Select(r => r.gameObject.GetComponentInParent<Toggle>()).Where(t => t && t.interactable).Distinct().ToArray();
                 if (toggles.Length > 0) {
-                    toggles[0].onValueChanged.Invoke(!toggles[0].isOn);
+                    if (toggles[0].TryGetComponent(out PlayerToggle playerToggle)) {
+                        playerToggle.Click(!toggles[0].isOn, i);
+                    } else {
+                        toggles[0].isOn = !toggles[0].isOn;
+                    }
                 }
                 TMP_Dropdown[] dropdowns = results.Select(r => r.gameObject.GetComponent<TMP_Dropdown>()).Where(d => d && d.interactable).ToArray();
                 if (dropdowns.Length > 0) {

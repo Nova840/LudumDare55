@@ -24,7 +24,8 @@ public class StartPlayers : MonoBehaviour {
 
             startPlayers[buttonIndex].ColorButton.onClick.AddListener(() => OnColorButtonClick(buttonIndex));
 
-            startPlayers[buttonIndex].CPUToggle.onValueChanged.AddListener(isOn => OnCPUToggleValueChanged(buttonIndex, isOn));
+            startPlayers[buttonIndex].CPUToggle.onValueChanged.AddListener(isOn => OnCPUToggleValueChanged(buttonIndex, isOn, -1));
+            startPlayers[buttonIndex].CpuPlayerToggle.OnClick += (isOn, controller) => OnCPUToggleValueChanged(buttonIndex, isOn, controller);
 
             startPlayers[buttonIndex].VehicleDropdown.onValueChanged.AddListener(option => OnVehicleDropdownValueChanged(buttonIndex, option));
         }
@@ -57,11 +58,14 @@ public class StartPlayers : MonoBehaviour {
         RefreshPlayers();
     }
 
-    private void OnCPUToggleValueChanged(int startPlayerIndex, bool isOn) {
+    private void OnCPUToggleValueChanged(int startPlayerIndex, bool isOn, int controller) {
         GameInfo.Player player = GameInfo.GetPlayer(startPlayerIndex);
         if (player != null) {
-            Sound.Play(clickSound);
-            player.isCPU = isOn;
+            if (!(!isOn && GameInfo.GetNonCPUPlayerForController(controller) != null)) {
+                Sound.Play(clickSound);
+                player.controller = controller;
+                player.isCPU = isOn;
+            }
         }
         RefreshPlayers();
     }
@@ -72,9 +76,10 @@ public class StartPlayers : MonoBehaviour {
         if (playerExists) {
             GameInfo.RemovePlayer(startPlayerIndex);
         } else {
+            bool isCPU = GameInfo.GetNonCPUPlayerForController(controller) != null;
             Color color = playerColors[Random.Range(0, playerColors.Length)];
             color = ValidPlayerColor(color);
-            GameInfo.SetPlayer(new GameInfo.Player(startPlayerIndex, controller, color, startPlayers[startPlayerIndex].CPUToggle.isOn, 0)); startPlayers[startPlayerIndex].VehicleDropdownLabel.text = "";
+            GameInfo.SetPlayer(new GameInfo.Player(startPlayerIndex, controller, color, isCPU, 0));
         }
         RefreshPlayers();
     }
@@ -95,9 +100,9 @@ public class StartPlayers : MonoBehaviour {
 
             startPlayer.PlayerImage.color = playerExists ? player.color : Color.black;
 
-            startPlayer.CPUToggle.isOn = playerExists ? player.isCPU : false;
+            startPlayer.CPUToggle.SetIsOnWithoutNotify(playerExists ? player.isCPU : false);
 
-            startPlayer.VehicleDropdown.value = playerExists ? player.vehicleIndex : 0;
+            startPlayer.VehicleDropdown.SetValueWithoutNotify(playerExists ? player.vehicleIndex : 0);
 
             if (playerExists) {
                 startPlayer.VehicleDropdownLabel.text = startPlayer.VehicleDropdown.options[startPlayer.VehicleDropdown.value].text;

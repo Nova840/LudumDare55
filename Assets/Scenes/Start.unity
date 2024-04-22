@@ -4146,6 +4146,7 @@ MonoBehaviour:
   addRemovePlayerButton: {fileID: 177043315}
   addRemoveButtonText: {fileID: 1604443221}
   cpuToggle: {fileID: 1915935003}
+  cpuPlayerToggle: {fileID: 1915935004}
   vehicleDropdown: {fileID: 891194289}
   vehicleDropdownLabel: {fileID: 616819318}
 --- !u!1 &703397495
@@ -4210,6 +4211,7 @@ MonoBehaviour:
   addRemovePlayerButton: {fileID: 1872349323}
   addRemoveButtonText: {fileID: 1028093460}
   cpuToggle: {fileID: 2119269151}
+  cpuPlayerToggle: {fileID: 2119269152}
   vehicleDropdown: {fileID: 1428751823}
   vehicleDropdownLabel: {fileID: 1948393718}
 --- !u!1 &744140131
@@ -5250,6 +5252,7 @@ MonoBehaviour:
   addRemovePlayerButton: {fileID: 1809275855}
   addRemoveButtonText: {fileID: 773116171}
   cpuToggle: {fileID: 1641949210}
+  cpuPlayerToggle: {fileID: 1641949211}
   vehicleDropdown: {fileID: 1385474520}
   vehicleDropdownLabel: {fileID: 1352846033}
 --- !u!1 &875917549
@@ -5868,6 +5871,7 @@ MonoBehaviour:
   addRemovePlayerButton: {fileID: 1883011136}
   addRemoveButtonText: {fileID: 1814312960}
   cpuToggle: {fileID: 2084251747}
+  cpuPlayerToggle: {fileID: 2084251748}
   vehicleDropdown: {fileID: 220890517}
   vehicleDropdownLabel: {fileID: 2121543213}
 --- !u!1 &1019571822
@@ -9443,6 +9447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1641949209}
   - component: {fileID: 1641949210}
+  - component: {fileID: 1641949211}
   m_Layer: 5
   m_Name: CPU Toggle
   m_TagString: Untagged
@@ -9519,6 +9524,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &1641949211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641949208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d65e4ef64fdbef40875a1c6d84d12b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1643039708
 GameObject:
   m_ObjectHideFlags: 0
@@ -10676,6 +10693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1915935002}
   - component: {fileID: 1915935003}
+  - component: {fileID: 1915935004}
   m_Layer: 5
   m_Name: CPU Toggle
   m_TagString: Untagged
@@ -10752,6 +10770,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &1915935004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915935001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d65e4ef64fdbef40875a1c6d84d12b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1921036346
 GameObject:
   m_ObjectHideFlags: 0
@@ -11607,6 +11637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2084251746}
   - component: {fileID: 2084251747}
+  - component: {fileID: 2084251748}
   m_Layer: 5
   m_Name: CPU Toggle
   m_TagString: Untagged
@@ -11683,6 +11714,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &2084251748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084251745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d65e4ef64fdbef40875a1c6d84d12b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2119269149
 GameObject:
   m_ObjectHideFlags: 0
@@ -11693,6 +11736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2119269150}
   - component: {fileID: 2119269151}
+  - component: {fileID: 2119269152}
   m_Layer: 5
   m_Name: CPU Toggle
   m_TagString: Untagged
@@ -11769,6 +11813,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &2119269152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119269149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d65e4ef64fdbef40875a1c6d84d12b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2121543211
 GameObject:
   m_ObjectHideFlags: 0
