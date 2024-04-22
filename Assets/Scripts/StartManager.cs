@@ -35,10 +35,22 @@ public class StartManager : MonoBehaviour {
         }
         quitGameButton.onClick.AddListener(QuitGameButtonClick);
         SceneManager.LoadScene(backgroundLevelName, LoadSceneMode.Additive);
+        GameInfo.OnPlayersChange += OnPlayersChange;
+        OnPlayersChange();
+    }
+
+    private void OnDestroy() {
+        GameInfo.OnPlayersChange -= OnPlayersChange;
     }
 
     private void Start() {
         TrackManager.Instance.EndPodium.gameObject.SetActive(false);
+    }
+
+    private void OnPlayersChange() {
+        foreach (LevelButton levelButton in levelButtons) {
+            levelButton.button.interactable = GameInfo.CurrentPlayers > 0;
+        }
     }
 
     private void LevelButtonClicked(string levelName) {

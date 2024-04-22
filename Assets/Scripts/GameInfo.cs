@@ -52,8 +52,14 @@ public static class GameInfo {
     private static Player[] players = { null, null, null, null };
     public static Player[] GetPlayers() => players.ToArray();
     public static Player GetPlayer(int playerIndex) => players[playerIndex];
-    public static void SetPlayer(Player player) => players[player.playerIndex] = player;
-    public static void RemovePlayer(int playerIndex) => players[playerIndex] = null;
+    public static void SetPlayer(Player player) {
+        players[player.playerIndex] = player;
+        OnPlayersChange?.Invoke();
+    }
+    public static void RemovePlayer(int playerIndex) {
+        players[playerIndex] = null;
+        OnPlayersChange?.Invoke();
+    }
     public static void ForEachPlayer(Action<Player> action) {
         for (int i = 0; i < players.Length; i++) {
             action?.Invoke(players[i]);
@@ -64,6 +70,7 @@ public static class GameInfo {
     public static int MaxPlayers => players.Length;
     public static int CurrentPlayers => players.Count(p => p != null);
     public static event Action<int> OnPlayerFinish;
+    public static event Action OnPlayersChange;
 
     public static string LevelName { get; set; }
 

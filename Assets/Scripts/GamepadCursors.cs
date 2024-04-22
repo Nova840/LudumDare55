@@ -39,7 +39,7 @@ public class GamepadCursors : MonoBehaviour {
                 pointerEventData.position = cursors[i].transform.position;
                 List<RaycastResult> results = new List<RaycastResult>();
                 EventSystem.current.RaycastAll(pointerEventData, results);
-                Button[] buttons = results.Select(r => r.gameObject.GetComponent<Button>()).Where(b => b).ToArray();
+                Button[] buttons = results.Select(r => r.gameObject.GetComponent<Button>()).Where(b => b && b.interactable).ToArray();
                 if (buttons.Length > 0) {
                     if (buttons[0].TryGetComponent(out PlayerButton playerButton)) {
                         playerButton.Click(i);
@@ -47,11 +47,11 @@ public class GamepadCursors : MonoBehaviour {
                         buttons[0].onClick.Invoke();
                     }
                 }
-                Toggle[] toggles = results.Select(r => r.gameObject.GetComponentInParent<Toggle>()).Where(b => b).Distinct().ToArray();
+                Toggle[] toggles = results.Select(r => r.gameObject.GetComponentInParent<Toggle>()).Where(t => t && t.interactable).Distinct().ToArray();
                 if (toggles.Length > 0) {
                     toggles[0].onValueChanged.Invoke(!toggles[0].isOn);
                 }
-                TMP_Dropdown[] dropdowns = results.Select(r => r.gameObject.GetComponent<TMP_Dropdown>()).Where(b => b).ToArray();
+                TMP_Dropdown[] dropdowns = results.Select(r => r.gameObject.GetComponent<TMP_Dropdown>()).Where(d => d && d.interactable).ToArray();
                 if (dropdowns.Length > 0) {
                     int value = dropdowns[0].value;
                     value++;
