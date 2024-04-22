@@ -19,19 +19,18 @@ public class StartPlayers : MonoBehaviour {
         for (int i = 0; i < startPlayers.Length; i++) {
             int buttonIndex = i;//otherwise i will be kept in memory and always be 4 in the lambda
 
-            startPlayers[i].AddRemoveButton.onClick.AddListener(() => OnAddRemoveButtonClick(buttonIndex, -1));
-            startPlayers[i].AddRemovePlayerButton.OnClick += controller => OnAddRemoveButtonClick(buttonIndex, controller);
+            startPlayers[buttonIndex].AddRemoveButton.onClick.AddListener(() => OnAddRemoveButtonClick(buttonIndex, -1));
+            startPlayers[buttonIndex].AddRemovePlayerButton.OnClick += controller => OnAddRemoveButtonClick(buttonIndex, controller);
 
-            startPlayers[i].ColorButton.onClick.AddListener(() => OnColorButtonClick(buttonIndex));
+            startPlayers[buttonIndex].ColorButton.onClick.AddListener(() => OnColorButtonClick(buttonIndex));
 
-            startPlayers[i].CPUToggle.onValueChanged.AddListener(isOn => OnCPUToggleValueChanged(buttonIndex, isOn));
+            startPlayers[buttonIndex].CPUToggle.onValueChanged.AddListener(isOn => OnCPUToggleValueChanged(buttonIndex, isOn));
 
-            startPlayers[i].VehicleDropdown.onValueChanged.AddListener(option => OnVehicleDropdownValueChanged(buttonIndex, option));
+            startPlayers[buttonIndex].VehicleDropdown.onValueChanged.AddListener(option => OnVehicleDropdownValueChanged(buttonIndex, option));
         }
     }
 
-    private IEnumerator Start() {
-        yield return new WaitForEndOfFrame();//dunno why I need this it just stopped working
+    private void Start() {
         RefreshPlayers();
     }
 

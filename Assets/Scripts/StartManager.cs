@@ -25,13 +25,16 @@ public class StartManager : MonoBehaviour {
     [SerializeField]
     private Sound quitGameButtonSound;
 
+    [SerializeField]
+    private string backgroundLevelName;
+
     private void Awake() {
         GameInfo.StartSceneLoaded = true;
         foreach (LevelButton levelButton in levelButtons) {
             levelButton.button.onClick.AddListener(() => LevelButtonClicked(levelButton.levelName));
         }
         quitGameButton.onClick.AddListener(QuitGameButtonClick);
-        SceneManager.LoadScene("3D_TestLevel", LoadSceneMode.Additive);
+        SceneManager.LoadScene(backgroundLevelName, LoadSceneMode.Additive);
     }
 
     private void Start() {
