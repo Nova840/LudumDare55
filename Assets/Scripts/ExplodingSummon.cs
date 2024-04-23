@@ -27,6 +27,9 @@ public class ExplodingSummon : MonoBehaviour {
     private GameObject explosion;
 
     [SerializeField]
+    private SphereCollider explosionTrigger;
+
+    [SerializeField]
     private Transform explosionSpawnpoint;
 
     private void Start() {
@@ -41,11 +44,22 @@ public class ExplodingSummon : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.layer != LayerMask.NameToLayer("Vehicle")) return;
-        Vehicle vehicle = other.GetComponentInParent<Vehicle>();
-        if (vehicle.FinishLineTrigger != other) return;
-        Rigidbody rigidbody = vehicle.GetComponent<Rigidbody>();
-        Vector3 force = Vector3.ProjectOnPlane(rigidbody.position - transform.position, Vector3.up).normalized * explodeForce;
-        rigidbody.AddForce(force, ForceMode.VelocityChange);
+        if (other.GetComponentInParent<Vehicle>().FinishLineTrigger != other) return;
+        Collider[] colliders = Physics.OverlapSphere(
+            explosionTrigger.transform.position,
+            explosionTrigger.radius * explosionTrigger.transform.lossyScale.x,
+            LayerMask.GetMask("Vehicle"),
+            QueryTriggerInteraction.Collide
+        );
+        print(colliders.Length);
+        foreach (Collider collider in colliders) {
+            print(collider);
+            Vehicle vehicle = collider.GetComponentInParent<Vehicle>();
+            if (collider != vehicle.FinishLineTrigger) continue;
+            Rigidbody rigidbody = vehicle.GetComponent<Rigidbody>();
+            Vector3 force = Vector3.ProjectOnPlane(rigidbody.position - transform.position, Vector3.up).normalized * explodeForce;
+            rigidbody.AddForce(force, ForceMode.VelocityChange);
+        }
         Destroy(gameObject);
         Sound.Play(useSound);
         Instantiate(explosion, explosionSpawnpoint.position, explosionSpawnpoint.rotation);

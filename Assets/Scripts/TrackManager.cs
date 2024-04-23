@@ -72,8 +72,8 @@ public class TrackManager : MonoBehaviour {
         Instance = this;
         if (!GameInfo.StartSceneLoaded && !GameInfo.EndSceneLoaded) {
             GameInfo.LevelName = SceneManager.GetActiveScene().name;
-            foreach (TestPlayer p in testPlayers) {
-                GameInfo.SetPlayer(new GameInfo.Player(0, (int)p.controls, p.color, p.isCPU, (int)p.vehicle));
+            for (int i = 0; i < testPlayers.Length; i++) {
+                GameInfo.SetPlayer(new GameInfo.Player(i, (int)testPlayers[i].controls, testPlayers[i].color, testPlayers[i].isCPU, (int)testPlayers[i].vehicle));
             }
             SceneManager.LoadScene("Game", LoadSceneMode.Additive);
         }
