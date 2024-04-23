@@ -122,10 +122,7 @@ public abstract class Vehicle : MonoBehaviour {
         Vector3 spawnForwardLocal = transform.InverseTransformDirection(spawnpoint.forward);
         Vector3 spawnPosition = vehicleSpace.MultiplyPoint3x4(spawnPositionLocal);
         Vector3 spawnForward = vehicleSpace.MultiplyVector(spawnForwardLocal);
-        GameObject summon = Instantiate(summonPrefab, spawnPosition, Quaternion.LookRotation(spawnForward));
-        foreach (Animator animator in summon.GetComponentsInChildren<Animator>(true)) {
-            animator.Play(0, 0, Random.Range(0f, 1f));
-        }
+        Instantiate(summonPrefab, spawnPosition, Quaternion.LookRotation(spawnForward));
     }
 
     protected virtual void OnDestroy() {

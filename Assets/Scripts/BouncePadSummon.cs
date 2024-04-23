@@ -23,9 +23,13 @@ public class BouncePadSummon : MonoBehaviour {
     private Transform smokeSpawnpoint;
 
     private void Start() {
-        if (!playSmokeAndSoundOnStart) return;
-        Sound.Play(startSounds);
-        Instantiate(smoke, smokeSpawnpoint.position, smokeSpawnpoint.rotation);
+        foreach (Animator animator in GetComponentsInChildren<Animator>(true)) {
+            animator.Play(0, 0, Random.Range(0f, 1f));
+        }
+        if (playSmokeAndSoundOnStart) {
+            Sound.Play(startSounds);
+            Instantiate(smoke, smokeSpawnpoint.position, smokeSpawnpoint.rotation);
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
