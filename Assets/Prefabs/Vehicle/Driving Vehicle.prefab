@@ -2464,11 +2464,11 @@ MonoBehaviour:
   meshContainer: {fileID: 6963498152548587275}
   outlineMode: 0
   outlineWidth: 2
-  explodingSummon: {fileID: 3649046926868037888, guid: 20416431edb325344927f8154a94a941,
+  explodingSummonPrefab: {fileID: 3649046926868037888, guid: 20416431edb325344927f8154a94a941,
     type: 3}
-  speedBoostSummon: {fileID: 391675690393872072, guid: f763bb45c2f24144dae4d027fc097b8f,
+  speedBoostSummonPrefab: {fileID: 391675690393872072, guid: f763bb45c2f24144dae4d027fc097b8f,
     type: 3}
-  bouncePadSummon: {fileID: 2178679436661324193, guid: 54136f952ea43d043a62a4bc0833aaa4,
+  bouncePadSummonPrefab: {fileID: 2178679436661324193, guid: 54136f952ea43d043a62a4bc0833aaa4,
     type: 3}
   explodingSummonSpawnpoint: {fileID: 798759501506044773}
   speedBoostSummonSpawnpoint: {fileID: 3724443747614904322}

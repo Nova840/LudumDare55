@@ -30,13 +30,13 @@ public abstract class Vehicle : MonoBehaviour {
     private float outlineWidth;
 
     [SerializeField]
-    private GameObject explodingSummon;
+    private GameObject explodingSummonPrefab;
 
     [SerializeField]
-    private GameObject speedBoostSummon;
+    private GameObject speedBoostSummonPrefab;
 
     [SerializeField]
-    private GameObject bouncePadSummon;
+    private GameObject bouncePadSummonPrefab;
 
     [SerializeField]
     private Transform explodingSummonSpawnpoint;
@@ -55,6 +55,9 @@ public abstract class Vehicle : MonoBehaviour {
 
     [SerializeField]
     private Transform smokeSpawnpoint;
+
+    [SerializeField]
+    private float summonRaycastDistance;
 
     protected Rigidbody _rigidbody;
     private Outline outline;
@@ -96,16 +99,30 @@ public abstract class Vehicle : MonoBehaviour {
 
         if (player.Mana == 1) {
             if (InputManager.GetSummonExploding(player.controller)) {
-                player.Mana = 0;
-                Instantiate(explodingSummon, explodingSummonSpawnpoint.position, explodingSummonSpawnpoint.rotation);
+                Summon(explodingSummonPrefab, explodingSummonSpawnpoint);
             } else if (InputManager.GetSummonBouncePad(player.controller)) {
-                player.Mana = 0;
-                Instantiate(bouncePadSummon, bouncePadSummonSpawnpoint.position, bouncePadSummonSpawnpoint.rotation);
+                Summon(bouncePadSummonPrefab, bouncePadSummonSpawnpoint);
             } else if (InputManager.GetSummonSpeedBoost(player.controller)) {
-                player.Mana = 0;
-                Instantiate(speedBoostSummon, speedBoostSummonSpawnpoint.position, speedBoostSummonSpawnpoint.rotation);
+                Summon(speedBoostSummonPrefab, speedBoostSummonSpawnpoint);
             }
         }
+    }
+
+    private void Summon(GameObject summonPrefab, Transform spawnpoint) {
+        GameInfo.Player player = GameInfo.GetPlayer(PlayerIndex);
+        player.Mana = 0;
+        Quaternion rotation;
+        if (transform.forward == Vector3.up) {
+            rotation = Quaternion.LookRotation(-transform.up);
+        } else {
+            rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(transform.forward, Vector3.up));
+        }
+        Matrix4x4 vehicleSpace = Matrix4x4.TRS(transform.position, rotation, Vector3.one);
+        Vector3 spawnPositionLocal = transform.InverseTransformPoint(spawnpoint.position);
+        Vector3 spawnForwardLocal = transform.InverseTransformDirection(spawnpoint.forward);
+        Vector3 spawnPosition = vehicleSpace.MultiplyPoint3x4(spawnPositionLocal);
+        Vector3 spawnForward = vehicleSpace.MultiplyVector(spawnForwardLocal);
+        Instantiate(summonPrefab, spawnPosition, Quaternion.LookRotation(spawnForward));
     }
 
     protected virtual void OnDestroy() {

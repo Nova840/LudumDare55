@@ -154,6 +154,12 @@ WheelCollider:
     type: 3}
   m_PrefabInstance: {fileID: 6902214008053891178}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &4015642824868517204 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7526635163743507774, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4134572405069467134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7397554503161695636, guid: e44c42002ee99674c9a28294afd07ece,
@@ -188,12 +194,15 @@ MonoBehaviour:
   meshContainer: {fileID: 4569684394292828001}
   outlineMode: 0
   outlineWidth: 2
-  explodingSummon: {fileID: 0}
-  speedBoostSummon: {fileID: 0}
-  bouncePadSummon: {fileID: 0}
-  explodingSummonSpawnpoint: {fileID: 0}
-  speedBoostSummonSpawnpoint: {fileID: 0}
-  bouncePadSummonSpawnpoint: {fileID: 0}
+  explodingSummonPrefab: {fileID: 3649046926868037888, guid: 20416431edb325344927f8154a94a941,
+    type: 3}
+  speedBoostSummonPrefab: {fileID: 391675690393872072, guid: f763bb45c2f24144dae4d027fc097b8f,
+    type: 3}
+  bouncePadSummonPrefab: {fileID: 2178679436661324193, guid: 54136f952ea43d043a62a4bc0833aaa4,
+    type: 3}
+  explodingSummonSpawnpoint: {fileID: 6114855418725098255}
+  speedBoostSummonSpawnpoint: {fileID: 7811061209972985960}
+  bouncePadSummonSpawnpoint: {fileID: 4015642824868517204}
   manaFillRate: 0
   smoke: {fileID: 3704695551477866287, guid: 7de80c1d8484a3147afb931868c8e729, type: 3}
   smokeSpawnpoint: {fileID: 7573410531541515002}
@@ -267,6 +276,12 @@ WheelCollider:
     type: 3}
   m_PrefabInstance: {fileID: 6902214008053891178}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &6114855418725098255 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 798759501506044773, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &6426798784147938543 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 502437659592612997, guid: e44c42002ee99674c9a28294afd07ece,
@@ -312,6 +327,12 @@ MeshRenderer:
 --- !u!23 &7796005424854615116 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 3745146279655457830, guid: e44c42002ee99674c9a28294afd07ece,
+    type: 3}
+  m_PrefabInstance: {fileID: 6902214008053891178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7811061209972985960 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3724443747614904322, guid: e44c42002ee99674c9a28294afd07ece,
     type: 3}
   m_PrefabInstance: {fileID: 6902214008053891178}
   m_PrefabAsset: {fileID: 0}
