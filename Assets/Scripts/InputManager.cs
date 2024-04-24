@@ -9,7 +9,7 @@ public static class InputManager {
         if (controller < 0) {
             return new Vector2(Keyboard.current.dKey.value - Keyboard.current.aKey.value, Keyboard.current.wKey.value - Keyboard.current.sKey.value);
         } else if (controller < Gamepad.all.Count) {
-            return Gamepad.all[controller].leftStick.value;
+            return Vector2.ClampMagnitude(Gamepad.all[controller].leftStick.value + Gamepad.all[controller].dpad.value, 1);
         } else {
             return Vector2.zero;
         }

@@ -13,9 +13,14 @@ public class GamepadCursors : MonoBehaviour {
     private float moveSpeed;
 
     [SerializeField]
+    private float moveAcceleration;
+
+    [SerializeField]
     private RectTransform[] cursors;
 
     private Selectable[] controllerSelectedOnPress = new Selectable[4];
+
+    private Vector2[] cursorCurrentVelocities = new Vector2[4];
 
     private void Awake() {
         InputSystem.onDeviceChange += OnDeviceChange;
@@ -29,7 +34,14 @@ public class GamepadCursors : MonoBehaviour {
     private void Update() {
         EventSystem.current.SetSelectedGameObject(null);
         for (int controller = 0; controller < Gamepad.all.Count; controller++) {
-            cursors[controller].transform.position += (Vector3)(Gamepad.all[controller].leftStick.value * (moveSpeed * Time.deltaTime));
+            Vector2 inputVector = Vector2.ClampMagnitude(Gamepad.all[controller].leftStick.value + Gamepad.all[controller].dpad.value, 1);
+            Vector2 targetVelocity = (Vector3)(inputVector * (moveSpeed * Time.deltaTime));
+            if (targetVelocity == Vector2.zero) {
+                cursorCurrentVelocities[controller] = Vector2.zero;
+            } else {
+                cursorCurrentVelocities[controller] = Vector2.MoveTowards(cursorCurrentVelocities[controller], targetVelocity, moveAcceleration * Time.deltaTime);
+            }
+            cursors[controller].transform.position += (Vector3)cursorCurrentVelocities[controller];
             cursors[controller].transform.position = new Vector3(
                 Mathf.Clamp(cursors[controller].transform.position.x, 0, Screen.width),
                 Mathf.Clamp(cursors[controller].transform.position.y, 0, Screen.height),
@@ -84,6 +96,11 @@ public class GamepadCursors : MonoBehaviour {
 
     private void OnDeviceChange(InputDevice device, InputDeviceChange change) {
         SetCursorVisibility();
+        for (int i = 0; i < GameInfo.MaxPlayers; i++) {
+            if (i >= Gamepad.all.Count) {
+                cursorCurrentVelocities[i] = Vector2.zero;
+            }
+        }
     }
 
 }

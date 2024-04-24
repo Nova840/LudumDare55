@@ -8587,6 +8587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 500
+  moveAcceleration: 20
   cursors:
   - {fileID: 188078333}
   - {fileID: 473721540}
