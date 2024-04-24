@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public class StartPlayers : MonoBehaviour {
@@ -15,6 +16,7 @@ public class StartPlayers : MonoBehaviour {
     private StartPlayer[] startPlayers;
 
     private void Awake() {
+        InputSystem.onDeviceChange += OnDeviceChange;
         startPlayers = GetComponentsInChildren<StartPlayer>();
         for (int i = 0; i < startPlayers.Length; i++) {
             int buttonIndex = i;//otherwise i will be kept in memory and always be 4 in the lambda
@@ -31,7 +33,23 @@ public class StartPlayers : MonoBehaviour {
         }
     }
 
+    private void OnDestroy() {
+        InputSystem.onDeviceChange -= OnDeviceChange;
+    }
+
     private void Start() {
+        RefreshPlayers();
+    }
+
+    private void OnDeviceChange(InputDevice device, InputDeviceChange change) {
+        for (int i = 0; i < GameInfo.MaxPlayers; i++) {
+            if (i >= Gamepad.all.Count) {
+                GameInfo.Player player = GameInfo.GetNonCPUPlayerForController(i);
+                if (player != null) {
+                    GameInfo.RemovePlayer(player.playerIndex);
+                }
+            }
+        }
         RefreshPlayers();
     }
 
