@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -16,6 +15,8 @@ public class GamepadCursors : MonoBehaviour {
     [SerializeField]
     private RectTransform[] cursors;
 
+    private Selectable[] controllerSelectedOnPress = new Selectable[4];
+
     private void Awake() {
         InputSystem.onDeviceChange += OnDeviceChange;
         SetCursorVisibility();
@@ -27,42 +28,50 @@ public class GamepadCursors : MonoBehaviour {
 
     private void Update() {
         EventSystem.current.SetSelectedGameObject(null);
-        for (int i = 0; i < Gamepad.all.Count; i++) {
-            cursors[i].transform.position += (Vector3)(Gamepad.all[i].leftStick.value * (moveSpeed * Time.deltaTime));
-            cursors[i].transform.position = new Vector3(
-                Mathf.Clamp(cursors[i].transform.position.x, 0, Screen.width),
-                Mathf.Clamp(cursors[i].transform.position.y, 0, Screen.height),
+        for (int controller = 0; controller < Gamepad.all.Count; controller++) {
+            cursors[controller].transform.position += (Vector3)(Gamepad.all[controller].leftStick.value * (moveSpeed * Time.deltaTime));
+            cursors[controller].transform.position = new Vector3(
+                Mathf.Clamp(cursors[controller].transform.position.x, 0, Screen.width),
+                Mathf.Clamp(cursors[controller].transform.position.y, 0, Screen.height),
                 0
             );
 
-            if (Gamepad.all[i].buttonSouth.wasPressedThisFrame) {
-                PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-                pointerEventData.position = cursors[i].transform.position;
-                List<RaycastResult> results = new List<RaycastResult>();
-                EventSystem.current.RaycastAll(pointerEventData, results);
-                Button[] buttons = results.Select(r => r.gameObject.GetComponent<Button>()).Where(b => b && b.interactable).ToArray();
-                if (buttons.Length > 0) {
-                    if (buttons[0].TryGetComponent(out PlayerButton playerButton)) {
-                        playerButton.Click(i);
-                    } else {
-                        buttons[0].onClick.Invoke();
+            PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+            pointerEventData.position = cursors[controller].transform.position;
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerEventData, results);
+            Selectable[] selectables = results.Select(r => r.gameObject.GetComponentInParent<Selectable>()).Where(b => b && b.interactable).ToArray();
+            if (selectables.Length > 0) {
+                Selectable selected = selectables[0];
+                SelectableColors selectableColors = selected.GetComponent<SelectableColors>();
+                if (selectableColors) {
+                    selectableColors.SetGamepadInside(controller);
+                }
+                if (Gamepad.all[controller].buttonSouth.wasPressedThisFrame) {
+                    controllerSelectedOnPress[controller] = selected;
+                } else if (Gamepad.all[controller].buttonSouth.wasReleasedThisFrame && selected == controllerSelectedOnPress[controller]) {
+                    if (selected is Button button) {
+                        if (button.TryGetComponent(out PlayerButton playerButton)) {
+                            playerButton.Click(controller);
+                        } else {
+                            button.onClick.Invoke();
+                        }
+                    } else if (selected is Toggle toggle) {
+                        if (toggle.TryGetComponent(out PlayerToggle playerToggle)) {
+                            playerToggle.Click(!toggle.isOn, controller);
+                        } else {
+                            toggle.isOn = !toggle.isOn;
+                        }
+                    } else if (selected is TMP_Dropdown dropdown) {
+                        int value = dropdown.value;
+                        value++;
+                        value %= dropdown.options.Count;
+                        dropdown.value = value;
                     }
                 }
-                Toggle[] toggles = results.Select(r => r.gameObject.GetComponentInParent<Toggle>()).Where(t => t && t.interactable).Distinct().ToArray();
-                if (toggles.Length > 0) {
-                    if (toggles[0].TryGetComponent(out PlayerToggle playerToggle)) {
-                        playerToggle.Click(!toggles[0].isOn, i);
-                    } else {
-                        toggles[0].isOn = !toggles[0].isOn;
-                    }
-                }
-                TMP_Dropdown[] dropdowns = results.Select(r => r.gameObject.GetComponent<TMP_Dropdown>()).Where(d => d && d.interactable).ToArray();
-                if (dropdowns.Length > 0) {
-                    int value = dropdowns[0].value;
-                    value++;
-                    value %= dropdowns[0].options.Count;
-                    dropdowns[0].value = value;
-                }
+            }
+            if (Gamepad.all[controller].buttonSouth.wasReleasedThisFrame) {
+                controllerSelectedOnPress[controller] = null;
             }
         }
     }
