@@ -2531,6 +2531,7 @@ MonoBehaviour:
     randomPitchVariation: 0.1
   bumpSoundSpeedThreshold: 1
   bumpSoundRepeatDelay: 0.25
+  moveCenterOfMassAngle: 45
   moveCenterOfMassWhenFlippedSpeed: 0.2
   vehiclesWithEngineSoundsInAir: 03000000
 --- !u!4 &7526635163743507774 stripped

@@ -47,6 +47,9 @@ public class DrivingVehicle : Vehicle {
     [SerializeField]
     private float bumpSoundRepeatDelay;
 
+    [SerializeField, Range(0, 180)]
+    private float moveCenterOfMassAngle;
+
     [SerializeField]
     private float moveCenterOfMassWhenFlippedSpeed;
 
@@ -82,7 +85,7 @@ public class DrivingVehicle : Vehicle {
             brake = Mathf.Clamp01(brake);
         }
 
-        if (Vector3.Angle(transform.up, Vector3.up) >= 45) {
+        if (Vector3.Angle(transform.up, Vector3.up) >= moveCenterOfMassAngle) {
             _rigidbody.centerOfMass += Vector3.down * (moveCenterOfMassWhenFlippedSpeed * Time.deltaTime);
         } else {
             _rigidbody.centerOfMass = initialCenterOfMass;

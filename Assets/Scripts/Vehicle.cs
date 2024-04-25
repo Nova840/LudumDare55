@@ -56,9 +56,6 @@ public abstract class Vehicle : MonoBehaviour {
     [SerializeField]
     private Transform smokeSpawnpoint;
 
-    [SerializeField]
-    private float summonRaycastDistance;
-
     protected Rigidbody _rigidbody;
     private Outline outline;
 
