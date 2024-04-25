@@ -51,9 +51,7 @@ public class ExplodingSummon : MonoBehaviour {
             LayerMask.GetMask("Vehicle"),
             QueryTriggerInteraction.Collide
         );
-        print(colliders.Length);
         foreach (Collider collider in colliders) {
-            print(collider);
             Vehicle vehicle = collider.GetComponentInParent<Vehicle>();
             if (collider != vehicle.FinishLineTrigger) continue;
             Rigidbody rigidbody = vehicle.GetComponent<Rigidbody>();

@@ -15,7 +15,13 @@ public class DrivingVehicleCPU : Vehicle {
 
     [SerializeField]
     private float pathMoveSpeed;
-    private float GetRealPathMoveSpeed() => pathMoveSpeed * (TrackManager.Instance.CPUPathReverse ? -1 : 1);
+    [SerializeField]
+    private AnimationCurve pathMoveSpeedMultiplierAtDistance;
+    private float GetRealPathMoveSpeed() {
+        float speed = TrackManager.Instance.CPUPathReverse ? -pathMoveSpeed : pathMoveSpeed;
+        speed *= pathMoveSpeedMultiplierAtDistance.Evaluate(Vector3.Distance(followPoint.position, transform.position));
+        return speed;
+    }
 
     [SerializeField]
     private float maxForce;
@@ -56,6 +62,19 @@ public class DrivingVehicleCPU : Vehicle {
     [SerializeField]
     private int[] vehiclesWithEngineSoundsInAir;
 
+    [SerializeField]
+    private float respawnStuckDistance;
+
+    [SerializeField]
+    private float respawnStuckTime;
+
+    [SerializeField]
+    private float respawnStuckCheckInterval;
+
+    private int RespawnCheckPositionsMaxSize => Mathf.FloorToInt(respawnStuckTime / respawnStuckCheckInterval);
+
+    private List<Vector3> respawnCheckPositions = new List<Vector3>();
+
     private float pathNormalizedTime;
 
     private float timeLastBumpSoundPlayed = Mathf.NegativeInfinity;
@@ -66,8 +85,7 @@ public class DrivingVehicleCPU : Vehicle {
         steeringWheels = new WheelCollider[] { flWheel, frWheel };
 
         followPoint.SetParent(null, true);
-        pathNormalizedTime = TrackManager.Instance.CPUPathStartPercent;
-        followPoint.position = TrackManager.Instance.GetPathPoint(pathNormalizedTime);
+        ResetFollowPoint();
     }
 
     protected override void Update() {
@@ -108,12 +126,19 @@ public class DrivingVehicleCPU : Vehicle {
             if (!playInAir && allWheels.All(w => !w.isGrounded)) volume = 0;
             source.volume = volume / GameInfo.CurrentPlayers;
         }
+
+    }
+
+    protected override void Start() {
+        base.Start();
+        StartCoroutine(CheckRespawnRoutine());
     }
 
     private void FixedUpdate() {
         if (GameManager.Instance.CountdownOver) {
-            Vector3 force = Vector3.ClampMagnitude(followPoint.position - transform.position, maxForce);
+            Vector3 force = followPoint.position - transform.position;
             force = Vector3.ProjectOnPlane(force, Vector3.up);
+            force = Vector3.ClampMagnitude(force, maxForce);
             _rigidbody.AddForce(force, ForceMode.Acceleration);
             if (_rigidbody.velocity != Vector3.zero) {
                 _rigidbody.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_rigidbody.velocity), rotateSpeed * Time.deltaTime);
@@ -126,6 +151,42 @@ public class DrivingVehicleCPU : Vehicle {
             timeLastBumpSoundPlayed = Time.time;
             Sound.Play(bumpSounds[GameInfo.GetPlayer(PlayerIndex).vehicleIndex]);
         }
+    }
+
+    private IEnumerator CheckRespawnRoutine() {
+        while (true) {
+            respawnCheckPositions.Add(transform.position);
+            if (respawnCheckPositions.Count > RespawnCheckPositionsMaxSize) {
+                respawnCheckPositions.RemoveAt(0);
+            }
+            if (ShouldRespawn()) {
+                Respawn();
+                respawnCheckPositions.Clear();
+            }
+            yield return new WaitForSeconds(respawnStuckCheckInterval);
+        }
+    }
+
+    private void ResetFollowPoint() {
+        pathNormalizedTime = TrackManager.Instance.CPUPathStartPercent;
+        followPoint.position = TrackManager.Instance.GetPathPoint(pathNormalizedTime);
+    }
+
+    private bool ShouldRespawn() {
+        if (respawnCheckPositions.Count < RespawnCheckPositionsMaxSize) return false;
+        for (int i = 0; i < respawnCheckPositions.Count; i++) {
+            for (int j = i; j < respawnCheckPositions.Count; j++) {
+                if (i == j) continue;
+                if (Vector3.Distance(respawnCheckPositions[i], respawnCheckPositions[j]) <= respawnStuckDistance) continue;
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected override void Respawn() {
+        base.Respawn();
+        ResetFollowPoint();
     }
 
 }
