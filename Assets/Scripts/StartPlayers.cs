@@ -97,7 +97,8 @@ public class StartPlayers : MonoBehaviour {
             bool isCPU = GameInfo.GetNonCPUPlayerForController(controller) != null;
             Color color = playerColors[Random.Range(0, playerColors.Length)];
             color = ValidPlayerColor(color);
-            GameInfo.SetPlayer(new GameInfo.Player(startPlayerIndex, controller, color, isCPU, 0));
+            int vehicleIndex = Random.Range(0, startPlayers[startPlayerIndex].VehicleDropdown.options.Count);
+            GameInfo.SetPlayer(new GameInfo.Player(startPlayerIndex, controller, color, isCPU, vehicleIndex));
         }
         RefreshPlayers();
     }
@@ -108,25 +109,25 @@ public class StartPlayers : MonoBehaviour {
             bool playerExists = player != null;
             StartPlayer startPlayer = startPlayers[startPlayerIndex];
 
+            startPlayer.PlayerText.gameObject.SetActive(playerExists);
             startPlayer.PlayerText.text = playerExists ? "Player: " + (player.playerIndex + 1) : "";
+
+            startPlayer.ControllerText.gameObject.SetActive(playerExists);
             if (playerExists && !player.isCPU) {
                 startPlayer.ControllerText.text = player.controller == -1 ? "Keyboard" : "Controller " + (player.controller + 1);
             } else {
                 startPlayer.ControllerText.text = "";
             }
+
             startPlayer.AddRemoveButtonText.text = playerExists ? "Remove" : "Add";
 
             startPlayer.PlayerImage.color = playerExists ? player.color : Color.black;
 
+            startPlayer.CPUToggle.gameObject.SetActive(playerExists);
             startPlayer.CPUToggle.SetIsOnWithoutNotify(playerExists ? player.isCPU : false);
 
+            startPlayer.VehicleDropdown.gameObject.SetActive(playerExists);
             startPlayer.VehicleDropdown.SetValueWithoutNotify(playerExists ? player.vehicleIndex : 0);
-
-            if (playerExists) {
-                startPlayer.VehicleDropdownLabel.text = startPlayer.VehicleDropdown.options[startPlayer.VehicleDropdown.value].text;
-            } else {
-                startPlayer.VehicleDropdownLabel.text = "";
-            }
         }
     }
 

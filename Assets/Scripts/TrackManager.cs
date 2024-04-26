@@ -39,13 +39,11 @@ public class TrackManager : MonoBehaviour {
     public Podium EndPodium => endPodium;
 
     [Header("Only Required If Start")]
-
     [SerializeField]
     private Camera startCamera;
     public Camera StartCamera => startCamera;
 
     [Header("Testing")]
-
     [SerializeField]
     private TestPlayer[] testPlayers;
 
@@ -63,7 +61,6 @@ public class TrackManager : MonoBehaviour {
     }
 
     [Header("Old Crap")]
-
     [SerializeField]
     private SplineContainer oldCPUPath;
     public SplineContainer OldCPUPath => oldCPUPath;
