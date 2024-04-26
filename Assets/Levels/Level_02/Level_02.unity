@@ -3686,17 +3686,17 @@ PrefabInstance:
     - target: {fileID: 2409731521687801889, guid: d7b56076d2854c74680b91ea0cd3d75b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.15803744
+      value: -0.1838775
       objectReference: {fileID: 0}
     - target: {fileID: 2409731521687801889, guid: d7b56076d2854c74680b91ea0cd3d75b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2409731521687801889, guid: d7b56076d2854c74680b91ea0cd3d75b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.98743314
+      value: 0.9829492
       objectReference: {fileID: 0}
     - target: {fileID: 2409731521687801889, guid: d7b56076d2854c74680b91ea0cd3d75b,
         type: 3}
@@ -3711,7 +3711,7 @@ PrefabInstance:
     - target: {fileID: 2409731521687801889, guid: d7b56076d2854c74680b91ea0cd3d75b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 198.186
+      value: 201.191
       objectReference: {fileID: 0}
     - target: {fileID: 2409731521687801889, guid: d7b56076d2854c74680b91ea0cd3d75b,
         type: 3}
@@ -4889,7 +4889,7 @@ PrefabInstance:
         type: 3}
       propertyPath: oldCPUPath
       value: 
-      objectReference: {fileID: 188100189}
+      objectReference: {fileID: 1839586654}
     - target: {fileID: 4129090047639326140, guid: 3fc341af635f9264fb317866c9fb9f15,
         type: 3}
       propertyPath: podiumCamera
@@ -4902,8 +4902,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4129090047639326140, guid: 3fc341af635f9264fb317866c9fb9f15,
         type: 3}
+      propertyPath: cpuPathVerticalOffset
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129090047639326140, guid: 3fc341af635f9264fb317866c9fb9f15,
+        type: 3}
       propertyPath: cpuSplineVerticalOffset
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129090047639326140, guid: 3fc341af635f9264fb317866c9fb9f15,
+        type: 3}
+      propertyPath: testPlayers.Array.data[0].isCPU
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4167064139175144540, guid: 3fc341af635f9264fb317866c9fb9f15,
         type: 3}
@@ -7035,6 +7045,1098 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1769536280}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1839586653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1839586655}
+  - component: {fileID: 1839586654}
+  m_Layer: 0
+  m_Name: CPU Path
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1839586654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839586653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Spline:
+    m_EditModeType: 1
+    m_Knots: []
+    m_MetaData: []
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  m_Splines:
+  - m_EditModeType: 1
+    m_Knots:
+    - Position:
+        x: 424.7708
+        y: 0.000030517578
+        z: 205.38632
+      TangentIn:
+        x: 0
+        y: 0
+        z: -3.8207977
+      TangentOut:
+        x: 0
+        y: 0
+        z: 20.911987
+      Rotation:
+        value:
+          x: 0.00000081677723
+          y: -0.5805918
+          z: 0.000000111354545
+          w: 0.81419486
+    - Position:
+        x: 386.3
+        y: 0
+        z: 229.6
+      TangentIn:
+        x: 0
+        y: 0
+        z: -11.9477825
+      TangentOut:
+        x: 0
+        y: 0
+        z: 10.631482
+      Rotation:
+        value:
+          x: 0.0000001959478
+          y: -0.21365163
+          z: 0.00000004222675
+          w: 0.97690994
+    - Position:
+        x: 391.6
+        y: 0
+        z: 265.2
+      TangentIn:
+        x: 0
+        y: 0
+        z: -19.525635
+      TangentOut:
+        x: 0
+        y: 0
+        z: 27.354158
+      Rotation:
+        value:
+          x: 0.00000000900896
+          y: 0.34042498
+          z: 0.000000024883224
+          w: 0.9402717
+    - Position:
+        x: 439.5
+        y: 0
+        z: 287.1
+      TangentIn:
+        x: 0
+        y: 0
+        z: -15.1819725
+      TangentOut:
+        x: 0
+        y: 0
+        z: 13.458869
+      Rotation:
+        value:
+          x: -0.000000002686566
+          y: 0.6977103
+          z: -0.000000002758455
+          w: 0.71638006
+    - Position:
+        x: 478
+        y: 0
+        z: 271.9
+      TangentIn:
+        x: 0
+        y: 0
+        z: -14.654061
+      TangentOut:
+        x: 0
+        y: 0
+        z: 16.944687
+      Rotation:
+        value:
+          x: 0
+          y: 0.8639589
+          z: 0
+          w: 0.50356233
+    - Position:
+        x: 521.9
+        y: 0
+        z: 238.2
+      TangentIn:
+        x: 0
+        y: 0
+        z: -14.295484
+      TangentOut:
+        x: 0
+        y: 0
+        z: 23.438602
+      Rotation:
+        value:
+          x: -7.5272927e-10
+          y: 0.80448306
+          z: -5.557641e-10
+          w: 0.5939756
+    - Position:
+        x: 559.6
+        y: 0
+        z: 262.4
+      TangentIn:
+        x: 0
+        y: 0
+        z: -17.528252
+      TangentOut:
+        x: 0
+        y: 0
+        z: 15.930489
+      Rotation:
+        value:
+          x: 9.755166e-11
+          y: 0.08505173
+          z: 0.0000000011428128
+          w: 0.99637663
+    - Position:
+        x: 543.8
+        y: 0
+        z: 297.1
+      TangentIn:
+        x: 0
+        y: 0
+        z: -18.593052
+      TangentOut:
+        x: 0
+        y: 0
+        z: 23.520386
+      Rotation:
+        value:
+          x: -0.000000008289828
+          y: -0.44987312
+          z: 0.000000016457046
+          w: 0.8930925
+    - Position:
+        x: 493.7
+        y: 0
+        z: 298.7
+      TangentIn:
+        x: 0
+        y: 0
+        z: -18.976303
+      TangentOut:
+        x: 0
+        y: 0
+        z: 27.518166
+      Rotation:
+        value:
+          x: 0.000000004291618
+          y: -0.57793003
+          z: -0.00000000606013
+          w: 0.8160863
+    - Position:
+        x: 470.9
+        y: 0
+        z: 344.5
+      TangentIn:
+        x: 0
+        y: 0
+        z: -10.704216
+      TangentOut:
+        x: 0
+        y: 0
+        z: 28.008747
+      Rotation:
+        value:
+          x: 0.0000000047285544
+          y: 0.0140139805
+          z: 0.00000033738382
+          w: 0.9999019
+    - Position:
+        x: 497.8
+        y: 0
+        z: 391.4
+      TangentIn:
+        x: 0
+        y: 0
+        z: -18.758848
+      TangentOut:
+        x: 0
+        y: 0
+        z: 20.908867
+      Rotation:
+        value:
+          x: -0.000000011183695
+          y: 0.17979465
+          z: -0.00000006118896
+          w: 0.9837042
+    - Position:
+        x: 511.3
+        y: 0
+        z: 457.2
+      TangentIn:
+        x: 0
+        y: 0
+        z: -17.42094
+      TangentOut:
+        x: 0
+        y: 0
+        z: 13.520895
+      Rotation:
+        value:
+          x: 0.000000008363556
+          y: 0.3312271
+          z: 0.000000023824873
+          w: 0.943551
+    - Position:
+        x: 548.2
+        y: 0
+        z: 473.8
+      TangentIn:
+        x: 0
+        y: 0
+        z: -13.9711685
+      TangentOut:
+        x: 0
+        y: 0
+        z: 21.592823
+      Rotation:
+        value:
+          x: 0.000000005868297
+          y: 0.67356396
+          z: 0.0000000064395196
+          w: 0.7391289
+    - Position:
+        x: 605.8
+        y: 0
+        z: 459.8
+      TangentIn:
+        x: 0
+        y: 0
+        z: -24.760649
+      TangentOut:
+        x: 0
+        y: 0
+        z: 11.063937
+      Rotation:
+        value:
+          x: 2.9745922e-10
+          y: 0.5014427
+          z: 5.1323723e-10
+          w: 0.86519086
+    - Position:
+        x: 614.6
+        y: 0
+        z: 482
+      TangentIn:
+        x: 0
+        y: 0
+        z: -7.8549647
+      TangentOut:
+        x: 0
+        y: 0
+        z: 24.456053
+      Rotation:
+        value:
+          x: 0
+          y: -0.27114084
+          z: -0
+          w: 0.9625397
+    - Position:
+        x: 555
+        y: 0
+        z: 497.1
+      TangentIn:
+        x: 0
+        y: 0
+        z: -22.600866
+      TangentOut:
+        x: 0
+        y: 0
+        z: 27.820425
+      Rotation:
+        value:
+          x: -0.000000046114987
+          y: -0.5996764
+          z: 0.00000006153849
+          w: 0.8002426
+    - Position:
+        x: 466.6
+        y: 0
+        z: 526.5
+      TangentIn:
+        x: 0
+        y: 0
+        z: -23.729801
+      TangentOut:
+        x: 0
+        y: 0
+        z: 22.449532
+      Rotation:
+        value:
+          x: 0.000000030820676
+          y: 0.8181279
+          z: -0.000000021662885
+          w: -0.57503635
+    - Position:
+        x: 422.4
+        y: 0
+        z: 455.8
+      TangentIn:
+        x: 0
+        y: 0
+        z: -24.174625
+      TangentOut:
+        x: 0
+        y: 0
+        z: 24.290316
+      Rotation:
+        value:
+          x: 0.000000022633287
+          y: 0.98558664
+          z: -0.000000003884902
+          w: -0.16917157
+    - Position:
+        x: 429.4
+        y: 0
+        z: 395.3
+      TangentIn:
+        x: 0
+        y: 0
+        z: -16.869167
+      TangentOut:
+        x: 0
+        y: 0
+        z: 14.291624
+      Rotation:
+        value:
+          x: 0.0000000029816263
+          y: 0.98705447
+          z: -4.8448107e-10
+          w: -0.16038536
+    - Position:
+        x: 399.3
+        y: 0
+        z: 363.6
+      TangentIn:
+        x: 0
+        y: 0
+        z: -13.292253
+      TangentOut:
+        x: 0
+        y: 0
+        z: 13.075602
+      Rotation:
+        value:
+          x: -2.561028e-10
+          y: 0.83569705
+          z: 1.683018e-10
+          w: -0.5491908
+    - Position:
+        x: 357
+        y: 0
+        z: 363.4
+      TangentIn:
+        x: 0
+        y: 0
+        z: -16.929276
+      TangentOut:
+        x: 0
+        y: 0
+        z: 20.441622
+      Rotation:
+        value:
+          x: 0
+          y: -0.43235725
+          z: -0
+          w: 0.90170234
+    - Position:
+        x: 334.4
+        y: 0
+        z: 403.6
+      TangentIn:
+        x: 0
+        y: 0
+        z: -14.4124975
+      TangentOut:
+        x: 0
+        y: 0
+        z: 14.4756775
+      Rotation:
+        value:
+          x: 0
+          y: -0.07545594
+          z: -0
+          w: 0.99714917
+    - Position:
+        x: 344.1
+        y: 0
+        z: 449.1
+      TangentIn:
+        x: 0
+        y: 0
+        z: -17.453423
+      TangentOut:
+        x: 0
+        y: 0
+        z: 23.338663
+      Rotation:
+        value:
+          x: -0.000000005362611
+          y: 0.19451232
+          z: -0.000000027042933
+          w: 0.98090005
+    - Position:
+        x: 389.2
+        y: 0
+        z: 519
+      TangentIn:
+        x: 0
+        y: 0
+        z: -26.933176
+      TangentOut:
+        x: 0
+        y: 0
+        z: 26.519941
+      Rotation:
+        value:
+          x: -0.0000000045285917
+          y: 0.37969252
+          z: -0.000000011033817
+          w: 0.9251127
+    - Position:
+        x: 456.4
+        y: 0
+        z: 563.6
+      TangentIn:
+        x: 0
+        y: 0
+        z: -25.823107
+      TangentOut:
+        x: 0
+        y: 0
+        z: 24.422518
+      Rotation:
+        value:
+          x: -0.00000014415187
+          y: 0.53943574
+          z: -0.00000022501236
+          w: 0.84202677
+    - Position:
+        x: 525.8
+        y: 0
+        z: 583.3
+      TangentIn:
+        x: 0
+        y: 0
+        z: -31.326796
+      TangentOut:
+        x: 0
+        y: 0
+        z: 17.59099
+      Rotation:
+        value:
+          x: 0.0000003327907
+          y: 0.37746415
+          z: 0.00000081642764
+          w: 0.9260242
+    - Position:
+        x: 540.3
+        y: 0
+        z: 639
+      TangentIn:
+        x: 0
+        y: 0
+        z: -14.15877
+      TangentOut:
+        x: 0
+        y: 0
+        z: 24.69107
+      Rotation:
+        value:
+          x: -0.000000026978276
+          y: -0.22004548
+          z: 0.00000011959811
+          w: 0.9754897
+    - Position:
+        x: 495.2
+        y: 0
+        z: 659.7
+      TangentIn:
+        x: 0
+        y: 0
+        z: -17.370108
+      TangentOut:
+        x: 0
+        y: 0
+        z: 25.60951
+      Rotation:
+        value:
+          x: 0.000000013326352
+          y: 0.7287304
+          z: -0.000000012523006
+          w: -0.6848006
+    - Position:
+        x: 403.5
+        y: 0
+        z: 602.9
+      TangentIn:
+        x: 0
+        y: 0
+        z: -32.920334
+      TangentOut:
+        x: 0
+        y: 0
+        z: 31.063309
+      Rotation:
+        value:
+          x: 0
+          y: 0.77894664
+          z: 0
+          w: -0.6270902
+    - Position:
+        x: 308.2
+        y: 0
+        z: 614.8
+      TangentIn:
+        x: 0
+        y: 0
+        z: -25.160873
+      TangentOut:
+        x: 0
+        y: 0
+        z: 21.311708
+      Rotation:
+        value:
+          x: 0.00000001055748
+          y: -0.43723735
+          z: -0.000000021715502
+          w: 0.8993462
+    - Position:
+        x: 283.7
+        y: 0
+        z: 679.2
+      TangentIn:
+        x: 0
+        y: 0
+        z: -20.203493
+      TangentOut:
+        x: 0
+        y: 0
+        z: 18.524242
+      Rotation:
+        value:
+          x: 0.00000008093761
+          y: 0.020203218
+          z: 0.000004005356
+          w: 0.9997959
+    - Position:
+        x: 308.6
+        y: 0
+        z: 731.5
+      TangentIn:
+        x: 0
+        y: 0
+        z: -31.98828
+      TangentOut:
+        x: 0
+        y: 0
+        z: 30.721964
+      Rotation:
+        value:
+          x: 0.0000054043085
+          y: 0.5375736
+          z: 0.0000084769845
+          w: 0.84321684
+    - Position:
+        x: 455.1
+        y: 0
+        z: 713
+      TangentIn:
+        x: 0
+        y: 0
+        z: -36.734116
+      TangentOut:
+        x: 0
+        y: 0
+        z: 28.139992
+      Rotation:
+        value:
+          x: 0.000000039300726
+          y: 0.54861593
+          z: 0.000000059893146
+          w: 0.8360746
+    - Position:
+        x: 505.9
+        y: 0
+        z: 783.2
+      TangentIn:
+        x: 0
+        y: 0
+        z: -23.486145
+      TangentOut:
+        x: 0
+        y: 0
+        z: 20.937464
+      Rotation:
+        value:
+          x: 0.000000005077148
+          y: 0.5466947
+          z: 0.000000007776293
+          w: 0.83733195
+    - Position:
+        x: 574.3
+        y: 0
+        z: 775.2
+      TangentIn:
+        x: 0
+        y: 0
+        z: -20.996317
+      TangentOut:
+        x: 0
+        y: 0
+        z: 34.147087
+      Rotation:
+        value:
+          x: -3.6283687e-10
+          y: 0.8405119
+          z: -2.3388433e-10
+          w: 0.541793
+    - Position:
+        x: 613.2
+        y: 0
+        z: 732.9
+      TangentIn:
+        x: 0
+        y: 0
+        z: -31.189468
+      TangentOut:
+        x: 0
+        y: 0
+        z: 33.95072
+      Rotation:
+        value:
+          x: -0.000000010924981
+          y: 0.77753717
+          z: -0.000000008835634
+          w: 0.628837
+    - Position:
+        x: 700.5
+        y: 0
+        z: 771
+      TangentIn:
+        x: 0
+        y: 0
+        z: -42.643875
+      TangentOut:
+        x: 0
+        y: 0
+        z: 28.967579
+      Rotation:
+        value:
+          x: 0.000000005046877
+          y: 0.67746764
+          z: 0.0000000054795875
+          w: 0.73555267
+    - Position:
+        x: 790.5
+        y: 0
+        z: 749.3
+      TangentIn:
+        x: 0
+        y: 0
+        z: -27.465044
+      TangentOut:
+        x: 0
+        y: 0
+        z: 18.294546
+      Rotation:
+        value:
+          x: -4.163317e-10
+          y: 0.9709558
+          z: -1.0259068e-10
+          w: 0.23925881
+    - Position:
+        x: 780.2
+        y: 0
+        z: 710.4
+      TangentIn:
+        x: 0
+        y: 0
+        z: -12.917646
+      TangentOut:
+        x: 0
+        y: 0
+        z: 30.86035
+      Rotation:
+        value:
+          x: -0.0000000012458163
+          y: 0.90239656
+          z: 5.9489424e-10
+          w: -0.43090647
+    - Position:
+        x: 717.8
+        y: 0
+        z: 696.2
+      TangentIn:
+        x: 0
+        y: 0
+        z: -23.889107
+      TangentOut:
+        x: 0
+        y: 0
+        z: 23.889107
+      Rotation:
+        value:
+          x: 0.0000000075756175
+          y: 0.88816345
+          z: -0.000000003919556
+          w: -0.4595277
+    - Position:
+        x: 712.5
+        y: 0
+        z: 654.4
+      TangentIn:
+        x: 0
+        y: 0
+        z: -17.799122
+      TangentOut:
+        x: 0
+        y: 0
+        z: 17.799122
+      Rotation:
+        value:
+          x: 0.00000006572733
+          y: 0.9729595
+          z: 0.000000015603348
+          w: 0.23097587
+    - Position:
+        x: 752.6
+        y: 0
+        z: 631.3
+      TangentIn:
+        x: 0
+        y: 0
+        z: -16.607567
+      TangentOut:
+        x: 0
+        y: 0
+        z: 16.607567
+      Rotation:
+        value:
+          x: -0.00000016744467
+          y: 0.6963811
+          z: -0.00000017256406
+          w: 0.71767217
+    - Position:
+        x: 785.6
+        y: 0
+        z: 659.2
+      TangentIn:
+        x: 0
+        y: 0
+        z: -17.37206
+      TangentOut:
+        x: 0
+        y: 0
+        z: 17.37206
+      Rotation:
+        value:
+          x: -0.00000016585061
+          y: 0.14073119
+          z: -0.0000011667637
+          w: 0.9900479
+    - Position:
+        x: 813.8
+        y: 0
+        z: 705.9
+      TangentIn:
+        x: 0
+        y: 0
+        z: -15.550005
+      TangentOut:
+        x: 0
+        y: 0
+        z: 14.237286
+      Rotation:
+        value:
+          x: 0.000015341877
+          y: 0.48233834
+          z: 0.000027862709
+          w: 0.87598497
+    - Position:
+        x: 859.3
+        y: 0
+        z: 710.5
+      TangentIn:
+        x: 0
+        y: 0
+        z: -15.35755
+      TangentOut:
+        x: 0
+        y: 0
+        z: 20.270071
+      Rotation:
+        value:
+          x: 0.00000050311434
+          y: 0.82869536
+          z: 0.00000033980277
+          w: 0.55969983
+    - Position:
+        x: 910.9
+        y: 0
+        z: 649.8
+      TangentIn:
+        x: 0
+        y: 0
+        z: -25.902203
+      TangentOut:
+        x: 0
+        y: 0
+        z: 25.902203
+      Rotation:
+        value:
+          x: -0.0000052467067
+          y: 0.99575603
+          z: -0.0000004849228
+          w: 0.09203193
+    - Position:
+        x: 880.2
+        y: 0
+        z: 561.8
+      TangentIn:
+        x: 0
+        y: 0
+        z: -28.1706
+      TangentOut:
+        x: 0
+        y: 0
+        z: 40.62028
+      Rotation:
+        value:
+          x: 0
+          y: 0.9480586
+          z: 0
+          w: -0.31809583
+    - Position:
+        x: 817.1
+        y: 0
+        z: 517.5
+      TangentIn:
+        x: 0
+        y: 0
+        z: -20.941912
+      TangentOut:
+        x: 0
+        y: 0
+        z: 19.311588
+      Rotation:
+        value:
+          x: 0
+          y: 0.97981656
+          z: 0
+          w: -0.19989908
+    - Position:
+        x: 827.13513
+        y: 0
+        z: 452.71143
+      TangentIn:
+        x: 0
+        y: 0
+        z: -22.185005
+      TangentOut:
+        x: 0
+        y: 0
+        z: 24.209534
+      Rotation:
+        value:
+          x: 0.000024115592
+          y: 0.99919057
+          z: 0.00004930117
+          w: -0.040226907
+    - Position:
+        x: 802.975
+        y: 0.015258788
+        z: 378.47083
+      TangentIn:
+        x: 0
+        y: 0
+        z: -7.8072915
+      TangentOut:
+        x: 0
+        y: 0
+        z: 7.8072915
+      Rotation:
+        value:
+          x: 0.000015309275
+          y: 0.9876521
+          z: 0.000096514756
+          w: -0.15666251
+    - Position:
+        x: 790.1
+        y: 0
+        z: 340.9
+      TangentIn:
+        x: -0
+        y: -0
+        z: -3.9715655
+      TangentOut:
+        x: 0
+        y: 0
+        z: 3.9715655
+      Rotation:
+        value:
+          x: -0.000059215334
+          y: 0.9864065
+          z: -0.00018488319
+          w: -0.1643235
+    m_MetaData:
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 2
+      Tension: 0.5
+    - Mode: 2
+      Tension: 0.5
+    - Mode: 2
+      Tension: 0.5
+    - Mode: 2
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 2
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 0
+      Tension: 0.5
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  m_Knots:
+    m_KnotsLink: []
+--- !u!4 &1839586655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839586653}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1842219158
 GameObject:
   m_ObjectHideFlags: 0
@@ -7619,6 +8721,7 @@ SceneRoots:
   - {fileID: 1201313057}
   - {fileID: 224850122}
   - {fileID: 188100190}
+  - {fileID: 1839586655}
   - {fileID: 2097502776}
   - {fileID: 941954292}
   - {fileID: 16312988}
