@@ -154,6 +154,7 @@ public class DrivingVehicleCPU : Vehicle {
 
     private void FixedUpdate() {
         if (GameManager.Instance.CountdownOver) {
+            _rigidbody.angularVelocity = Vector3.zero;
             Vector3 force = followPoint.position - transform.position;
             force = Vector3.ProjectOnPlane(force, Vector3.up);
             force = Vector3.ClampMagnitude(force, maxForce);
