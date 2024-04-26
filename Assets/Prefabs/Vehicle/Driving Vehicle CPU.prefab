@@ -203,7 +203,7 @@ MonoBehaviour:
   explodingSummonSpawnpoint: {fileID: 6114855418725098255}
   speedBoostSummonSpawnpoint: {fileID: 7811061209972985960}
   bouncePadSummonSpawnpoint: {fileID: 4015642824868517204}
-  manaFillRate: 0
+  manaFillRate: 0.1666667
   smoke: {fileID: 3704695551477866287, guid: 7de80c1d8484a3147afb931868c8e729, type: 3}
   smokeSpawnpoint: {fileID: 7573410531541515002}
   flWheel: {fileID: 3851135079502559302}
@@ -211,7 +211,7 @@ MonoBehaviour:
   blWheel: {fileID: 7951959285559810636}
   brWheel: {fileID: 1065813979438989388}
   wheelVisualRotationOffset: {x: 0, y: 0, z: 90}
-  pathMoveSpeed: 9.5
+  pathMoveSpeed: 11
   pathMoveSpeedMultiplierAtDistance:
     serializedVersion: 2
     m_Curve:
@@ -236,7 +236,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxForce: 10
+  maxForce: 11
   rotateSpeed: 5
   maxSteerAngle: 30
   steerMultiplier: 2
@@ -291,6 +291,7 @@ MonoBehaviour:
   respawnStuckDistance: 5
   respawnStuckTime: 10
   respawnStuckCheckInterval: 1
+  useSummonMaxDelay: 5
 --- !u!4 &4569684394292828001 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6963498152548587275, guid: e44c42002ee99674c9a28294afd07ece,

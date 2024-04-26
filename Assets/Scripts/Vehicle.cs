@@ -30,22 +30,22 @@ public abstract class Vehicle : MonoBehaviour {
     private float outlineWidth;
 
     [SerializeField]
-    private GameObject explodingSummonPrefab;
+    protected GameObject explodingSummonPrefab;
 
     [SerializeField]
-    private GameObject speedBoostSummonPrefab;
+    protected GameObject speedBoostSummonPrefab;
 
     [SerializeField]
-    private GameObject bouncePadSummonPrefab;
+    protected GameObject bouncePadSummonPrefab;
 
     [SerializeField]
-    private Transform explodingSummonSpawnpoint;
+    protected Transform explodingSummonSpawnpoint;
 
     [SerializeField]
-    private Transform speedBoostSummonSpawnpoint;
+    protected Transform speedBoostSummonSpawnpoint;
 
     [SerializeField]
-    private Transform bouncePadSummonSpawnpoint;
+    protected Transform bouncePadSummonSpawnpoint;
 
     [SerializeField]
     private float manaFillRate;
@@ -93,19 +93,9 @@ public abstract class Vehicle : MonoBehaviour {
             player.Mana += manaFillRate * Time.deltaTime;
             player.Mana = Mathf.Clamp01(player.Mana);
         }
-
-        if (player.Mana == 1) {
-            if (InputManager.GetSummonExploding(player.controller)) {
-                Summon(explodingSummonPrefab, explodingSummonSpawnpoint);
-            } else if (InputManager.GetSummonBouncePad(player.controller)) {
-                Summon(bouncePadSummonPrefab, bouncePadSummonSpawnpoint);
-            } else if (InputManager.GetSummonSpeedBoost(player.controller)) {
-                Summon(speedBoostSummonPrefab, speedBoostSummonSpawnpoint);
-            }
-        }
     }
 
-    private void Summon(GameObject summonPrefab, Transform spawnpoint) {
+    protected void Summon(GameObject summonPrefab, Transform spawnpoint) {
         GameInfo.Player player = GameInfo.GetPlayer(PlayerIndex);
         player.Mana = 0;
         Quaternion rotation;

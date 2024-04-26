@@ -2473,7 +2473,7 @@ MonoBehaviour:
   explodingSummonSpawnpoint: {fileID: 798759501506044773}
   speedBoostSummonSpawnpoint: {fileID: 3724443747614904322}
   bouncePadSummonSpawnpoint: {fileID: 7526635163743507774}
-  manaFillRate: 0.16666667
+  manaFillRate: 0.1666667
   smoke: {fileID: 3704695551477866287, guid: 7de80c1d8484a3147afb931868c8e729, type: 3}
   smokeSpawnpoint: {fileID: 3950712209339644560}
   flWheel: {fileID: 7690017178917845036}

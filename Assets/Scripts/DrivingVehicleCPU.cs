@@ -71,6 +71,9 @@ public class DrivingVehicleCPU : Vehicle {
     [SerializeField]
     private float respawnStuckCheckInterval;
 
+    [SerializeField]
+    private float useSummonMaxDelay;
+
     private int RespawnCheckPositionsMaxSize => Mathf.FloorToInt(respawnStuckTime / respawnStuckCheckInterval);
 
     private List<Vector3> respawnCheckPositions = new List<Vector3>();
@@ -78,6 +81,8 @@ public class DrivingVehicleCPU : Vehicle {
     private float pathNormalizedTime;
 
     private float timeLastBumpSoundPlayed = Mathf.NegativeInfinity;
+
+    private bool fullManaLastFrame = false;
 
     protected override void Awake() {
         base.Awake();
@@ -126,6 +131,19 @@ public class DrivingVehicleCPU : Vehicle {
             if (!playInAir && allWheels.All(w => !w.isGrounded)) volume = 0;
             source.volume = volume / GameInfo.CurrentPlayers;
         }
+
+        bool fullMana = player.Mana == 1;
+        if (fullMana && !fullManaLastFrame) {
+            int r = Random.Range(0, 3);
+            if (r == 0) {
+                StartCoroutine(SummonAfterDelay(explodingSummonPrefab, explodingSummonSpawnpoint));
+            } else if (r == 1) {
+                StartCoroutine(SummonAfterDelay(bouncePadSummonPrefab, bouncePadSummonSpawnpoint));
+            } else if (r == 2) {
+                StartCoroutine(SummonAfterDelay(speedBoostSummonPrefab, speedBoostSummonSpawnpoint));
+            }
+        }
+        fullManaLastFrame = fullMana;
 
     }
 
@@ -187,6 +205,12 @@ public class DrivingVehicleCPU : Vehicle {
     protected override void Respawn() {
         base.Respawn();
         ResetFollowPoint();
+    }
+
+    private IEnumerator SummonAfterDelay(GameObject summoonPrefab, Transform spawnpoint) {
+        float randomDelay = Random.Range(0, useSummonMaxDelay);
+        if (randomDelay > 0) yield return new WaitForSeconds(randomDelay);
+        Summon(summoonPrefab, spawnpoint);
     }
 
 }
