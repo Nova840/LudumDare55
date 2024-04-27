@@ -14,12 +14,9 @@ public class DrivingVehicleCPU : Vehicle {
     private Vector3 wheelVisualRotationOffset;
 
     [SerializeField]
-    private float pathMoveSpeed;
-    [SerializeField]
-    private AnimationCurve pathMoveSpeedMultiplierAtDistance;
-    private float GetRealPathMoveSpeed() {
-        float speed = TrackManager.Instance.CPUPathReverse ? -pathMoveSpeed : pathMoveSpeed;
-        speed *= pathMoveSpeedMultiplierAtDistance.Evaluate(Vector3.Distance(followPoint.position, transform.position));
+    private float pathAheadDistance;
+    private float GetRealPathAheadDistance() {
+        float speed = TrackManager.Instance.CPUPathReverse ? -pathAheadDistance : pathAheadDistance;
         return speed;
     }
 
@@ -74,6 +71,15 @@ public class DrivingVehicleCPU : Vehicle {
     [SerializeField]
     private float useSummonMaxDelay;
 
+    [SerializeField, Range(0, 180)]
+    private float moveCenterOfMassAngle;
+
+    [SerializeField]
+    private float moveCenterOfMassWhenFlippedSpeed;
+
+    private float initialDrag;
+    private Vector3 initialCenterOfMass;
+
     private int RespawnCheckPositionsMaxSize => Mathf.FloorToInt(respawnStuckTime / respawnStuckCheckInterval);
 
     private List<Vector3> respawnCheckPositions = new List<Vector3>();
@@ -91,16 +97,24 @@ public class DrivingVehicleCPU : Vehicle {
 
         followPoint.SetParent(null, true);
         ResetFollowPoint();
+        initialDrag = _rigidbody.drag;
+        initialCenterOfMass = _rigidbody.centerOfMass;
     }
 
     protected override void Update() {
         base.Update();
         GameInfo.Player player = GameInfo.GetPlayer(PlayerIndex);
         if (GameManager.Instance.CountdownOver) {
-            pathNormalizedTime += GetRealPathMoveSpeed() * Time.deltaTime / TrackManager.Instance.GetPathLength();
+            pathNormalizedTime = TrackManager.Instance.GetClosestTimeOnPath(transform.position);
+            pathNormalizedTime += GetRealPathAheadDistance() / TrackManager.Instance.GetPathLength();
             pathNormalizedTime = Mathf.Repeat(pathNormalizedTime, 1);
-            followPoint.position = TrackManager.Instance.GetPathPoint(pathNormalizedTime);
-            followPoint.position += Vector3.up * TrackManager.Instance.CPUPathVerticalOffset;
+            SetFollowPoint();
+        }
+
+        if (Vector3.Angle(transform.up, Vector3.up) >= moveCenterOfMassAngle) {
+            _rigidbody.centerOfMass += Vector3.down * (moveCenterOfMassWhenFlippedSpeed * Time.deltaTime);
+        } else {
+            _rigidbody.centerOfMass = initialCenterOfMass;
         }
 
         foreach (WheelCollider wheel in allWheels) {
@@ -153,13 +167,17 @@ public class DrivingVehicleCPU : Vehicle {
 
     private void FixedUpdate() {
         if (GameManager.Instance.CountdownOver) {
-            _rigidbody.angularVelocity = Vector3.zero;
-            Vector3 force = followPoint.position - transform.position;
-            force = Vector3.ProjectOnPlane(force, Vector3.up);
-            force = Vector3.ClampMagnitude(force, maxForce);
-            _rigidbody.AddForce(force, ForceMode.Acceleration);
-            if (_rigidbody.velocity != Vector3.zero) {
-                _rigidbody.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_rigidbody.velocity), rotateSpeed * Time.deltaTime);
+            bool grounded = allWheels.All(w => w.isGrounded);
+            _rigidbody.drag = grounded ? initialDrag : 0;
+            if (grounded) {
+                _rigidbody.angularVelocity = Vector3.zero;
+                Vector3 force = followPoint.position - transform.position;
+                force = Vector3.ProjectOnPlane(force, Vector3.up);
+                force = Vector3.ClampMagnitude(force, maxForce);
+                _rigidbody.AddForce(force, ForceMode.Acceleration);
+                if (_rigidbody.velocity != Vector3.zero) {
+                    _rigidbody.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_rigidbody.velocity), rotateSpeed * Time.deltaTime);
+                }
             }
         }
     }
@@ -171,6 +189,11 @@ public class DrivingVehicleCPU : Vehicle {
         }
     }
 
+    private void SetFollowPoint() {
+        followPoint.position = TrackManager.Instance.GetPathPoint(pathNormalizedTime);
+        followPoint.position += Vector3.up * TrackManager.Instance.CPUPathVerticalOffset;
+    }
+
     private IEnumerator CheckRespawnRoutine() {
         while (true) {
             respawnCheckPositions.Add(transform.position);
@@ -178,16 +201,15 @@ public class DrivingVehicleCPU : Vehicle {
                 respawnCheckPositions.RemoveAt(0);
             }
             if (ShouldRespawn()) {
-                Respawn();
+                pathNormalizedTime = TrackManager.Instance.GetClosestTimeOnPath(transform.position);
+                Vector3 position = TrackManager.Instance.GetPathPoint(pathNormalizedTime);
+                Vector3 facingPosition = TrackManager.Instance.GetPathPoint(pathNormalizedTime + GetRealPathAheadDistance() / TrackManager.Instance.GetPathLength());
+                Quaternion rotation = Quaternion.LookRotation(facingPosition - position);
+                Teleport(position, rotation);
                 respawnCheckPositions.Clear();
             }
             yield return new WaitForSeconds(respawnStuckCheckInterval);
         }
-    }
-
-    private void ResetFollowPoint() {
-        pathNormalizedTime = TrackManager.Instance.CPUPathStartPercent;
-        followPoint.position = TrackManager.Instance.GetPathPoint(pathNormalizedTime);
     }
 
     private bool ShouldRespawn() {
@@ -205,6 +227,11 @@ public class DrivingVehicleCPU : Vehicle {
     protected override void Respawn() {
         base.Respawn();
         ResetFollowPoint();
+    }
+
+    private void ResetFollowPoint() {
+        pathNormalizedTime = TrackManager.Instance.CPUPathStartPercent;
+        followPoint.position = TrackManager.Instance.GetPathPoint(pathNormalizedTime);
     }
 
     private IEnumerator SummonAfterDelay(GameObject summoonPrefab, Transform spawnpoint) {

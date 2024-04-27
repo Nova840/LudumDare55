@@ -99,11 +99,6 @@ PrefabInstance:
       propertyPath: m_Drag
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8360476570972145021, guid: e44c42002ee99674c9a28294afd07ece,
-        type: 3}
-      propertyPath: m_CenterOfMass.y
-      value: -0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5977557608547182772, guid: e44c42002ee99674c9a28294afd07ece, type: 3}
     m_RemovedGameObjects: []
@@ -211,31 +206,7 @@ MonoBehaviour:
   blWheel: {fileID: 7951959285559810636}
   brWheel: {fileID: 1065813979438989388}
   wheelVisualRotationOffset: {x: 0, y: 0, z: 90}
-  pathMoveSpeed: 11
-  pathMoveSpeedMultiplierAtDistance:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 2
-      inSlope: -0.1
-      outSlope: -0.1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 20
-      value: 0
-      inSlope: -0.1
-      outSlope: -0.1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  pathAheadDistance: 11
   maxForce: 11
   rotateSpeed: 5
   maxSteerAngle: 30
@@ -292,6 +263,8 @@ MonoBehaviour:
   respawnStuckTime: 10
   respawnStuckCheckInterval: 1
   useSummonMaxDelay: 5
+  moveCenterOfMassAngle: 45
+  moveCenterOfMassWhenFlippedSpeed: 0.2
 --- !u!4 &4569684394292828001 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6963498152548587275, guid: e44c42002ee99674c9a28294afd07ece,

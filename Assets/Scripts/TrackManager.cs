@@ -16,7 +16,6 @@ public class TrackManager : MonoBehaviour {
 
     [SerializeField]
     private PathCreator cpuPath;
-    public PathCreator CPUPath => cpuPath;
 
     [SerializeField]
     private bool cpuPathReverse;
@@ -63,7 +62,6 @@ public class TrackManager : MonoBehaviour {
     [Header("Old Crap")]
     [SerializeField]
     private SplineContainer oldCPUPath;
-    public SplineContainer OldCPUPath => oldCPUPath;
 
     private void Awake() {
         Instance = this;
@@ -83,18 +81,27 @@ public class TrackManager : MonoBehaviour {
     }
 
     public float GetPathLength() {
-        if (!cpuPath) {
-            return oldCPUPath.CalculateLength();
-        } else {
+        if (cpuPath) {
             return cpuPath.path.length;
+        } else {
+            return oldCPUPath.CalculateLength();
         }
     }
 
     public Vector3 GetPathPoint(float time) {
-        if (!cpuPath) {
-            return oldCPUPath.EvaluatePosition(time);
-        } else {
+        if (cpuPath) {
             return cpuPath.path.GetPointAtTime(time);
+        } else {
+            return oldCPUPath.EvaluatePosition(time);
+        }
+    }
+
+    public float GetClosestTimeOnPath(Vector3 point) {
+        if (cpuPath) {
+            return cpuPath.path.GetClosestTimeOnPath(point);
+        } else {
+            SplineUtility.GetNearestPoint(oldCPUPath.Spline, oldCPUPath.transform.InverseTransformPoint(point), out _, out float time);
+            return time;
         }
     }
 
