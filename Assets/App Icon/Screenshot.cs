@@ -16,7 +16,7 @@ public class Screenshot : MonoBehaviour {
     }
 
     //https://forum.unity.com/threads/screenshot-with-transparent-background-postprocess.1008244/#post-8593033
-    public static void TakeTransparentScreenshot(Camera cam, int width, int height, string savePath) {
+    private static void TakeTransparentScreenshot(Camera cam, int width, int height, string savePath) {
         var urpCameraData = cam.GetComponent<UniversalAdditionalCameraData>();
 
         bool wasPostprocessing = urpCameraData.renderPostProcessing;

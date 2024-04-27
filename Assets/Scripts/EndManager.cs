@@ -18,6 +18,8 @@ public class EndManager : MonoBehaviour {
     private void Awake() {
         GameInfo.EndSceneLoaded = true;
         SceneManager.LoadScene(GameInfo.LevelName, LoadSceneMode.Additive);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void Start() {

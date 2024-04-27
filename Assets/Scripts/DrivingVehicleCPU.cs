@@ -144,7 +144,6 @@ public class DrivingVehicleCPU : Vehicle {
             }
         }
         fullManaLastFrame = fullMana;
-
     }
 
     protected override void Start() {

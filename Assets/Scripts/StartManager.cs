@@ -37,6 +37,8 @@ public class StartManager : MonoBehaviour {
         SceneManager.LoadScene(backgroundLevelName, LoadSceneMode.Additive);
         GameInfo.OnPlayersChange += OnPlayersChange;
         OnPlayersChange();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void OnDestroy() {

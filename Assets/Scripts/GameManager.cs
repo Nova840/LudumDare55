@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour {
             SceneManager.LoadScene(GameInfo.LevelName, LoadSceneMode.Additive);
         }
         GameInfo.OnPlayerFinish += OnPlayerFinish;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void OnDestroy() {
