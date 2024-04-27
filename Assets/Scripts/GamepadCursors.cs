@@ -15,6 +15,9 @@ public class GamepadCursors : MonoBehaviour {
     [SerializeField]
     private float moveAcceleration;
 
+    [SerializeField, Range(0, 180)]
+    private float stopVelocityAngle;
+
     [SerializeField]
     private RectTransform[] cursors;
 
@@ -36,6 +39,9 @@ public class GamepadCursors : MonoBehaviour {
         for (int controller = 0; controller < Gamepad.all.Count; controller++) {
             Vector2 inputVector = Vector2.ClampMagnitude(Gamepad.all[controller].leftStick.value + Gamepad.all[controller].dpad.value, 1);
             Vector2 targetVelocity = (Vector3)(inputVector * (moveSpeed * Time.deltaTime));
+            if (Vector2.Angle(targetVelocity, cursorCurrentVelocities[controller]) > stopVelocityAngle) {
+                cursorCurrentVelocities[controller] = Vector2.zero;
+            }
             if (targetVelocity == Vector2.zero) {
                 cursorCurrentVelocities[controller] = Vector2.zero;
             } else {

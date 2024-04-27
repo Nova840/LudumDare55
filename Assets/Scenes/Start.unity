@@ -8587,12 +8587,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 500
-  moveAcceleration: 20
+  moveAcceleration: 70
   cursors:
   - {fileID: 188078333}
   - {fileID: 473721540}
   - {fileID: 620113314}
   - {fileID: 911343127}
+  stopVelocityAngle: 160
 --- !u!1 &1489038186
 GameObject:
   m_ObjectHideFlags: 0
