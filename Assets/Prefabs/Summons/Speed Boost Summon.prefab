@@ -78,16 +78,24 @@ MonoBehaviour:
   forwardForce: 15
   startSounds:
   - clip: {fileID: 8300000, guid: 370476aebdb379b489a925c5c94b840e, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0.1
   - clip: {fileID: 8300000, guid: fbefbf4caeee2fb4faa3d9d3e8eb7271, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0.1
   - clip: {fileID: 8300000, guid: d4423cb9a1d4393499d41e099015d528, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0.1
   useSound:
     clip: {fileID: 8300000, guid: c1ec64d0c321f124180c2c755c675057, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0.1
   smoke: {fileID: 3704695551477866287, guid: 7de80c1d8484a3147afb931868c8e729, type: 3}

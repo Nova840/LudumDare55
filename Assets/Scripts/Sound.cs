@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
@@ -11,6 +12,8 @@ using Random = UnityEngine.Random;
 public class Sound {
 
     public AudioClip clip;
+
+    public AudioMixerGroup output;
 
     [Range(0, 1)]
     public float volume = 1;
@@ -25,9 +28,10 @@ public class Sound {
     }
 
     public static void Play(Sound[] sounds, bool dontDestroyOnLoad = false) => Play(sounds[Random.Range(0, sounds.Length)], dontDestroyOnLoad);
-    public static void Play(Sound sound, bool dontDestroyOnLoad = false) => Play(sound.clip, sound.volume, sound.randomPitchVariation, dontDestroyOnLoad);
-    public static void Play(AudioClip clip, float volume = 1, float randomPitchVariation = 0, bool dontDestroyOnLoad = false) {
+    public static void Play(Sound sound, bool dontDestroyOnLoad = false) => Play(sound.clip, sound.volume, sound.randomPitchVariation, sound.output, dontDestroyOnLoad);
+    public static void Play(AudioClip clip, float volume = 1, float randomPitchVariation = 0, AudioMixerGroup output = null, bool dontDestroyOnLoad = false) {
         AudioSource source = new GameObject("Sound: " + clip.name).AddComponent<AudioSource>();
+        source.outputAudioMixerGroup = output;
         source.clip = clip;
         source.volume = volume;
         source.pitch = Random.Range(1 / (randomPitchVariation + 1), randomPitchVariation + 1);

@@ -31,7 +31,7 @@ public static class GameInfo {
             lastLapChangeForward = false;
             OnLapsChange?.Invoke(laps);
             endingTime = 0;
-            Mana = 0;
+            mana = 0;
         }
         public event Action<int> OnLapsChange;
         public bool lastLapChangeForward = false;
@@ -39,7 +39,7 @@ public static class GameInfo {
         public float endingTime;
         public bool isCPU;
         public int vehicleIndex;
-        public float Mana { get; set; }
+        public float mana = 0;
         public Player(int playerIndex, int controller, Color color, bool isCPU, int vehicleIndex) {
             this.playerIndex = playerIndex;
             this.controller = controller;

@@ -41,7 +41,7 @@ public class GamePlayerUI : MonoBehaviour {
     private void Update() {
         GameInfo.Player player = GameInfo.GetPlayer(playerIndex);
         if (player != null) {
-            fillImage.fillAmount = player.Mana;
+            fillImage.fillAmount = player.mana;
         } else {
             fillImage.fillAmount = 0;
         }

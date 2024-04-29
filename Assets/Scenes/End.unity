@@ -273,6 +273,8 @@ MonoBehaviour:
     type: 3}
   goBackSound:
     clip: {fileID: 8300000, guid: da2d62b0b1af2124fbba81b5b3531303, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0
 --- !u!1 &1253340137
@@ -525,7 +527,8 @@ AudioSource:
   m_GameObject: {fileID: 1741158055}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3192239872122393604, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 0f108505c807bef4491b9190f24b305f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.6

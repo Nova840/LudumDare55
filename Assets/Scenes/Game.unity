@@ -406,10 +406,14 @@ MonoBehaviour:
   lapsText: {fileID: 1099999006}
   lapSound:
     clip: {fileID: 8300000, guid: 5373eea7a7e557e44850e0bd4c012b16, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0
   finalLapSound:
     clip: {fileID: 8300000, guid: 2580713960965084095ce0528baaccc1, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0
 --- !u!1 &345213688
@@ -815,10 +819,14 @@ MonoBehaviour:
   lapsText: {fileID: 740470587}
   lapSound:
     clip: {fileID: 8300000, guid: 5373eea7a7e557e44850e0bd4c012b16, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0
   finalLapSound:
     clip: {fileID: 8300000, guid: 2580713960965084095ce0528baaccc1, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0
 --- !u!1 &992194283
@@ -1463,10 +1471,14 @@ MonoBehaviour:
   lapsText: {fileID: 345213690}
   lapSound:
     clip: {fileID: 8300000, guid: 5373eea7a7e557e44850e0bd4c012b16, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0
   finalLapSound:
     clip: {fileID: 8300000, guid: 2580713960965084095ce0528baaccc1, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0
 --- !u!1 &1529314205
@@ -1657,10 +1669,14 @@ MonoBehaviour:
   raceEndDelay: 3
   raceStartSound:
     clip: {fileID: 8300000, guid: 3025e5f915c5c344d8fcb253bef27a0b, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0
   raceEndSound:
     clip: {fileID: 8300000, guid: 633fc75bc12ceff44abbdb92f752a994, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0
 --- !u!1 &1572062664
@@ -1689,7 +1705,8 @@ AudioSource:
   m_GameObject: {fileID: 1572062664}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3192239872122393604, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: b51eeaf7b95ab8248b3a76db27f49795, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -2255,10 +2272,14 @@ MonoBehaviour:
   lapsText: {fileID: 1151900702}
   lapSound:
     clip: {fileID: 8300000, guid: 5373eea7a7e557e44850e0bd4c012b16, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0
   finalLapSound:
     clip: {fileID: 8300000, guid: 2580713960965084095ce0528baaccc1, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0
 --- !u!1 &2084359882

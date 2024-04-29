@@ -386,7 +386,8 @@ AudioSource:
   m_GameObject: {fileID: 1073999007133753228}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 009ec28277f01e3459603b0ad0367895, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
@@ -1082,7 +1083,8 @@ AudioSource:
   m_GameObject: {fileID: 5825818287970509349}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 87c1f1d44c1ea2f4e87a7dbc6c62de46, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
@@ -1246,7 +1248,8 @@ AudioSource:
   m_GameObject: {fileID: 5962474721144075229}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 7eb809f7791b9914c8c460788e884143, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
@@ -1635,7 +1638,8 @@ AudioSource:
   m_GameObject: {fileID: 8896882212930569490}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: acf0812c54dc2734690903b9692a0f96, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
@@ -2628,15 +2632,23 @@ MonoBehaviour:
   maxEngineVolume: 1
   bumpSounds:
   - clip: {fileID: 8300000, guid: 8e2ddfd403ed6c84daf4bccb14c57496, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0.1
   - clip: {fileID: 8300000, guid: bc378a99459d886439e28552fa169972, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0.1
   - clip: {fileID: 8300000, guid: 13466f001c60764429bd4c2cd8760c44, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0.1
   - clip: {fileID: 8300000, guid: 38d24140edade164f8c3721085b8d562, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0.1
   bumpSoundSpeedThreshold: 1

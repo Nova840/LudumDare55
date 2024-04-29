@@ -244,15 +244,23 @@ MonoBehaviour:
   maxEngineVolume: 1
   bumpSounds:
   - clip: {fileID: 8300000, guid: 8e2ddfd403ed6c84daf4bccb14c57496, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0.1
   - clip: {fileID: 8300000, guid: bc378a99459d886439e28552fa169972, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0.1
   - clip: {fileID: 8300000, guid: 13466f001c60764429bd4c2cd8760c44, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0.1
   - clip: {fileID: 8300000, guid: 38d24140edade164f8c3721085b8d562, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0.1
   bumpSoundSpeedThreshold: 1

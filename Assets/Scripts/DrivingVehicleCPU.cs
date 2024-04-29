@@ -146,7 +146,7 @@ public class DrivingVehicleCPU : Vehicle {
             source.volume = volume / GameInfo.CurrentPlayers;
         }
 
-        bool fullMana = player.Mana == 1;
+        bool fullMana = player.mana == 1;
         if (fullMana && !fullManaLastFrame) {
             int r = Random.Range(0, 3);
             if (r == 0) {

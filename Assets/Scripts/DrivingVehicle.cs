@@ -124,7 +124,7 @@ public class DrivingVehicle : Vehicle {
             source.volume = volume / GameInfo.CurrentPlayers;
         }
 
-        if (player.Mana == 1 && !player.HasFinished) {
+        if (player.mana == 1 && !player.HasFinished) {
             if (InputManager.GetSummonExploding(player.controller)) {
                 Summon(explodingSummonPrefab, explodingSummonSpawnpoint);
             } else if (InputManager.GetSummonBouncePad(player.controller)) {

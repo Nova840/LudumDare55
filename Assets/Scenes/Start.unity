@@ -2397,6 +2397,7 @@ MonoBehaviour:
   - {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
   clickSound:
     clip: {fileID: 8300000, guid: 60a77c54cb14e0448a9970b28daa9c32, type: 3}
+    output: {fileID: 0}
     volume: 1
     randomPitchVariation: 0
 --- !u!1 &467733082
@@ -8588,12 +8589,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 500
   moveAcceleration: 70
+  stopVelocityAngle: 160
   cursors:
   - {fileID: 188078333}
   - {fileID: 473721540}
   - {fileID: 620113314}
   - {fileID: 911343127}
-  stopVelocityAngle: 160
 --- !u!1 &1489038186
 GameObject:
   m_ObjectHideFlags: 0
@@ -9117,10 +9118,14 @@ MonoBehaviour:
   quitGameButton: {fileID: 280217916}
   startButtonSound:
     clip: {fileID: 8300000, guid: 69aa7fc0fd897c54ea1174ea11535afb, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0
   quitGameButtonSound:
     clip: {fileID: 8300000, guid: da2d62b0b1af2124fbba81b5b3531303, type: 3}
+    output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+      type: 2}
     volume: 1
     randomPitchVariation: 0
   backgroundLevelName: 3D_TestLevel
@@ -11015,7 +11020,8 @@ AudioSource:
   m_GameObject: {fileID: 1933023531}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3192239872122393604, guid: 962bed68a06880d4e9bfe92c4965e7b1,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: fc68b83fafb959844907b1da6eb98056, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.8

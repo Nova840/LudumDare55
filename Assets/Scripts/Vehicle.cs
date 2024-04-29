@@ -90,14 +90,14 @@ public abstract class Vehicle : MonoBehaviour {
     protected virtual void Update() {
         GameInfo.Player player = GameInfo.GetPlayer(PlayerIndex);
         if (GameManager.Instance && GameManager.Instance.CountdownOver) {
-            player.Mana += manaFillRate * Time.deltaTime;
-            player.Mana = Mathf.Clamp01(player.Mana);
+            player.mana += manaFillRate * Time.deltaTime;
+            player.mana = Mathf.Clamp01(player.mana);
         }
     }
 
     protected void Summon(GameObject summonPrefab, Transform spawnpoint) {
         GameInfo.Player player = GameInfo.GetPlayer(PlayerIndex);
-        player.Mana = 0;
+        player.mana = 0;
         Quaternion rotation;
         if (transform.forward == Vector3.up) {
             rotation = Quaternion.LookRotation(-transform.up);
