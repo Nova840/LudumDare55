@@ -242,6 +242,108 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxEngineVolume: 1
+  vehiclesWithEngineSoundsInAir: 03000000
+  vehiclePitchesAtSpeed:
+  - vehicle: 0
+    pitchAtSpeed:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.90909094
+        inSlope: 0.01909091
+        outSlope: 0.01909091
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 10
+        value: 1.1
+        inSlope: 0.01909091
+        outSlope: 0.01909091
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - vehicle: 1
+    pitchAtSpeed:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - vehicle: 2
+    pitchAtSpeed:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.90909094
+        inSlope: 0.01909091
+        outSlope: 0.01909091
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 10
+        value: 1.1
+        inSlope: 0.01909091
+        outSlope: 0.01909091
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - vehicle: 3
+    pitchAtSpeed:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.90909094
+        inSlope: 0.01909091
+        outSlope: 0.01909091
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 10
+        value: 1.1
+        inSlope: 0.01909091
+        outSlope: 0.01909091
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   bumpSounds:
   - clip: {fileID: 8300000, guid: 8e2ddfd403ed6c84daf4bccb14c57496, type: 3}
     output: {fileID: -1139120897424338093, guid: 962bed68a06880d4e9bfe92c4965e7b1,
@@ -266,7 +368,6 @@ MonoBehaviour:
   bumpSoundSpeedThreshold: 1
   bumpSoundRepeatDelay: 0.25
   followPoint: {fileID: 9094693423653744879}
-  vehiclesWithEngineSoundsInAir: 03000000
   respawnStuckDistance: 5
   respawnStuckTime: 10
   respawnStuckCheckInterval: 1

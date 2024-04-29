@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class DrivingVehicleCPU : Vehicle {
 
@@ -44,6 +46,20 @@ public class DrivingVehicleCPU : Vehicle {
     [SerializeField, Range(0, 1)]
     private float maxEngineVolume;
 
+    private enum VehicleIndex { ShoppingCart = 0, Suitcase = 1, Wheelchair = 2, Hoverboard = 3 }
+
+    [SerializeField]
+    private VehicleIndex[] vehiclesWithEngineSoundsInAir;
+
+    [Serializable]
+    private class VehiclePitchAtSpeed {
+        public VehicleIndex vehicle;
+        public AnimationCurve pitchAtSpeed;
+    }
+
+    [SerializeField]
+    private VehiclePitchAtSpeed[] vehiclePitchesAtSpeed;
+
     [SerializeField]
     private Sound[] bumpSounds;
 
@@ -55,9 +71,6 @@ public class DrivingVehicleCPU : Vehicle {
 
     [SerializeField]
     private Transform followPoint;
-
-    [SerializeField]
-    private int[] vehiclesWithEngineSoundsInAir;
 
     [SerializeField]
     private float respawnStuckDistance;
@@ -140,10 +153,12 @@ public class DrivingVehicleCPU : Vehicle {
 
         foreach (AudioSource source in engineSounds) {
             float speed = Vector3.ProjectOnPlane(_rigidbody.velocity, Vector3.up).magnitude;
-            bool playInAir = vehiclesWithEngineSoundsInAir.Contains(player.vehicleIndex);
+            bool playInAir = vehiclesWithEngineSoundsInAir.Contains((VehicleIndex)player.vehicleIndex);
+            AnimationCurve pitchAtSpeed = vehiclePitchesAtSpeed.FirstOrDefault(p => p.vehicle == (VehicleIndex)player.vehicleIndex)?.pitchAtSpeed;
             float volume = engineVolumeAtSpeed.Evaluate(speed) * maxEngineVolume;
             if (!playInAir && allWheels.All(w => !w.isGrounded)) volume = 0;
             source.volume = volume / GameInfo.CurrentPlayers;
+            source.pitch = pitchAtSpeed != null ? pitchAtSpeed.Evaluate(speed) : 1;
         }
 
         bool fullMana = player.mana == 1;
