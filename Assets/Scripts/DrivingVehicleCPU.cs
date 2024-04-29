@@ -23,6 +23,9 @@ public class DrivingVehicleCPU : Vehicle {
     }
 
     [SerializeField]
+    private float forceMultiplier;
+
+    [SerializeField]
     private float maxForce;
 
     [SerializeField]
@@ -186,7 +189,7 @@ public class DrivingVehicleCPU : Vehicle {
             _rigidbody.drag = grounded ? initialDrag : 0;
             if (grounded) {
                 _rigidbody.angularVelocity = Vector3.zero;
-                Vector3 force = followPoint.position - transform.position;
+                Vector3 force = (followPoint.position - transform.position) * forceMultiplier;
                 force = Vector3.ProjectOnPlane(force, Vector3.up);
                 force = Vector3.ClampMagnitude(force, maxForce);
                 _rigidbody.AddForce(force, ForceMode.Acceleration);
