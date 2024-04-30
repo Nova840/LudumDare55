@@ -336,8 +336,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press Back/Escape to return to the start menu.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 474921762fac34b40b83f21dc114195e, type: 2}
-  m_sharedMaterial: {fileID: 4969818596328275536, guid: 474921762fac34b40b83f21dc114195e,
+  m_fontAsset: {fileID: 11400000, guid: eaddb2a1ebe7a3648a44c344b5691cbc, type: 2}
+  m_sharedMaterial: {fileID: 4969818596328275536, guid: eaddb2a1ebe7a3648a44c344b5691cbc,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

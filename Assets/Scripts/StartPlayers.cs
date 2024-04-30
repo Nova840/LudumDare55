@@ -8,16 +8,16 @@ using Random = UnityEngine.Random;
 public class StartPlayers : MonoBehaviour {
 
     [SerializeField]
+    private StartPlayer[] startPlayers;
+
+    [SerializeField]
     private Color[] playerColors;
 
     [SerializeField]
     private Sound clickSound;
 
-    private StartPlayer[] startPlayers;
-
     private void Awake() {
         InputSystem.onDeviceChange += OnDeviceChange;
-        startPlayers = GetComponentsInChildren<StartPlayer>();
         for (int i = 0; i < startPlayers.Length; i++) {
             int buttonIndex = i;//otherwise i will be kept in memory and always be 4 in the lambda
 
