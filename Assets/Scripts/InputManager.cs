@@ -45,6 +45,16 @@ public static class InputManager {
         }
     }
 
+    public static float GetRespawn(int controller) {
+        if (controller < 0) {
+            return Keyboard.current.rKey.value;
+        } else if (controller < Gamepad.all.Count) {
+            return Gamepad.all[controller].buttonNorth.value;
+        } else {
+            return 0;
+        }
+    }
+
     public static bool GetBackPressed(int controller) {
         if (controller < 0) {
             return Keyboard.current.escapeKey.wasPressedThisFrame;

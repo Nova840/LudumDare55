@@ -56,10 +56,15 @@ public abstract class Vehicle : MonoBehaviour {
     [SerializeField]
     private Transform smokeSpawnpoint;
 
+    [SerializeField]
+    private float respawnHoldTime;
+
     protected Rigidbody _rigidbody;
     private Outline outline;
 
     public int PlayerIndex { get; private set; }
+
+    private float currentRespawnHoldTime = 0;
 
     public void Initialize(int playerIndex) {
         PlayerIndex = playerIndex;
@@ -88,10 +93,30 @@ public abstract class Vehicle : MonoBehaviour {
     }
 
     protected virtual void Update() {
+        if (!GameManager.Instance.CountdownOver) return;
+
         GameInfo.Player player = GameInfo.GetPlayer(PlayerIndex);
-        if (GameManager.Instance && GameManager.Instance.CountdownOver) {
+
+        if (GameManager.Instance) {
             player.mana += manaFillRate * Time.deltaTime;
             player.mana = Mathf.Clamp01(player.mana);
+        }
+
+        if (!player.isCPU) {
+            bool respawn = InputManager.GetRespawn(player.controller) >= 1;
+            if (currentRespawnHoldTime < 0 && !respawn) {
+                currentRespawnHoldTime = 0;
+            }
+            if (currentRespawnHoldTime >= 0) {
+                if (respawn) {
+                    currentRespawnHoldTime += Time.deltaTime;
+                } else {
+                    currentRespawnHoldTime = 0;
+                }
+            }
+            if (currentRespawnHoldTime >= respawnHoldTime) {
+                Respawn();
+            }
         }
     }
 
@@ -136,6 +161,7 @@ public abstract class Vehicle : MonoBehaviour {
         Transform spawnpoint = Spawnpoints.Instance.GetSpawnpoint(Random.Range(0, Spawnpoints.Instance.GetNumberOfSpawnpoints()));
         Teleport(spawnpoint.position, spawnpoint.rotation);
         GameInfo.GetPlayer(PlayerIndex).SubtractLap();
+        currentRespawnHoldTime = -1;
     }
 
     protected void Teleport(Vector3 position, Quaternion rotation) {
