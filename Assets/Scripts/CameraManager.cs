@@ -57,7 +57,10 @@ public class CameraManager : MonoBehaviour {
         Bounds bounds = GetRelativeBounds();
         transform.position = GetTargetPosition(bounds);
         cameraFollow.localPosition = new Vector3(0, 0, -GetTargetDistance(bounds));
+
+        //for some reason you get a 1 frame wrong position unless these are both here
         cameraRigidbody.transform.position = cameraFollow.position;
+        cameraRigidbody.position = cameraFollow.position;
     }
 
     private Bounds GetRelativeBounds() {
