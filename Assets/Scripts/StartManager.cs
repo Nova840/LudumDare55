@@ -47,6 +47,7 @@ public class StartManager : MonoBehaviour {
 
     private void Start() {
         TrackManager.Instance.EndPodium.gameObject.SetActive(false);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(backgroundLevelName));
     }
 
     private void OnPlayersChange() {
