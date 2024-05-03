@@ -89,15 +89,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1520519326808543654, guid: e44c42002ee99674c9a28294afd07ece,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938183184775548849, guid: e44c42002ee99674c9a28294afd07ece,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437503943798597386, guid: e44c42002ee99674c9a28294afd07ece,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 7397554503161695636, guid: e44c42002ee99674c9a28294afd07ece,
         type: 3}
       propertyPath: m_Name
       value: Driving Vehicle CPU
       objectReference: {fileID: 0}
+    - target: {fileID: 8126164510955919762, guid: e44c42002ee99674c9a28294afd07ece,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 8360476570972145021, guid: e44c42002ee99674c9a28294afd07ece,
         type: 3}
       propertyPath: m_Drag
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931071760735111231, guid: e44c42002ee99674c9a28294afd07ece,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5977557608547182772, guid: e44c42002ee99674c9a28294afd07ece, type: 3}

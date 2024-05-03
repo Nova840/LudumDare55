@@ -7,10 +7,27 @@ using UnityEngine.Rendering.Universal;
 
 public class Screenshot : MonoBehaviour {
 
+    private static Screenshot instance;
+
+    [SerializeField]
+    private bool dontDestroyOnLoad;
+
+    private void Start() {
+        if (!instance && dontDestroyOnLoad) {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        } else {
+            Destroy(gameObject);
+        }
+    }
+
     private void Update() {
+        string fileName = Time.frameCount + ".png";
         if (Keyboard.current.pKey.wasPressedThisFrame) {
-            string fileName = Time.frameCount + ".png";
-            Debug.Log("Captured: " + fileName);
+            Debug.Log("Captured Normal Screenshot: " + fileName);
+            ScreenCapture.CaptureScreenshot(fileName);
+        } else if (Keyboard.current.oKey.wasPressedThisFrame) {
+            Debug.Log("Captured Transparent Screenshot: " + fileName);
             TakeTransparentScreenshot(Camera.main, Screen.width, Screen.height, fileName);
         }
     }
