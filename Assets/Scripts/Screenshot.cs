@@ -13,9 +13,11 @@ public class Screenshot : MonoBehaviour {
     private bool dontDestroyOnLoad;
 
     private void Start() {
-        if (!instance && dontDestroyOnLoad) {
-            DontDestroyOnLoad(gameObject);
+        if (!instance) {
             instance = this;
+            if (dontDestroyOnLoad) {
+                DontDestroyOnLoad(gameObject);
+            }
         } else {
             Destroy(gameObject);
         }
