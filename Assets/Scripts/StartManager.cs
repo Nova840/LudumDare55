@@ -39,6 +39,9 @@ public class StartManager : MonoBehaviour {
         OnPlayersChange();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        if (Application.platform == RuntimePlatform.WebGLPlayer) {
+            quitGameButton.gameObject.SetActive(false);
+        }
     }
 
     private void OnDestroy() {
